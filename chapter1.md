@@ -1,1 +1,6 @@
-# First Chapter
+# java基础的一些基本概念
+
+继承 
+
+封装
+
