@@ -1,12 +1,18 @@
-java集合总结：
+# java集合总结：
 
-list,
+## list,
+ArrayList
+LinkedList
 
-set
+## set
+HashSet
 
-map
+## map
+HashMap
+LinkedHashMap
+TreeMap
 
-queue
+## queue
 
-并发容器
+## 并发容器
 

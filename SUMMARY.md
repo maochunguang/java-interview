@@ -1,7 +1,7 @@
 # Summary
 
 * [介绍](README.md)
-* [java基础](chapter1.md)
+* [java基础](basic.md)
 * [集合](ji-he.md)
 * [多线程](duo-xian-cheng.md)
 * [io流](ioliu.md)
@@ -12,4 +12,7 @@
 * [数据库](shu-ju-ku.md)
 * [linux操作](linuxcao-zuo.md)
 * [大数据基础](da-shu-ju-ji-chu.md)
+* [架构基础](jiagou.md)
+* [算法基础](suanfa.md)
+
 
