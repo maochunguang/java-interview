@@ -15,7 +15,8 @@
 * [架构基础](jiagou.md)
 * [算法基础](suanfa.md)
 * [网络](wangluo.md)
-
+* [消息队列](mq.md)
+* [jvm虚拟机](jvm.md)
 
 
 
