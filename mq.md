@@ -6,3 +6,6 @@
 rabbitMq，zeroMq,rocketMq,kafaka
 
 ## 如何保证消息必达
+
+## 如何保证消息不重复
+

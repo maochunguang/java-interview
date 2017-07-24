@@ -21,7 +21,11 @@
 重写(Overriding)是父类与子类之间多态性的一种表现，而重载(Overloading)是一个类中多态性的一种表现。如果在子类中定义某方法与其父类有相同的名称和参数，我们说该方法被重写 (Overriding)。子类的对象使用这个方法时，将调用子类中的定义，对它而言，父类中的定义如同被"屏蔽"了.
 ## string,stringBuffer,stringBuild的区别
 
-## serverlet的生命周期
+## ==和equals的区别
+
+## hashcode和equals方法
+
+## servlet的生命周期
 1. 只有一个Servlet对象（要点）
 2. 第一次请求的时候被初始化，只此一遍
 3. 初始化后先调用init方法，只此一遍

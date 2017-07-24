@@ -69,6 +69,15 @@ Executors.newCachedThreadPool()采用的便是这种策略
 可以使用ArrayBlockingQueue（基于数组结构的有界队列，FIFO），并指定队列的最大长度
 使用有界队列可以防止资源耗尽，但也会造成超过队列大小和maximumPoolSize后，提交的任务被拒绝的问题，比较难调整和控制。
 
+### execute 和 submit接口的区别
+1. 接受参数，前者是Runnable接口，后者是Callable接口
+2. 返回值，前者没有返回值，后者返回Futrue对象
+3. 处理异常
+
+### 线程池终止的方法
+1. shutdown
+2. shutdownNow
+
 ## 实现生产者消费者
 
 ## CAS操作与ABA问题
