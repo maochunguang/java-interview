@@ -17,6 +17,11 @@
 
 ## 如何判断线程的状态
 
+
+## interrupt、interrupted 、isInterrupted 区别
+interrupt()进行线程中断，调用该方法的线程的状态为将被置为"中断"状态
+interrupted 是作用于当前线程，会清除中断状态
+isInterrupted 是作用于调用该方法的线程对象所对应的线程
 ## 多线程的实现方式
 1. 继承Thread类
 2. 实现Runnable接口
@@ -79,6 +84,87 @@ Executors.newCachedThreadPool()采用的便是这种策略
 2. shutdownNow
 
 ## 实现生产者消费者
+```java
+public class Restaurant {
+    Meal meal;
+    WaitPerson waitPerson = new WaitPerson(this);
+    ExecutorService exec = Executors.newCachedThreadPool();
+    Chef chef = new Chef(this);
+    public Restaurant(){
+        exec.execute(waitPerson);
+        exec.execute(chef);
+    }
+    public static void main(String[] args) {
+        new Restaurant();
+    }
+}
+class Meal{
+    private final int orderNum;
+    public Meal(int orderNum){
+        this.orderNum = orderNum;
+    }
+    @Override
+    public String toString() {
+        return "Meal "+ orderNum;
+    }
+}
+class WaitPerson implements Runnable{
+    private Restaurant restaurant;
+    public WaitPerson(Restaurant r){
+        this.restaurant = r;
+    }
+    @Override
+    public void run() {
+        try {
+            while(!Thread.interrupted()){
+                synchronized (this){
+                    while (restaurant.meal==null){
+                        wait();
+                    }
+                    System.out.println("waitPerson get"+ restaurant.meal);
+                }
+                synchronized (restaurant.chef){
+                    restaurant.meal = null;
+                    restaurant.chef.notifyAll();
+                }
+            }
+        }catch (InterruptedException e){
+            System.out.println(" waitPerson interrupted");
+        }
+    }
+}
+class Chef implements Runnable{
+    private Restaurant restaurant;
+    private int count = 0;
+    public Chef(Restaurant r){
+        this.restaurant = r;
+    }
+    @Override
+    public void run() {
+        try {
+            while(!Thread.interrupted()){
+                synchronized (this){
+                    while (restaurant.meal!=null){
+                        wait();
+                    }
+                }
+                if(++count == 10){
+                    System.out.println("out of food, closing");
+                    restaurant.exec.shutdownNow();
+                }
+                System.out.println("Order up!");
+                synchronized (restaurant.waitPerson){
+                    restaurant.meal = new Meal(count);
+                    restaurant.waitPerson.notifyAll();
+                }
+                TimeUnit.MILLISECONDS.sleep(100);
+            }
+        }catch (InterruptedException e){
+            System.out.println(" chef interrupted");
+        }
+    }
+}
+```
 
 ## CAS操作与ABA问题
 CAS操作是jdk新的cpu指令，
