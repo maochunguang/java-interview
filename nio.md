@@ -1,4 +1,7 @@
 # java Nio原理
+## io和NIO的区别
+IO：   面向流，阻塞IO          
+NIO：  面向缓冲，非阻塞IO，选择器
 ## Java NIO 由以下几个核心部分组成：
 * Channels
 * Buffers：与channel可以相互存取数据

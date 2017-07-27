@@ -7,5 +7,8 @@ spring作为ioc容器把对象的注入，对象的生命周期统一管理，�
 ## spring用了哪些代理？有什么不同？
 * jdk自带的代理，实现接口来代理
 * cglib代理，继承来代理
-##
+## spring的AOP如何实现的？
+
+## spring的bean的单例如何保证？
+
 ## mybaties
