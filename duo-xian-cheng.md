@@ -83,6 +83,17 @@ Executors.newCachedThreadPool()采用的便是这种策略
 1. shutdown
 2. shutdownNow
 
+## FixedThreadPool
+固定线程池大小的，队列可以是有界也可以无界
+## CachedThreadPool
+大小无界的线程池，队列是无界的
+
+## SingleThreadExecutor
+线程池大小为1，
+
+## ScheduledThreadPoolExecutor
+执行定时任务的线程池
+
 ## 实现生产者消费者
 ```java
 public class Restaurant {
