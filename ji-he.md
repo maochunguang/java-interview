@@ -18,6 +18,7 @@ HashSet
 HashMap(数组加链表结构): 没有hash冲突的时候，get时间复杂度o(1),有冲突，先根据hashcode获取数组的下标，然后循环链表，根据key值找到对应元素。
 
 LinkedHashMap()
+
 TreeMap
 
 ## queue

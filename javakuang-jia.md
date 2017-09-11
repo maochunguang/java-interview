@@ -12,3 +12,7 @@ spring作为ioc容器把对象的注入，对象的生命周期统一管理，�
 ## spring的bean的单例如何保证？
 
 ## mybaties
+
+## dubbo架构
+
+## 
