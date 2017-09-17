@@ -11,6 +11,7 @@
 rabbitMq，zeroMq,rocketMq,kafaka
 
 ## 如何保证消息的可靠性
+1. 消息持久化是必须的
 
 ## 如何保证消息不重复
 
