@@ -57,7 +57,9 @@ private  |  Y |  N |  N |  N
 * 对于：&& -- > 只要符号左边为false，则结果为false；当左边为true，同时右边也为true，则结果为true
 
 ## i++和++i的区别
-
+首先int i=1,a=0;
+* i++ 先运算在赋值,例如 a=i++,先运算a=i,后运算i=i+1,所以结果是a==1
+* ++i 先赋值在运算,例如 a=++i,先运算i=i+1,后运算a=i,所以结果是a==2
 
 ## hashcode和equals方法
 * 只要重写 equals，就必须重写 hashCode。 
