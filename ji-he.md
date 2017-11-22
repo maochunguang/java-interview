@@ -21,6 +21,8 @@ LinkedHashMap()
 
 TreeMap(红黑树)，TreeMap是如何保证其迭代输出是有序的呢？其实从宏观上来讲，就相当于树的中序遍历(LDR)
 
+map最高效的遍历方式：
+
 ## queue
 ArrayBlockingQueue
 
