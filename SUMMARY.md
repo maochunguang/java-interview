@@ -21,7 +21,7 @@
     * [netty](kuangjia/netty.md)
     * [dubbo](kuangjia/dubbo.md)
     * [zookeeper](kuangjia/zookeeper.md)
-* [设计模式](she-ji-mo-shi.md)
+* [设计模式](patterns.md)
     * [单例模式](pattern/singleton.md)
     * [工厂模式](pattern/factory.md)
     * [代理模式](pattern/proxy.md)
