@@ -1,6 +1,6 @@
 #  网络相关知识，http，tcp等等。
 ## tcp连接
-tcp的三次握手
+tcp的三次握手,两次挥手
 
 ## udp连接
 
@@ -26,3 +26,5 @@ tcp的三次握手
 ## http和https的区别？
 
 ## websocket如何握手升级？
+
+## https认证过程
