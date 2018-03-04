@@ -1,6 +1,0 @@
-## array
-
-## arrayList
-
-## LinkedList
-

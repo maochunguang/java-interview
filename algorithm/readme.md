@@ -51,7 +51,7 @@ public class QuickSort {
             while(low<high && a[high]>=temp){
                 high--;
             }
-            a[low] = a[high]; 
+            a[low] = a[high];
             while(low<high && a[low]<=temp){
                 low++;
             }
