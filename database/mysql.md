@@ -38,6 +38,14 @@
 3. show profile／s查看mysql线程消耗掉具体时间（高级）
 4. show trace查看mysql如何选择执行计划
 
+## 插入大批量数据优化方式
+
+## insert语句优化
+
+## orderby语句优化
+
+## 分页查询优化
+
 ## explain字段详解
 
 
