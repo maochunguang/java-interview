@@ -16,7 +16,7 @@
 ## mysql索引
 1. 聚簇索引和非聚簇索引的区别（数据结构，作用）
     * 聚簇索引锁B+树结构,所有的数据都在叶子节点
-    * 非聚簇是B树结构，所有节点都包含数据
+    * 非聚簇是B树结构，所有节点都包含数据,存储的是指针，而不是表中数据
 2. 数据库主键用int还是uuid？（效率，用途）
     - int做主键，占用空间小，查询速度快。如果有分布式存储要求，主键会重复。
     - uuid做主键，占用空间大，查询相对慢，支持分布式存储，主键不重复。
@@ -38,7 +38,19 @@
 3. show profile／s查看mysql线程消耗掉具体时间（高级）
 4. show trace查看mysql如何选择执行计划
 
+## explain字段详解
 
+
+## mysql组合索引最左原则详解
+假设表test有id,A,B,C,D五个字段，id是主键，组合索引是C-D,请问以下sql语句哪些会走索引？
+```sql
+select * from test where C=1;--走索引
+select * from test where D=1 and C=1 ;--走索引，mysql会优化
+select * from test where C=1 and D=1 ;--走索引
+select * from test where D=1;--不走
+select C from test where D=1;--走索引，以及部分表扫描,所选字段在组合索引内。
+select A, B from test where D=1;--不走索引，全表扫描，所选字段不再组合索引内。
+```
 
 ## mysql常用参数配置
 1. 慢查询配置
