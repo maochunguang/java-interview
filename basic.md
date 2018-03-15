@@ -64,7 +64,7 @@ private  |  Y |  N |  N |  N
 * ++i 先赋值在运算,例如 a=++i,先运算i=i+1,后运算a=i,所以结果是a==2
 
 ## hashcode和equals方法
-* 只要重写 equals，就必须重写 hashCode。 
+* 只要重写 equals，就必须重写 hashCode。
 * 因为 Set 存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的对象必须重写这两个方法。
 * 如果自定义对象做为 Map 的键，那么必须重写 hashCode 和 equals。
 
