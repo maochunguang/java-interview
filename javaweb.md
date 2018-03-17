@@ -10,6 +10,8 @@
 ## servlet规范
 
 ## cookie和session
+cookie:客户端保存，大小有限制，容易被篡改
+session:服务器保存，大小无限制，
 
 ## ajax
 
