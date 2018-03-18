@@ -3,33 +3,33 @@
 
 ## bio实现文件读写
 ```java
-  /**
-     * BIO模式
-     * FileReader逐个字符读取文件,FileReader extends InputStreamReader
-     * 读取文件中内容到字符数组中
-     * 如何确定字符数组长度：
-     * FileReader不能自定义编码读取
-     * 此方法也可以用于读取二进制文件,只不过读取出来有很多乱码
-     * @param fileName
-     * @return
-     * @throws IOException
-     */
-    public static char[] readByOneCharWithDefaultEncoding(String fileName) throws IOException{
-        File file = new File(fileName);
-        FileReader fileReader = new FileReader(file); // 不能自定义编码,内部默认采用系统的编码
-        System.out.println("当前采用编码: " + fileReader.getEncoding()); 
-        char[] charcters = new char[1024];
-        int result = fileReader.read();  // 逐个字符读取，不能按行读取
-        int i = 0;
-        while(result != -1 && i < 1024){
-            char temp = (char)result;
-            charcters[i] = temp;
-            i++;
-            result = fileReader.read();
-        }
-        fileReader.close();
-        return charcters;
+/**
+    * BIO模式
+    * FileReader逐个字符读取文件,FileReader extends InputStreamReader
+    * 读取文件中内容到字符数组中
+    * 如何确定字符数组长度：
+    * FileReader不能自定义编码读取
+    * 此方法也可以用于读取二进制文件,只不过读取出来有很多乱码
+    * @param fileName
+    * @return
+    * @throws IOException
+    */
+public static char[] readByOneCharWithDefaultEncoding(String fileName) throws IOException{
+    File file = new File(fileName);
+    FileReader fileReader = new FileReader(file); // 不能自定义编码,内部默认采用系统的编码
+    System.out.println("当前采用编码: " + fileReader.getEncoding()); 
+    char[] charcters = new char[1024];
+    int result = fileReader.read();  // 逐个字符读取，不能按行读取
+    int i = 0;
+    while(result != -1 && i < 1024){
+        char temp = (char)result;
+        charcters[i] = temp;
+        i++;
+        result = fileReader.read();
     }
+    fileReader.close();
+    return charcters;
+}
 ```
 
 ## bio服务器
