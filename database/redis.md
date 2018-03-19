@@ -21,6 +21,8 @@
 ## 快照的实现原理
 
 
+## redis内存优化策略
+
 ## 其它集群方案
 redis shardding
 
