@@ -1,8 +1,13 @@
+## kafka是什么？
+
 ## kafka原理
 
 ## topic和partition
 
-## kafka高吞吐量的因素
+## kafka高吞吐量的原因（高性能）
+
+## kafka高可用如何保证？
+
 
 ## 日志保留策略
 
