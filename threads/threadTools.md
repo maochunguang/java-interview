@@ -1,3 +1,10 @@
+## threadLocal
+### 原理
+
+### 优缺点
+
+### 使用场景
+
 ## CountDownLatch
 ### 原理
 一个线程调用countDown方法 happen-before 另外一个线程调用await方法。
