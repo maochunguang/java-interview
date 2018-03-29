@@ -14,3 +14,12 @@
 TreeMap是如何保证其迭代输出是有序的呢？其实从宏观上来讲，就相当于树的中序遍历(LDR)
 
 ### map最高效的遍历方式：
+
+## map中key-value是否可以为空
+     集合类       | key  | value  | superclass |   说明
+----------------- | ---- | ------ | ---------- | --------
+HashTable         | 不可以 | 不可以 | dicitition | 线程安全
+ConcurrentHashMap | 不可以 | 不可以 | AbstractMap | 线程安全
+TreeMap           | 不可以 | 可以 | AbstractMap | 不安全
+HashMap           | 可以 | 可以 | AbstractMap | 不安全
+LinkedHashMap     | 可以 | 可以 | AbstractMap | 不安全

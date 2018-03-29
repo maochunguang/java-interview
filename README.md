@@ -11,7 +11,7 @@
 
 ## 本地运行，或者发布到github的gh-pages
 1. 全局安装gitbook-cli,gh-pages
-`npm install gitbook-cli gh-pages -g`
+`npm install gitbook gitbook-cli gh-pages -g`
 
 2. 本地发布和运行
 ```bash
