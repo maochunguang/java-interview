@@ -32,6 +32,13 @@
 2. uuid
 3. 自定义主键（特定算法，比如）
 
+## mvvc多版本控制
+
+
+## sql语句在mysql中的执行过程
+
+## sql语句在数据上执行的顺序
+
 ## mysql优化的步骤
 1. show status和慢查询日志找出慢sql
 2. Explain查看执行计划（type，key，Extra）
@@ -59,6 +66,7 @@ select * from test where D=1;--不走
 select C from test where D=1;--走索引，以及部分表扫描,所选字段在组合索引内。
 select A, B from test where D=1;--不走索引，全表扫描，所选字段不再组合索引内。
 ```
+## 左连接，有连接，内连接
 
 ## mysql常用参数配置
 1. 慢查询配置
