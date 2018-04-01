@@ -1,4 +1,5 @@
 # queue
+
 ## ArrayBlockingQueue
 
 ## LinkedBlockingQueue

@@ -68,6 +68,13 @@ private  |  Y |  N |  N |  N
 * 因为 Set 存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的对象必须重写这两个方法。
 * 如果自定义对象做为 Map 的键，那么必须重写 hashCode 和 equals。
 
+### hashcode和equals方法的重写原则
+* 原则 1 ： 如果 x.equals(y) 返回 “true”，那么 x 和 y 的 hashCode() 必须相等 ；
+* 原则 2 ： 如果 x.equals(y) 返回 “false”，那么 x 和 y 的 hashCode() 有可能相等，也有可能不等 ；
+* 原则 3 ： 如果 x 和 y 的 hashCode() 不相等，那么 x.equals(y) 一定返回 “false” ；
+* 原则 4 ： 一般来讲，equals 这个方法是给用户调用的，而 hashcode 方法一般用户不会去调用 ；
+* 原则 5 ： 当一个对象类型作为集合对象的元素时，那么这个对象应该拥有自己的equals()和hashCode()设计，而且要遵守前面所说的几个原则。
+
 ## 值传递和对象传递
 * 对于基本类型，是值传递，
 * 对于引用类型，是引用传递。
