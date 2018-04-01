@@ -4,6 +4,7 @@
 * [javaSE基础](basic.md)
 * [javaSE高级](senior.md)
 * [java-web基础](javaweb.md)
+* [java版本特性](java-versions.md)
 * [java数据类型和集合](collection/readme.md)
     * [basic](collection/basic.md)
     * [list](collection/list.md)
