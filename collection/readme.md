@@ -19,6 +19,4 @@ ConrrentHashMap
 HashTable
 Vector
 
-## java集合类图
-
 

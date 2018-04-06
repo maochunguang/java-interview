@@ -2,11 +2,16 @@
 
 ## final
 
-## volitail
+## volatile
+java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致的更新，线程应该确保通过排他锁单独获得这个变量。
+- [ ] 优点：读性能接近于普通读操作，写性能也非常高。
+- [ ] 缺点：必须是原子操作，而且只能是一个变量。
 
-## synchronize
 
-## lock
+## synchronized和lock
+synchronized是jvm底层实现，而lock是java api级别的实现。
+
+
 
 ## 悲观锁和乐观锁
 1. 悲观锁（synchronized）,定义：假设所有线程都会获得锁
