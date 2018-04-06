@@ -1,13 +1,15 @@
 ## threadLocal
 ### 原理
-
+线程
 ### 优缺点
 
 ### 使用场景
+上下文传参，线程私有变量，
+
 
 ## CountDownLatch
 ### 原理
-一个线程调用countDown方法 happen-before 另外一个线程调用await方法。
+一个线程调用countDown方法 happen-before 另外一个线程调用await方法。底层使用AQS队列来实现。
 ### 场景
 假如有这样一个需求，当我们需要解析一个Excel里多个sheet的数据时，可以考虑使用多线程，每个线程解析一个sheet里的数据，等到所有的sheet都解析完之后，程序需要提示解析完成。在这个需求中，要实现主线程等待所有线程完成sheet的解析操作，最简单的做法是使用join,这里使用CountDownLatch。
 
