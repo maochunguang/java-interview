@@ -1,6 +1,10 @@
 # java并发中锁的使用
 
+## 锁的原理
+锁存在每个class对象上，位于对象头信息，也叫markword。只是相当与一个变量标识，标记一个对象是否已经加锁，或者释放锁。
+
 ## final
+一个变量是final所修饰，那么在所有线程中看到的该变量是一致的。不可变意味着线程安全。
 
 ## volatile
 java编程语言允许线程访问共享变量，为了确保共享变量能被准确和一致的更新，线程应该确保通过排他锁单独获得这个变量。
@@ -9,9 +13,35 @@ java编程语言允许线程访问共享变量，为了确保共享变量能被�
 
 
 ## synchronized和lock
-synchronized是jvm底层实现，而lock是java api级别的实现。
+synchronized是jvm底层实现，而lock是java api级别的实现，底层依赖于CAS操作。
+一般来说，lock的性能高于synchronized，在jdk1.6以后，synchronized性能有很大改善。两者性能已经很接近。
 
 
+## happen-before原则
+定义：如果操作a happens-before 操作b，那么b操作必须知道a的操作，或者说a的操作一定会通知到b，而不是a一定发生在b前。
+### 程序次序规则（Program Order Rule）
+在一个线程内，按照程序代码顺序，书写在前面的操作先行 发生于书写在后面的操作。准确地说，应该是控制流顺序而不是程序代码顺序，因为要考虑分支、循环 等结构。
+
+### 管程锁定规则（Monitor Lock Rule）
+一个unlock操作先行发生于后面对同一个锁的lock操作。这里 必须强调的是同一个锁，而“后面”是指时间上的先后顺序。
+
+### volatile变量规则（Volatile Variable Rule）
+对一个volatile变量的写操作先行发生于后面对这个变量的 读操作，这里的“后面”同样是指时间上的先后顺序。
+
+### 线程启动规则（Thread Start Rule）
+Thread对象的start（）方法先行发生于此线程的每一个动作。
+
+### 线程终止规则（Thread Termination Rule）
+线程中的所有操作都先行发生于对此线程的终止检测， 我们可以通过Thread.join（）方法结束、Thread.isAlive（）的返回值等手段检测到线程已经终止执行。
+
+### 线程中断规则（Thread Interruption Rule）
+对线程interrupt（）方法的调用先行发生于被中断线程 的代码检测到中断事件的发生，可以通过Thread.interrupted（）方法检测到是否有中断发生。
+
+### 对象终结规则（Finalizer Rule）
+一个对象的初始化完成（构造函数执行结束）先行发生于它的 finalize（）方法的开始。
+
+### 传递性（Transitivity）
+如果操作A先行发生于操作B，操作B先行发生于操作C，那就可以得出操 作A先行发生于操作C的结论。
 
 ## 悲观锁和乐观锁
 1. 悲观锁（synchronized）,定义：假设所有线程都会获得锁
@@ -81,5 +111,4 @@ public class Lock{
 }
 ```
 
-## happen-before原则
-定义：如果操作a happens-before 操作b，那么b操作必须知道a的操作，或者说a的操作一定会通知到b，而不是a一定发生在b前。
+
