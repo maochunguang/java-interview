@@ -13,3 +13,5 @@
 ## nginx反向代理
 
 ## nginx和keepalived
+
+> 参考《nginx从入门到精通》，《nginx官方文档》

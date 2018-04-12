@@ -87,3 +87,6 @@ c2 [2,5,8]
 ```
 kafka 的key 为null， 是随机｛一个Metadata的同步周期内，默认是10分钟｝
 
+> 参考《kafka技术内幕》，kafka官方文档。
+
+

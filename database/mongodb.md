@@ -7,3 +7,4 @@
 
 ## mongodb的分片
 
+> 参考《mongodb权威指南》。

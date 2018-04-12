@@ -28,3 +28,5 @@ tcp的三次握手,两次挥手
 ## websocket如何握手升级？
 
 ## https认证过程
+
+> 参考《tcp-ip详解》，《http权威指南》

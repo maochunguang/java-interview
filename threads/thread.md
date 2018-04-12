@@ -97,7 +97,7 @@ class WaitPerson implements Runnable{
     }
     @Override
     public void run() {
-        try {
+    try {
             while(!Thread.interrupted()){
                 synchronized (this){
                     while (restaurant.meal==null){

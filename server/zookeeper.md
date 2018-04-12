@@ -51,3 +51,6 @@ zookeeper事务请求提议需要超过半数的机器，假如是2(n+1)台,需�
 ## zookeeper日志管理？
 
 ## leader选举的原理
+
+
+> 参考《从Paxos到Zookeeper分布式一致性原理与实践》，zookeeper官方文档。

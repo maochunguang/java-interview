@@ -112,3 +112,4 @@ public class Lock{
 ```
 
 
+> 参考《java并发编程的艺术》，《深入理解java虚拟机第二版》。
