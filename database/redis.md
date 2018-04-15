@@ -7,7 +7,7 @@
 
 ## redis单线程高性能的原因
 1. 纯内存访问，内存的响应时间是100ns，redis并发达到每秒w级
-2. 非阻塞io，redis使用epoll作为多路复用的实现，redis基于epoll实现了自己的事件处理模型。将epoll中的连接、读写、关闭都转换为事件，不 在网络I/O上浪费过多的时间。
+2. 非阻塞io，redis使用epoll作为多路复用的实现，redis基于epoll实现了自己的事件处理模型。将epoll中的连接、读写、关闭都转换为事件，不在网络I/O上浪费过多的时间。
 3. 单线程避免了锁竞争和线程切换，以及线程创建。
 4. 单线程有利于高性能数据结构的实现。
 
@@ -47,7 +47,7 @@
 用途：
 
 ### 4. set
-数据结构：
+数据结构：set
 
 特性：元素是无序的，元素不可以重复
 
@@ -61,6 +61,7 @@
 用途：
 
 ## redis事务处理
+1. watch
 
 
 ## redis持久化策略
@@ -85,9 +86,17 @@ aof持久化功能实现上分为追加，文件写入，文件同步三个步�
 
 ## redis的集群模式
 ### 1. master-slave
-### 2. master-slave-sentinel
-### 3. redis-cluster
+主从复制的原理：
 
+### 2. master-slave-sentinel
+哨兵的原理：
+
+### 3. redis-cluster
+redis集群的原理：
+
+增加节点：
+
+删除节点：
 
 ## 其它集群方案
 redis shardding

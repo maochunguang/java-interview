@@ -31,3 +31,5 @@ gitbook build
 gitbook serve ## 本地运行查看
 gh-pages -d _book ## 发布到gh-pages分支
 ```
+3. kindle电子书破解
+`cd /Users/mac/Library/Application Support/Kindle/My Kindle Content`

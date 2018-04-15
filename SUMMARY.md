@@ -93,7 +93,7 @@
     * [maven私服搭建](devenv/maven.md)
     * [mysql集群搭建](devenv/mysql.md)
     * [mongodb集群搭建](devenv/mongodb.md)
-    * [nginx集群搭建](devenv/nginx.md)
+    * [nginx配置](devenv/nginx.md)
     * [tomcat集群搭建](devenv/tomcat.md)
     * [redis集群搭建](devenv/redis.md)
     * [docker环境搭建](devenv/docker.md)
