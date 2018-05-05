@@ -9,4 +9,11 @@ CAS（Compare and swap）比较和替换是设计并发算法时用到的一种�
 ## ABA问题的解决
 使用版本号来解决，在jdk里面提供有AtomicStampRefence类。
 
-## 实现
+## 死锁原因
+
+## 死锁排查
+
+## 可重入锁
+
+
+
