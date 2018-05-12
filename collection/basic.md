@@ -11,4 +11,6 @@
 ## java集合类图
 ![java集合类图](../images/collection.png)
 
-所有的集合类，都实现了Iterator接口，这是一个用于遍历集合中元素的接口，主要包含 hashNext(),next(),remove()三种方法。它的一个子接口LinkedIterator在它的基础上又添加了三种方法，分别是 add(),previous(),hasPrevious()。也就是说如果是先Iterator接口，那么在遍历集合中元素的时候，只能往后遍历，被 遍历后的元素不会在遍历到，通常无序集合实现的都是这个接口，比如HashSet，HashMap；而那些元素有序的集合，实现的一般都是 LinkedIterator接口，实现这个接口的集合可以双向遍历，既可以通过next()访问下一个元素，又可以通过previous()访问前一个 元素，比如ArrayList。
+所有的集合类，都实现了Iterator接口，这是一个用于遍历集合中元素的接口，主要包含 hashNext(),next(),remove()三种方法。它的一个子接口LinkedIterator在它的基础上又添加了三种方法，分别是 add(),previous(),hasPrevious()。也就是说如果是先Iterator接口，那么在遍历集合中元素的时候，只能往后遍历，被 遍历后的元素不会在遍历到，通常无序集合实现的都是这个接口，比如HashSet，HashMap；
+
+而那些元素有序的集合，实现的一般都是 LinkedIterator接口，实现这个接口的集合可以双向遍历，既可以通过next()访问下一个元素，又可以通过previous()访问前一个 元素，比如ArrayList。

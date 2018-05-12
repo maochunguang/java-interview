@@ -27,7 +27,6 @@ LinkedHashMap继承与hashMap，将HashMap和双向链表合二为一。LinkedHa
 底层数据结构是红黑树。
 TreeMap是如何保证其迭代输出是有序的呢？其实从宏观上来讲，就相当于树的中序遍历(LDR)
 
-
 ## map最高效的遍历方式：
 使用 entrySet 遍历 Map 类集合 KV，而不是 keySet 方式进行遍历。
 说明：keySet 其实是遍历了 2 次，一次是转为 Iterator 对象，另一次是从hashMap中取出 key 所对应的 value。而entrySet只是遍历了一次就把 key 和 value 都放到了entry中，效率更高。如果是 JDK8，使用 Map.foreach 方法。
