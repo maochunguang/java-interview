@@ -1,8 +1,15 @@
 ## 数组
 数组性能最高，但是无法动态扩容，操作不方便。
 
-## ArrayList
+## ArrayList(jdk1.8)
 底层数据结构是一个动态数组。更适合随机读取数据。
+
+初始化容量：10
+当容量满的时候进行扩容：
+```java
+private static final int DEFAULT_CAPACITY = 10;
+int newCapacity = oldCapacity + (oldCapacity >> 1);
+```
 
 ## LinkedList
 
