@@ -22,6 +22,12 @@ bb q进行数据交互
 rabbitMq,zeroMq,rocketMq,kafaka
 
 ## 消息队列模型
+pull和push，点对点，广播，流式处理
+
+## rabbitmq和kafka的区别
+功能性：
+
+实现原理：
 
 ## 如何保证消息的可靠性
 1. 消息持久化是必须的
