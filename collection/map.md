@@ -5,6 +5,17 @@
 数据结构是数组+链表。
 ![hashmap结构](../images/hashmap.png)
 
+### 初始化
+初始容量：16
+```java
+static final int DEFAULT_INITIAL_CAPACITY = 1 << 4; // aka 16
+static final float DEFAULT_LOAD_FACTOR = 0.75f; //负载因子
+static final int TREEIFY_THRESHOLD = 8;//链表长度>=8转为红黑树
+static final int UNTREEIFY_THRESHOLD = 6;
+static final int MIN_TREEIFY_CAPACITY = 64;
+
+```
+
 ### put元素的流程
 首先根据对象计算hashcode值，映射到map中数组的下标，如果改数组没有元素，直接放置。如果有元素，说明有hash冲突，放到数组下标对应的链表上。
 
