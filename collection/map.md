@@ -17,7 +17,10 @@ static final int MIN_TREEIFY_CAPACITY = 64;
 ```
 
 ### put元素的流程
-首先根据对象计算hashcode值，映射到map中数组的下标，如果改数组没有元素，直接放置。如果有元素，说明有hash冲突，放到数组下标对应的链表上。
+首先根据对象计算hashcode值，映射到map中数组的下标，如果改数组没有元素，new Node()直接放置。
+如果有元素，key是否一样，如果key一样，直接替换value。
+key不一样，说明有hash冲突，node是否可以转换为TreeNode，可以转换的话，使用TreeNode的put方法。
+不能转为TreeNode，放到数组下标对应的链表上，如果链表长度>=8，转为红黑树。
 
 ### get元素的逻辑
 首先根据对象计算hashcode值，映射到map中数组的下标。如果是一个元素，就直接返回。如果是一个链表，遍历链表，根据key值判断元素，返回。不存在hash冲突的情况下，时间复杂度是o(1)。
