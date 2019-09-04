@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>list · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>list · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.1.1">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -451,9 +451,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" data-path="../jvm.html">
+        <li class="chapter " data-level="1.10" data-path="../jvm.md">
             
-                <a href="../jvm.html">
+                <span>
             
                     
                     jvm虚拟机
@@ -1662,14 +1662,21 @@
                                 
                                 <h2 id="&#x6570;&#x7EC4;">&#x6570;&#x7EC4;</h2>
 <p>&#x6570;&#x7EC4;&#x6027;&#x80FD;&#x6700;&#x9AD8;&#xFF0C;&#x4F46;&#x662F;&#x65E0;&#x6CD5;&#x52A8;&#x6001;&#x6269;&#x5BB9;&#xFF0C;&#x64CD;&#x4F5C;&#x4E0D;&#x65B9;&#x4FBF;&#x3002;</p>
-<h2 id="arraylist">ArrayList</h2>
-<p>&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x662F;&#x4E00;&#x4E2A;&#x52A8;&#x6001;&#x6570;&#x7EC4;&#x3002;&#x66F4;&#x9002;&#x5408;&#x968F;&#x673A;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x3002;</p>
+<h2 id="arraylistjdk18">ArrayList(jdk1.8)</h2>
+<p>&#x5B9E;&#x73B0;&#x4E86;List<e>
+&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x662F;&#x4E00;&#x4E2A;&#x52A8;&#x6001;&#x6570;&#x7EC4;&#x3002;&#x66F4;&#x9002;&#x5408;&#x968F;&#x673A;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x3002;</e></p>
+<p>&#x521D;&#x59CB;&#x5316;&#x5BB9;&#x91CF;&#xFF1A;10
+&#x5F53;&#x5BB9;&#x91CF;&#x6EE1;&#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x6269;&#x5BB9;&#xFF1A;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_CAPACITY = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="hljs-number">1</span>);
+</code></pre>
 <h2 id="linkedlist">LinkedList</h2>
+<p>&#x5B9E;&#x73B0;&#x4E86;List<e>, Deque<e>&#x4E24;&#x4E2A;&#x63A5;&#x53E3;</e></e></p>
 <p>&#x5E95;&#x5C42;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x662F;&#x4E00;&#x4E2A;&#x53CC;&#x5411;&#x94FE;&#x8868;&#x3002;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x4F55;&#x4F4D;&#x7F6E;&#x8FDB;&#x884C;&#x9AD8;&#x6548;&#x5730;&#x63D2;&#x5165;&#x548C;&#x5220;&#x9664;&#x64CD;&#x4F5C;&#x7684;&#x6709;&#x5E8F;&#x5E8F;&#x5217;&#x3002;</p>
 <h2 id="arraylist&#x548C;linkedlist&#x533A;&#x522B;">ArrayList&#x548C;LinkedList&#x533A;&#x522B;</h2>
 <ol>
 <li>ArrayList&#x662F;&#x5B9E;&#x73B0;&#x4E86;&#x57FA;&#x4E8E;&#x52A8;&#x6001;&#x6570;&#x7EC4;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;LinkedList&#x57FA;&#x4E8E;&#x94FE;&#x8868;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</li>
-<li>&#x5BF9;&#x4E8E;&#x968F;&#x673A;&#x8BBF;&#x95EE;get&#x548C;set&#xFF0C;ArrayList&#x89C9;&#x5F97;&#x4F18;&#x4E8E;LinkedList&#xFF0C;&#x56E0;&#x4E3A;LinkedList&#x8981;&#x79FB;&#x52A8;&#x6307;&#x9488;&#x3002;</li>
+<li>&#x5BF9;&#x4E8E;&#x968F;&#x673A;&#x8BBF;&#x95EE;get&#x548C;set&#xFF0C;ArrayList&#x4F18;&#x4E8E;LinkedList&#xFF0C;&#x56E0;&#x4E3A;LinkedList&#x8981;&#x79FB;&#x52A8;&#x6307;&#x9488;&#x3002;</li>
 <li>&#x5BF9;&#x4E8E;&#x65B0;&#x589E;&#x548C;&#x5220;&#x9664;&#x64CD;&#x4F5C;add&#x548C;remove&#xFF0C;LinedList&#x6BD4;&#x8F83;&#x5360;&#x4F18;&#x52BF;&#xFF0C;&#x56E0;&#x4E3A;ArrayList&#x8981;&#x79FB;&#x52A8;&#x6570;&#x636E;&#x3002;</li>
 </ol>
 
@@ -1715,7 +1722,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"list","level":"1.6.2","depth":2,"next":{"title":"map","level":"1.6.3","depth":2,"path":"collection/map.md","ref":"collection/map.md","articles":[]},"previous":{"title":"basic","level":"1.6.1","depth":2,"path":"collection/basic.md","ref":"collection/basic.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"collection/list.md","mtime":"2018-05-12T23:40:04.709Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2018-07-12T14:47:43.117Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"list","level":"1.6.2","depth":2,"next":{"title":"map","level":"1.6.3","depth":2,"path":"collection/map.md","ref":"collection/map.md","articles":[]},"previous":{"title":"basic","level":"1.6.1","depth":2,"path":"collection/basic.md","ref":"collection/basic.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"collection/list.md","mtime":"2019-09-04T08:31:26.493Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-04T08:35:51.652Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
