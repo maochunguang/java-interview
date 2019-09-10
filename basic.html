@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>javaSE基础 · GitBook</title>
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="generator" content="GitBook 3.1.1">
         
         
         
@@ -1703,6 +1703,9 @@
 </tr>
 </tbody>
 </table>
+<h2 id="java&#x7684;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x6709;&#x54EA;&#x4E9B;&#xFF1F;&#x591A;&#x5C11;&#x4F4D;&#xFF1F;">java&#x7684;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x6709;&#x54EA;&#x4E9B;&#xFF1F;&#x591A;&#x5C11;&#x4F4D;&#xFF1F;</h2>
+<p>boolean(1),byte(8),char(16),short(16),
+int(32),float(32),double(64),long(64)</p>
 <h2 id="&#x7EE7;&#x627F;">&#x7EE7;&#x627F;</h2>
 <ul>
 <li><p>&#x5B9A;&#x4E49;&#xFF1A;&#x7EE7;&#x627F;&#x662F;&#x4F7F;&#x7528;&#x5DF2;&#x5B58;&#x5728;&#x7684;&#x7C7B;&#x7684;&#x5B9A;&#x4E49;&#x4F5C;&#x4E3A;&#x57FA;&#x7840;&#x5EFA;&#x7ACB;&#x65B0;&#x7C7B;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x65B0;&#x7C7B;&#x7684;&#x5B9A;&#x4E49;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x65B0;&#x7684;&#x6570;&#x636E;&#x6216;&#x65B0;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x7528;&#x7236;&#x7C7B;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F46;&#x4E0D;&#x80FD;&#x9009;&#x62E9;&#x6027;&#x5730;&#x7EE7;&#x627F;&#x7236;&#x7C7B;&#x3002;</p>
@@ -1784,9 +1787,19 @@
 <li>&#x5BF9;&#x4E8E;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#xFF0C;&#x662F;&#x503C;&#x4F20;&#x9012;&#xFF0C;</li>
 <li>&#x5BF9;&#x4E8E;&#x5F15;&#x7528;&#x7C7B;&#x578B;&#xFF0C;&#x662F;&#x5F15;&#x7528;&#x4F20;&#x9012;&#x3002;</li>
 </ul>
-<blockquote>
-<p>&#x53C2;&#x8003;&#x300A;java&#x7F16;&#x7A0B;&#x601D;&#x60F3;&#x7B2C;&#x56DB;&#x7248;&#x300B;&#xFF0C;&#x300A;java&#x6838;&#x5FC3;&#x6280;&#x672F;&#x5377;1 &#x7B2C;&#x5341;&#x7248;&#x300B;&#xFF0C;&#x300A;java&#x6838;&#x5FC3;&#x6280;&#x672F;&#x5377;2 &#x7B2C;&#x4E5D;&#x7248;&#x300B;&#x3002;</p>
-</blockquote>
+<h2 id="&#x6240;&#x6709;&#x7C7B;&#x7684;&#x7236;&#x7C7B;&#x662F;&#x54EA;&#x4E2A;&#xFF1F;&#x6709;&#x54EA;&#x4E9B;&#x65B9;&#x6CD5;&#xFF1F;">&#x6240;&#x6709;&#x7C7B;&#x7684;&#x7236;&#x7C7B;&#x662F;&#x54EA;&#x4E2A;&#xFF1F;&#x6709;&#x54EA;&#x4E9B;&#x65B9;&#x6CD5;&#xFF1F;</h2>
+<p>java&#x4E2D;&#x6240;&#x6709;&#x7C7B;&#x7684;&#x7236;&#x7C7B;&#x662F;object&#xFF0C;
+protected Object clone() &#x521B;&#x5EFA;&#x5E76;&#x8FD4;&#x56DE;&#x6B64;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E2A;&#x526F;&#x672C;&#x3002;
+boolean equals(Object obj) &#x6307;&#x793A;&#x67D0;&#x4E2A;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x4E0E;&#x6B64;&#x5BF9;&#x8C61;&#x201C;&#x76F8;&#x7B49;&#x201D;&#x3002;
+int hashCode() &#x8FD4;&#x56DE;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x54C8;&#x5E0C;&#x7801;&#x503C;&#x3002;
+String toString() &#x8FD4;&#x56DE;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x793A;&#x3002;
+protected void finalize() &#x5F53;&#x5783;&#x573E;&#x56DE;&#x6536;&#x5668;&#x786E;&#x5B9A;&#x4E0D;&#x5B58;&#x5728;&#x5BF9;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x66F4;&#x591A;&#x5F15;&#x7528;&#x65F6;&#xFF0C;&#x7531;&#x5BF9;&#x8C61;&#x7684;&#x5783;&#x573E;&#x56DE;&#x6536;&#x5668;&#x8C03;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x3002;
+Class&lt;? extendsObject&gt; getClass() &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x7C7B;&#x3002;
+void notify() &#x5524;&#x9192;&#x5728;&#x6B64;&#x5BF9;&#x8C61;&#x76D1;&#x89C6;&#x5668;&#x4E0A;&#x7B49;&#x5F85;&#x7684;&#x5355;&#x4E2A;&#x7EBF;&#x7A0B;&#x3002;
+void notifyAll() &#x5524;&#x9192;&#x5728;&#x6B64;&#x5BF9;&#x8C61;&#x76D1;&#x89C6;&#x5668;&#x4E0A;&#x7B49;&#x5F85;&#x7684;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x3002;
+void wait() &#x5BFC;&#x81F4;&#x5F53;&#x524D;&#x7684;&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;&#xFF0C;&#x76F4;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x8C03;&#x7528;&#x6B64;&#x5BF9;&#x8C61;&#x7684; notify() &#x65B9;&#x6CD5;&#x6216; notifyAll() &#x65B9;&#x6CD5;&#x3002;
+void wait(long timeout) &#x5BFC;&#x81F4;&#x5F53;&#x524D;&#x7684;&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;&#xFF0C;&#x76F4;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x8C03;&#x7528;&#x6B64;&#x5BF9;&#x8C61;&#x7684; notify() &#x65B9;&#x6CD5;&#x6216; notifyAll() &#x65B9;&#x6CD5;&#xFF0C;&#x6216;&#x8005;&#x8D85;&#x8FC7;&#x6307;&#x5B9A;&#x7684;&#x65F6;&#x95F4;&#x91CF;&#x3002;
+void wait(long timeout, int nanos) &#x5BFC;&#x81F4;&#x5F53;&#x524D;&#x7684;&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;&#xFF0C;&#x76F4;&#x5230;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x8C03;&#x7528;&#x6B64;&#x5BF9;&#x8C61;&#x7684; notify()</p>
 
                                 
                                 </section>
@@ -1830,7 +1843,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"javaSE基础","level":"1.2","depth":1,"next":{"title":"javaSE高级","level":"1.3","depth":1,"path":"senior.md","ref":"senior.md","articles":[]},"previous":{"title":"介绍","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"basic.md","mtime":"2018-07-01T06:38:44.303Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-04T08:35:51.652Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"javaSE基础","level":"1.2","depth":1,"next":{"title":"javaSE高级","level":"1.3","depth":1,"path":"senior.md","ref":"senior.md","articles":[]},"previous":{"title":"介绍","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"basic.md","mtime":"2019-09-10T00:34:30.845Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2019-09-10T00:37:11.913Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
