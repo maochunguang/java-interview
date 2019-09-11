@@ -7,11 +7,16 @@ protected  |  Y |  Y |  Y |  N
 无修饰符  |  Y |  Y |  N or Y(同一个包） |  N
 private  |  Y |  N |  N |  N
 
+## java的基本类型有哪些？多少位？
+boolean(1),byte(8),char(16),short(16),
+int(32),float(32),double(64),long(64)
+
 ## 继承
 * 定义：继承是使用已存在的类的定义作为基础建立新类的技术，新类的定义可以增加新的数据或新的功能，也可以用父类的功能，但不能选择性地继承父类。
 
 * 说明：继承所描述的是“is-a”的关系，如果有两个对象A和B，若可以描述为“A是B”，则可以表示A继承B，其中B是被继承者称之为父类或者超类，A是继承者称之为子类或者派生类。实际上继承者是被继承者的特殊化，它除了拥有被继承者的特性外，还拥有自己独有得特性
-### 继承的特征
+
+## 继承的特征
 1. 子类拥有父类非private的属性和方法。
 2. 子类可以拥有自己属性和方法，即子类可以对父类进行扩展。
 3. 子类可以用自己的方式实现父类的方法
@@ -68,7 +73,7 @@ private  |  Y |  N |  N |  N
 * 因为 Set 存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的对象必须重写这两个方法。
 * 如果自定义对象做为 Map 的键，那么必须重写 hashCode 和 equals。
 
-### hashcode和equals方法的重写原则
+## hashcode和equals方法的重写原则
 * 原则 1 ： 如果 x.equals(y) 返回 “true”，那么 x 和 y 的 hashCode() 必须相等 ；
 * 原则 2 ： 如果 x.equals(y) 返回 “false”，那么 x 和 y 的 hashCode() 有可能相等，也有可能不等 ；
 * 原则 3 ： 如果 x 和 y 的 hashCode() 不相等，那么 x.equals(y) 一定返回 “false” ；
@@ -79,5 +84,16 @@ private  |  Y |  N |  N |  N
 * 对于基本类型，是值传递，
 * 对于引用类型，是引用传递。
 
-
-> 参考《java编程思想第四版》，《java核心技术卷1 第十版》，《java核心技术卷2 第九版》。
+## 所有类的父类是哪个？有哪些方法？
+java中所有类的父类是object，有以下方法：
+* protected Object clone() 创建并返回此对象的一个副本。
+* boolean equals(Object obj) 指示某个其他对象是否与此对象“相等”。
+* int hashCode() 返回该对象的哈希码值。
+* String toString() 返回该对象的字符串表示。
+* protected void finalize() 当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。
+* Class<? extendsObject> getClass() 返回一个对象的运行时类。
+* void notify() 唤醒在此对象监视器上等待的单个线程。
+* void notifyAll() 唤醒在此对象监视器上等待的所有线程。
+* void wait() 导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法。
+* void wait(long timeout) 导致当前的线程等待，直到其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或者超过指定的时间量。
+* void wait(long timeout, int nanos) 导致当前的线程等待，直到其他线程调用此对象的 notify()
