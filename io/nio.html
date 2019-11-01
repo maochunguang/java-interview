@@ -2,12 +2,12 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>nio · GitBook</title>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>nio · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.1.1">
+        <meta name="generator" content="GitBook 3.2.3">
         
         
         
@@ -102,9 +102,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="../basic.html">
+        <li class="chapter " data-level="1.2" data-path="../basic.md">
             
-                <a href="../basic.html">
+                <span>
             
                     
                     javaSE基础
@@ -1663,7 +1663,8 @@
                                 <h1 id="java-nio&#x539F;&#x7406;">java Nio&#x539F;&#x7406;</h1>
 <h2 id="io&#x548C;nio&#x7684;&#x533A;&#x522B;">io&#x548C;NIO&#x7684;&#x533A;&#x522B;</h2>
 <p>IO&#xFF1A;&#x9762;&#x5411;&#x6D41;&#xFF0C;&#x963B;&#x585E;IO
-NIO&#xFF1A;&#x9762;&#x5411;&#x7F13;&#x51B2;&#xFF0C;&#x975E;&#x963B;&#x585E;IO&#xFF0C;&#x9009;&#x62E9;&#x5668;</p>
+NIO&#xFF1A;&#x9762;&#x5411;&#x7F13;&#x51B2;&#xFF0C;&#x975E;&#x963B;&#x585E;IO&#xFF0C;&#x9009;&#x62E9;&#x5668;
+NIO (New I/O): NIO&#x662F;&#x4E00;&#x79CD;&#x540C;&#x6B65;&#x975E;&#x963B;&#x585E;&#x7684;I/O&#x6A21;&#x578B;&#xFF0C;&#x5728;Java 1.4 &#x4E2D;&#x5F15;&#x5165;&#x4E86;NIO&#x6846;&#x67B6;&#xFF0C;&#x5BF9;&#x5E94; java.nio &#x5305;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86; Channel , Selector&#xFF0C;Buffer&#x7B49;&#x62BD;&#x8C61;&#x3002;NIO&#x4E2D;&#x7684;N&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;Non-blocking&#xFF0C;&#x4E0D;&#x5355;&#x7EAF;&#x662F;New&#x3002;&#x5B83;&#x652F;&#x6301;&#x9762;&#x5411;&#x7F13;&#x51B2;&#x7684;&#xFF0C;&#x57FA;&#x4E8E;&#x901A;&#x9053;&#x7684;I/O&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#x3002; NIO&#x63D0;&#x4F9B;&#x4E86;&#x4E0E;&#x4F20;&#x7EDF;BIO&#x6A21;&#x578B;&#x4E2D;&#x7684; Socket &#x548C; ServerSocket &#x76F8;&#x5BF9;&#x5E94;&#x7684; SocketChannel &#x548C; ServerSocketChannel &#x4E24;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x5957;&#x63A5;&#x5B57;&#x901A;&#x9053;&#x5B9E;&#x73B0;,&#x4E24;&#x79CD;&#x901A;&#x9053;&#x90FD;&#x652F;&#x6301;&#x963B;&#x585E;&#x548C;&#x975E;&#x963B;&#x585E;&#x4E24;&#x79CD;&#x6A21;&#x5F0F;&#x3002;&#x963B;&#x585E;&#x6A21;&#x5F0F;&#x4F7F;&#x7528;&#x5C31;&#x50CF;&#x4F20;&#x7EDF;&#x4E2D;&#x7684;&#x652F;&#x6301;&#x4E00;&#x6837;&#xFF0C;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#xFF0C;&#x4F46;&#x662F;&#x6027;&#x80FD;&#x548C;&#x53EF;&#x9760;&#x6027;&#x90FD;&#x4E0D;&#x597D;&#xFF1B;&#x975E;&#x963B;&#x585E;&#x6A21;&#x5F0F;&#x6B63;&#x597D;&#x4E0E;&#x4E4B;&#x76F8;&#x53CD;&#x3002;&#x5BF9;&#x4E8E;&#x4F4E;&#x8D1F;&#x8F7D;&#x3001;&#x4F4E;&#x5E76;&#x53D1;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x540C;&#x6B65;&#x963B;&#x585E;I/O&#x6765;&#x63D0;&#x5347;&#x5F00;&#x53D1;&#x901F;&#x7387;&#x548C;&#x66F4;&#x597D;&#x7684;&#x7EF4;&#x62A4;&#x6027;&#xFF1B;&#x5BF9;&#x4E8E;&#x9AD8;&#x8D1F;&#x8F7D;&#x3001;&#x9AD8;&#x5E76;&#x53D1;&#x7684;&#xFF08;&#x7F51;&#x7EDC;&#xFF09;&#x5E94;&#x7528;&#xFF0C;&#x5E94;&#x4F7F;&#x7528; NIO &#x7684;&#x975E;&#x963B;&#x585E;&#x6A21;&#x5F0F;&#x6765;&#x5F00;&#x53D1;</p>
 <h2 id="java-nio-&#x7531;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x6838;&#x5FC3;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#xFF1A;">Java NIO &#x7531;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x6838;&#x5FC3;&#x90E8;&#x5206;&#x7EC4;&#x6210;&#xFF1A;</h2>
 <ul>
 <li>Channels</li>
@@ -1724,7 +1725,7 @@ NIO&#xFF1A;&#x9762;&#x5411;&#x7F13;&#x51B2;&#xFF0C;&#x975E;&#x963B;&#x585E;IO&#x
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"nio","level":"1.9.2","depth":2,"next":{"title":"aio","level":"1.9.3","depth":2,"path":"io/aio.md","ref":"io/aio.md","articles":[]},"previous":{"title":"bio","level":"1.9.1","depth":2,"path":"io/bio.md","ref":"io/bio.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"io/nio.md","mtime":"2018-03-17T14:15:45.000Z","type":"markdown"},"gitbook":{"version":"3.1.1","time":"2019-09-10T00:47:21.525Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"nio","level":"1.9.2","depth":2,"next":{"title":"aio","level":"1.9.3","depth":2,"path":"io/aio.md","ref":"io/aio.md","articles":[]},"previous":{"title":"bio","level":"1.9.1","depth":2,"path":"io/bio.md","ref":"io/bio.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"io/nio.md","mtime":"2019-11-01T15:40:05.184Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-01T15:44:40.756Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
