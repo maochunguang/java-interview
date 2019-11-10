@@ -91,7 +91,7 @@
     * [查找算法](algorithm/search.md)
     * [经典算法](algorithm/classic.md)
     * [树相关算法](algorithm/tree.md)
-* [网络](wangluo.md)
+* [网络](newwork/wangluo.md)
 * [编程思想相关](thinkInDeep.md)
 * [实战演练](coding.md)
 * [附录-环境搭建](devenv/readme.md)
