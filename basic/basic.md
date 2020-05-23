@@ -85,7 +85,7 @@ int(32),float(32),double(64),long(64)
 * 对于引用类型，是引用传递。
 
 ## 14、所有类的父类是哪个？有哪些方法？
-java中所有类的父类是object，有以下方法：
+java中所有类的父类是object，有11个方法：
 * protected Object clone() 创建并返回此对象的一个副本。
 * boolean equals(Object obj) 指示某个其他对象是否与此对象“相等”。
 * int hashCode() 返回该对象的哈希码值。
