@@ -31,8 +31,10 @@ ArrayList 实现java.io.Serializable 接口，这意味着ArrayList支持序列�
 底层数据结构是一个双向链表。可以在任何位置进行高效地插入和删除操作的有序序列。
 
 ## ArrayList和LinkedList区别
-1. ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。
-2. 对于随机访问get和set，ArrayList优于LinkedList，因为LinkedList要移动指针。
-3. 对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。
+1. **线程安全：**ArrayList 和 LinkedList 都是不同步的，也就是不保证线程安全；
+2. **数据结构：**ArrayList是实现了基于动态数组的数据结构，LinkedList基于双向链表的数据结构。
+3. **是否支持快速随机访问：**对于随机访问get和set，ArrayList优于LinkedList，时间复杂度位O(1)，因为LinkedList要移动指针，ArrayList口语通过下标访问。
+4. 对于新增和删除操作add和remove，LinkedList比较占优势，时间复杂度位O(1)，因为ArrayList要移动数据，而LinkedList。
+5. **内存空间占用：** ArrayList的空 间浪费主要体现在在list列表的结尾会预留一定的容量空间，而LinkedList的空间花费则体现在它的每一个元素都需要消耗比ArrayList更多的空间（因为要存放直接后继和直接前驱以及数据）。
 
 
