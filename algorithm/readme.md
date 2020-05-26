@@ -7,6 +7,7 @@ github算法地址：https://github.com/TheAlgorithms/Java
 ## 图
 
 ## 排序算法分类
+![排序算法](../images/algorithm/10sort_compare.png)
 
 ## 插入排序
 ## 希尔排序
