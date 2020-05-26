@@ -16,5 +16,49 @@ ConcurrentHashMap 和 Hashtable 的区别主要体现在实现线程安全的方
 
 ## copyOnWriteList
 
+CopyOnWriteArrayList 类的所有可变操作（add，set 等等）都是通过创建底层数组的新副本来实现的。当 List 需要被修改的时候，我并不修改原有内容，而是对原有数据进行一次复制，将修改的内容写入副本。写完之后，再将修改完的副本替换原来的数据，这样就可以保证写操作不会影响读操作了。
 
+从 CopyOnWriteArrayList 的名字就能看出CopyOnWriteArrayList 是满足CopyOnWrite 的 ArrayList，所谓CopyOnWrite 也就是说：在计算机，如果你想要对一块内存进行修改时，我们不在原有内存块中进行写操作，而是将内存拷贝一份，在新的内存中进行写操作，写完之后呢，就将指向原来内存指针指向新的内存，原来的内存就可以被回收掉了。
+ 
+### CopyOnWriteArrayList 读取操作的实现
+读取操作没有任何同步控制和锁操作，理由就是内部数组 array 不会发生修改，只会被另外一个 array 替换，因此可以保证数据安全。
+```java
+    /** The array, accessed only via getArray/setArray. */
+    private transient volatile Object[] array;
+    public E get(int index) {
+        return get(getArray(), index);
+    }
+    @SuppressWarnings("unchecked")
+    private E get(Object[] a, int index) {
+        return (E) a[index];
+    }
+    final Object[] getArray() {
+        return array;
+    }
 
+```
+### CopyOnWriteArrayList 写入操作的实现
+CopyOnWriteArrayList 写入操作 add() 方法在添加集合的时候加了锁，保证了同步，避免了多线程写的时候会 copy 出多个副本出来。
+```java
+    /**
+     * Appends the specified element to the end of this list.
+     *
+     * @param e element to be appended to this list
+     * @return {@code true} (as specified by {@link Collection#add})
+     */
+    public boolean add(E e) {
+        final ReentrantLock lock = this.lock;
+        lock.lock();//加锁
+        try {
+            Object[] elements = getArray();
+            int len = elements.length;
+            Object[] newElements = Arrays.copyOf(elements, len + 1);//拷贝新数组
+            newElements[len] = e;
+            setArray(newElements);
+            return true;
+        } finally {
+            lock.unlock();//释放锁
+        }
+    }
+
+```
