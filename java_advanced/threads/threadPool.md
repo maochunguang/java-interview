@@ -46,7 +46,7 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 }
 ```
 ### FixedThreadPool的原理
-![FixedThreadPool工作原理](../images/fixedThreadPool.png)
+![FixedThreadPool工作原理](../../images/fixedThreadPool.png)
 
 1. 如果当前运行的线程数少于corePoolSize，则创建新线程来执行任务。
 2. 在线程池完成预热之后（当前运行的线程数等于corePoolSize），将任务加入 LinkedBlockingQueue。
