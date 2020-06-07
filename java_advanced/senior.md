@@ -2,7 +2,7 @@
 浅copy只是复制对象的引用，一旦引用的对象发生改变，copy的对象也会改变。本质上是对象地址的引用。
 
 深copy是从新构造一个对象，对象的所有字段都和源对象一致。但是对象的地址的不一样的，改变源对象不会有影响。
-![copy](./images/clone.png)
+![copy](../images/clone.png)
 
 ## clone的使用
 覆盖Object中的clone方法， 实现浅拷贝。
@@ -96,5 +96,5 @@ Java中的异常可以是函数中的语句执行时引发的，也可以是程�
 
 Throwable类是Java异常类型的顶层父类，一个对象只有是 Throwable 类的（直接或者间接）实例，他才是一个异常对象，才能被异常处理机制识别。JDK中内建了一些常用的异常类，我们也可以自定义异常。
 
-![java异常结构](./images/exception.png)
+![java异常结构](../images/exception.png)
 
