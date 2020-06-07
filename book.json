@@ -1,14 +1,13 @@
 {
-    "title" : "Gitbook Use",
-    "author" : "mingyue",
-    "description" : "记录Gitbook的配置和一些插件的使用",
-    "language" : "zh-hans",
+    "title": "Gitbook Use",
+    "author": "mingyue",
+    "description": "记录Gitbook的配置和一些插件的使用",
+    "language": "zh-hans",
+    "pluginsConfig": {
+    },
     "plugins": [
         "back-to-top-button",
         "expandable-chapters-small",
-        "insert-logo",
         "page-toc-button"
-
     ]
-
 }

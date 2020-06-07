@@ -14,9 +14,11 @@
 2. 本地发布和运行
 ```bash
 cd java-interview
-gitbook build
+gitbook build ## 本地build，生成_book
 gitbook serve ## 本地运行查看
 gh-pages -d _book ## 发布到gh-pages分支
+gitbook pdf . ## 在目录下生成pdf文件
+gitbook epub .  ## 在目录下生成epub文件
 ```
 3. 在线阅读该文档
 [java-inteview](https://maochunguang.github.io/java-interview/)
