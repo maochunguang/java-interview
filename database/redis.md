@@ -163,10 +163,81 @@ int (*match)(void *ptr,void *key);} list
 
 ### 5. sortedset
 数据结构：ziplist，skiplist，intset
-
+#### skipList
 特性：元素是有序的，元素不可以重复
+```c++
+typedef struct zskiplist {
+    //表头节点和表尾节点
+    struct zskiplistNode *header, *tail;
+    //表中节点的数量
+    unsigned long length;
+    //表中层数最⼤的节点的层数
+    int level;
+} zskiplist;
 
-用途：
+typedef struct zskiplistNode {
+    //层
+    struct zskiplistLevel {
+        //前进指针
+        struct zskiplistNode *forward;
+        //跨度
+        unsigned int span;
+    } level[];
+    //后退指针
+    struct zskiplistNode *backward;
+    //分值
+    double score;
+    //成员对象
+    robj *obj;
+} zskiplistNode;
+```
+#### intset
+整数集合（intset） 是集合键的底层实现之⼀， 当⼀个集合只包含整数值元素， 并且这个集合的元素数量不多时， Redis就会使⽤整数集合作为集合键的底层实现
+
+```c++
+typedef struct intset {
+    //编码⽅式
+    uint32_t encoding;
+    //集合包含的元素数量
+    uint32_t length;
+    //保存元素的数组
+    int8_t contents[];
+} intset;
+```
+虽然intset结构将contents属性声明为int8_t类型的数组， 但实际上contents数组并不保存任何int8_t类型的值， contents数组的真正类型取决于encoding属性的值
+* 如果encoding属性的值为INTSET_ENC_INT16， 那么contents就是⼀个int16_t类型的数组，数组里的每个项都是⼀个int16_t类型的整数值（最小值为-32768， 最⼤值为32767） 
+* 如果encoding属性的值为INTSET_ENC_INT32， 那么contents就是⼀个int32_t类型的数组，数组里的每个项都是⼀个int32_t类型的整数值（最小值为-2147483648， 最⼤值为2147483647） 。
+* 如果encoding属性的值为INTSET_ENC_INT64， 那么contents就是⼀个int64_t类型的数组，数组里的每个项都是⼀个int64_t类型的整数值（最小值为-9223372036854775808， 最⼤值为
+9223372036854775807）
+
+**intset类型升级操作**
+1） 根据新元素的类型，扩展整数集合底层数组的空间⼤⼩，并为新元素分配空间。
+2） 将底层数组现有的所有元素都转换成与新元素相同的类型， 并将类型转换后的元素放置到正确的位上， ⽽且在放置元素的过程中， 需要继续维持底层数组的有序性质不变。
+3） 将新元素添加到底层数组⾥⾯。
+
+**intset优缺点**
+1. 整数集合的升级策略有两个好处，⼀个是提升整数集合的灵活性， 另⼀个是尽可能地节约内存
+2. 整数集合不⽀持降级操作，⼀旦对数组进⾏了升级，编码就会⼀直保持升级后的状态。
+
+### ziplist
+压缩列表（ziplist） 是列表键和哈希键的底层实现之⼀。 当⼀个列表键只包含少量列表项，并且每个列表项要么就是⼩整数值， 要么就是长度⽐较短的字符串， 那么Redis就会使⽤压缩列表来做列表键的底层实现。
+
+压缩列表是Redis为了节约内存⽽开发的， 是由⼀系列特殊编码的连续内存块组成的顺序型（sequential） 数据结构。 ⼀个压缩列表可以包含任意多个节点（entry） ， 每个节点可以保存⼀个字节数组或者⼀个整数值。
+
+### 数据存储对象
+Redis使⽤对象来表⽰数据库中的键和值， 每次当我们在Redis的数据库中新创建⼀个键值对时，我们⾄少会创建两个对象，⼀个对象⽤作键值对的键（键对象），另⼀个对象⽤作键值对的
+值（值对象）。
+```c++
+typedef struct redisObject {
+    //类型
+    unsigned type:4;
+    //编码
+    unsigned encoding:4;
+    //指向底层实现数据结构的指针
+    void *ptr;
+    // ...
+} robj;
+```
 
 ## redis事务处理
 1. watch
