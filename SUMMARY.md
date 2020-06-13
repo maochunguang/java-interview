@@ -2,6 +2,7 @@
 
 * [介绍](README.md)
 * [java基础](basic/basic.md)
+  * [java二进制操作符](basic/java-binary.md)
   * [java-web基础](basic/javaweb.md)
   * [java版本特性](basic/java-versions.md)
   * [io流](basic/io/readme.md)
