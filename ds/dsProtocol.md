@@ -15,3 +15,5 @@ Paxos和Raft都是为了实现Consensus一致性这个目标，这个过程如�
 * Leader: 处理所有客户端交互，日志复制等，一般一次只有一个Leader.
 * Follower: 类似选民，完全被动
 * Candidate候选人: 类似Proposer律师，可以被选为一个新的领导人。
+
+## Gossip协议
