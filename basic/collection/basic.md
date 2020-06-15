@@ -9,7 +9,7 @@
 * long 8
 
 ## java集合类图
-![java集合类图](../images/collection.png)
+![java集合类图](../../images/collection.png)
 
 所有的集合类，都实现了Iterator接口，这是一个用于遍历集合中元素的接口，主要包含 hashNext(),next(),remove()三种方法。它的一个子接口LinkedIterator在它的基础上又添加了三种方法，分别是 add(),previous(),hasPrevious()。也就是说如果是先Iterator接口，那么在遍历集合中元素的时候，只能往后遍历，被 遍历后的元素不会在遍历到，通常无序集合实现的都是这个接口，比如HashSet，HashMap；
 
