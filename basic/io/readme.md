@@ -9,9 +9,9 @@
 字节输出流转字符输出流通过 OutputStreamWriter 实现，该类的构造函数可以传入 OutputStream 对象。
 
 ## 字符流类图
-![字符流类](http://o7kalf5h3.bkt.clouddn.com/zifu.png)
+![字符流类](../../images/字符流.png)
 ## 字节流类图
-![字节流类](http://o7kalf5h3.bkt.clouddn.com/zijie.png)
+![字节流类](../../images/字节流.png)
 
 
 
