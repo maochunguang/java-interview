@@ -54,7 +54,7 @@
     * [jms](mq/jms.md)
     * [消息中间件](mq/mq-middleware.md)
 * [分布式架构](ds/readme.md)
-    * [架构基础](ds/jiagou.md)
+    * [架构基础](ds/architecture.md)
     * [分布式协议](ds/dsProtocol.md)
     * [微服务](ds/microService.md)
     * [分库分表](ds/splitdb.md)
