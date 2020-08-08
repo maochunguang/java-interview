@@ -1,0 +1,14 @@
+第一种情况，studentB使用构造方法依赖studentA
+
+studentA
+1、放入singletonFactories，而且放入registeredSingletons
+
+2、放入earlySingletonObjects，singletonFactories中删除
+
+studentB
+3、放入singletonFactories，而且放入registeredSingletons
+
+4、放入singletonObjects，放入registeredSingletons，singletonFactories中删除
+
+studentA
+5、放入singletonObjects，放入registeredSingletons,earlySingletonObjects中删除
