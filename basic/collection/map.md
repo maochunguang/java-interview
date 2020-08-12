@@ -1,9 +1,9 @@
 # map简介
-![map结构](../../images/map.png)
+![map结构](../../images/java/map.png)
 
 ## hashMap
 数据结构是数组+链表。
-![hashmap结构](../../images/hashmap.png)
+![hashmap结构](../../images/java/hashmap.png)
 
 ### 初始化
 初始容量：16
@@ -35,7 +35,7 @@ hashmap容量永远不会用完，当容量达到0.75的时候就会扩容，也
 ## LinkedHashMap
 LinkedHashMap继承与hashMap，将HashMap和双向链表合二为一。LinkedHashMap 在不对HashMap做任何改变的基础上，给HashMap的任意两个节点间加了两条连线(before指针和after指针)，使这些节点形成一个双向链表。在LinkedHashMapMap中，所有put进来的Entry都保存在HashMap中，但由于它又额外定义了一个以head为头结点的空的双向链表，因此对于每次put进来Entry还会将其插入到双向链表的尾部
 
-![linkedhashmap结构](../../images/linkedhashmap.png)
+![linkedhashmap结构](../../images/java/linkedhashmap.png)
 
 ## TreeMap
 底层数据结构是红黑树。
