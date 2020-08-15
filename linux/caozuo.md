@@ -1,7 +1,8 @@
 # linux基础知识
 ## 常见linux系统
 ubuntu，centos，redhat，
-## linux文件夹目录
+
+
 
 ## 环境变量
 /etc/profile    全局
@@ -17,4 +18,3 @@ vim，less，cat，
 
 ## vim常用命令
 
-* 。
