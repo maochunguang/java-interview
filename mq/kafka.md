@@ -1,3 +1,7 @@
+---
+typora-root-url: ..\images
+---
+
 ## kafka是什么？
 
 ## kafka原理

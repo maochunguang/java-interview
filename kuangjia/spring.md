@@ -34,6 +34,13 @@ AOP（Aspect-Oriented Programming，面向切面编程）能够将那些与业�
 * jdk自带的代理，实现接口来代理
 * cglib代理，继承来代理
 如果要代理的对象实现了某个接口，那么Spring AOP就会使用JDK动态代理去创建代理对象；而对于没有实现接口的对象，就无法使用JDK动态代理，转而使用CGlib动态代理生成一个被代理对象的子类来作为代理。
+### (1) JDK的动态代理
+JDK的动态代理主要涉及java.lang.reflect包中的两个类：Proxy和InvocationHandler。其中InvocationHandler只是一个接口，可以通过实现该接口定义横切逻辑，并通过反射机制调用目标类的代码，动态的将横切逻辑与业务逻辑织在一起。而Proxy利用InvocationHandler动态创建一个符合某一接口的实例，生成目标类的代理对象。
+其代理对象必须是某个接口的实现, 它是通过在运行期间创建一个接口的实现类来完成对目标对象的代理.只能实现接口的类生成代理,而不能针对类
+
+### (2)CGLib
+CGLib采用底层的字节码技术，为一个类创建子类，并在子类中采用方法拦截的技术拦截所有父类的调用方法，并顺势织入横切逻辑.它运行期间生成的代理对象是目标类的扩展子类.所以无法通知final、private的方法,因为它们不能被覆写.是针对类实现代理,主要是为指定的类生成一个子类,覆盖其中方法.
+在spring中默认情况下使用JDK动态代理实现AOP,如果proxy-target-class设置为true或者使用了优化策略那么会使用CGLIB来创建动态代理.Spring　AOP在这两种方式的实现上基本一样．以JDK代理为例，会使用JdkDynamicAopProxy来创建代理，在invoke()方法首先需要织入到当前类的增强器封装到拦截器链中，然后递归的调用这些拦截器完成功能的织入．最终返回代理对象．
 
 ## spring的AOP如何实现的？
 
@@ -81,6 +88,16 @@ Spring框架支持以下五种bean的作用域：
 12. 当要销毁Bean的时候，如果Bean实现了DisposableBean接口，执行destroy()方法。
 13. 当要销毁Bean的时候，如果Bean在配置文件中的定义包含destroy-method属性，执行指定的方法。
 
+
+## spring自动装配有哪些方式
+自动装配提供五种不同的模式供Spring容器用来自动装配beans之间的依赖注入:
+
+* no：默认的方式是不进行自动装配，通过手工设置ref 属性来进行装配bean。
+* byName：通过参数名自动装配，Spring容器查找beans的属性，这些beans在XML配置文件中被设置为byName。之后容器试图匹配、装配和该bean的属性具有相同名字的bean。
+* byType：通过参数的数据类型自动自动装配，Spring容器查找beans的属性，这些beans在XML配置文件中被设置为byType。之后容器试图匹配和装配和该bean的属性类型一样的bean。如果有多个bean符合条件，则抛出错误。
+* constructor：这个同byType类似，不过是应用于构造函数的参数。如果在BeanFactory中不是恰好有一个bean与构造函数参数相同类型，则抛出一个严重的错误。
+* autodetect：如果有默认的构造方法，通过 construct的方式自动装配，否则使用 byType的方式自动装配。
+
 ## spring事务
 ### Spring事务管理的方式有几种？
 1.编程式事务：在代码中硬编码（不推荐使用）。
@@ -126,11 +143,57 @@ PROPAGATION_NESTED： 如果当前存在事务，则创建一个事务作为当�
 7. DispatcherServlet把返回的Model传给View（视图渲染）。
 8. 把View返回给请求者（浏览器）。
 
-## 如何扩展spring
+
+## spring注解
+### 常用的注解
+@Controller, @Service, @Repository,@Component目前4种注解意思是一样，并没有什么区别，区别只是名字不同。
+
+@PostConstruct 和 @PreDestory 
+
+@Resource 和 @Autowired，@Qualifier
+
+@Async
+
+@RequestBody，@RequestMapping，@CrossOrigin，@RequestParam，@ResponseStatus，@ControllerAdvice，，，，，，，
+@PathVariable，@RequestHeader，@CookieValue，@RequestParam, @RequestBody，@SessionAttributes, @ModelAttribute;
+
+## Resource 是如何被查找、加载的？
+Resource 接口是 Spring 资源访问策略的抽象，它本身并不提供任何资源访问实现，具体的资源访问由该接口的实现类完成——每个实现类代表一种资源访问策略。 Spring 为 Resource 接口提供了如下实现类：
+
+1. UrlResource：访问网络资源的实现类。
+2. ClassPathResource：访问类加载路径里资源的实现类。
+3. FileSystemResource：访问文件系统里资源的实现类。
+4. ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类：
+5. InputStreamResource：访问输入流资源的实现类。
+6. ByteArrayResource：访问字节数组资源的实现类。 这些 Resource 实现类，针对不同的的底层资源，提供了相应的资源访问逻辑，并提供便捷的包装，以利于客户端程序的资源访问。
+
+## spring如何解决循环依赖的？
+例子：两个Bean，StudentA，StudentB，互相依赖
+1、如果两个bean都用构造方法注入，无法解决，会报错
+```
+The dependencies of some of the beans in the application context form a cycle:
+
+┌─────┐
+|  studentA defined in file [D:\work\features-research\target\classes\com\mcg\framwork\featuresresearch\beans\StudentA.class]
+↑     ↓
+|  studentB defined in file [D:\work\features-research\target\classes\com\mcg\framwork\featuresresearch\beans\StudentB.class]
+└─────┘
+```
+2、一个使用@Autowired，一个使用构造方法，分两种情况，按照类加载顺序，StudentA在前，StudentA可以构造方法注入StudentB，可以正常启动。反之会启动失败。
+
+3、都是用@Autowired注入，正常启动
+
+
+
+>参考文章：1. https://www.cnblogs.com/better-farther-world2099/articles/11585939.html  
+>2. https://zhuanlan.zhihu.com/p/84267654
+
+## BeanFactory和FactoryBean的区别
+
+## 两个方法都有AOP配置，方法之间相互调用，切面如何执行？
+
 
 ## 两个方法都是用事务注解，内部互相调用，结果如何。
-```java
 
-```
 
 > 参考《spring技术内幕》。
