@@ -18,6 +18,19 @@
 
 
 ## 左连接，右连接，内连接
+1. 内连接查询  inner join
+   1. 关键字：inner  join   on
+   2. 语句：`select * from a_table a inner join b_table b on a.a_id = b.b_id;`
+   3. 说明：组合两个表中的记录，返回关联字段相符的记录，也就是返回两个表的交集（阴影）部分
+2. 左连接查询 left join
+   1. 关键字：left join on / left outer join on
+   2. 语句：`SELECT  * FROM a_table a left join b_table b ON a.a_id = b.b_id;`
+   3. 说明： left join 是left outer join的简写，它的全称是左外连接，是外连接中的一种。 左(外)连接，左表(a_table)的记录将会全部表示出来，而右表(b_table)只会显示符合搜索条件的记录
+3. 右连接 right join
+   1. 关键字：right join on / right outer join on
+   2. 语句：`SELECT  * FROM a_table a right outer join b_table b on a.a_id = b.b_id;`
+   3. 说明：right join是right outer join的简写，它的全称是右外连接，是外连接中的一种。与左(外)连接相反，右(外)连接，左表(a_table)只会显示符合搜索条件的记录，而右表(b_table)的记录将会全部表示出来。
+
 
 ## mysql索引
 **Mysql目前提供了四种索引：**
