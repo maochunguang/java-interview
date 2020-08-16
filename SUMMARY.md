@@ -49,7 +49,6 @@
     * [缓存架构](database/cache.md)
     * [数据库中间件](database/db-middleware.md)
 * [消息队列](mq/readme.md)
-    * [activemq](mq/activemq.md)
     * [kafka](mq/kafka.md)
     * [rabbitmq](mq/rabbitmq.md)
     * [jms](mq/jms.md)
