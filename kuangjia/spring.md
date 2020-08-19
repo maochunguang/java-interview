@@ -189,6 +189,9 @@ The dependencies of some of the beans in the application context form a cycle:
 >2. https://zhuanlan.zhihu.com/p/84267654
 
 ## BeanFactory和FactoryBean的区别
+他们两个都是个工厂，但FactoryBean本质上还是一个Bean，也归BeanFactory管理
+BeanFactory是Spring容器的顶层接口，FactoryBean更类似于用户自定义的工厂接口。
+FactoryBean为我们实例化Bean提供了一个更为灵活的方式，我们可以通过FactoryBean创建出更为复杂的Bean实例
 
 ## 两个方法都有AOP配置，方法之间相互调用，切面如何执行？
 
