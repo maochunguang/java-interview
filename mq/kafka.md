@@ -40,6 +40,15 @@ kafka可靠性依靠的是副本机制。（副本同步队列）副本维护的
 kafka可以定期针对相同key的消息进行合并，只保留最新的value值。
 
 ## 消息可靠性机制
+没有一个中间件能够做到百分之百的完全可靠，可靠性更多的还是基于几个9的衡量指标，比如4个9、5 个9. 软件系统的可靠性只能够无限去接近100%，但不可能达到100%。所以kafka如何是实现最大可能 的可靠性呢？
+
+* 分区副本， 你可以创建更多的分区来提升可靠性，但是分区数过多也会带来性能上的开销，一般 来说，3个副本就能满足对大部分场景的可靠性要求
+* acks，生产者发送消息的可靠性，也就是我要保证我这个消息一定是到了broker并且完成了多副 本的持久化，但这种要求也同样会带来性能上的开销。它有几个可选项
+  * 1 ，生产者把消息发送到leader副本，leader副本在成功写入到本地日志之后就告诉生产者 消息提交成功，但是如果isr集合中的follower副本还没来得及同步leader副本的消息， leader挂了，就会造成消息丢失
+  * -1 ，消息不仅仅写入到leader副本，并且被ISR集合中所有副本同步完成之后才告诉生产者已 经提交成功，这个时候即使leader副本挂了也不会造成数据丢失。
+  * 0：表示producer不需要等待broker的消息确认。这个选项时延最小但同时风险最大（因为 当server宕机时，数据将会丢失）。
+* 保障消息到了broker之后，消费者也需要有一定的保证，因为消费者也可能出现某些问题导致消 息没有消费到
+* enable.auto.commit默认为true，也就是自动提交oﬀset，自动提交是批量执行的，有一个时间窗 口，这种方式会带来重复提交或者消息丢失的问题，所以对于高可靠性要求的程序，要使用手动提 交。 对于高可靠要求的应用来说，宁愿重复消费也不应该因为消费异常而导致消息丢失
 ### 如何处理所有的Replica不工作的情况
 在ISR中至少有一个follower时，Kafka可以确保已经commit的数据不丢失，但如果某个Partition的所有Replica都宕机了，就无法保证数据不丢失了
 1.	等待ISR中的任一个Replica"活"过来，并且选它作为Leader
@@ -51,8 +60,11 @@ Kafka0.8.*使用了第二种方式。Kafka支持用户通过配置选择这两�
 
 
 ## 文件存储方式
-在kafka文件存储中，同一个topic下有多个不同的partition，每个partition为一个目录，partition的名称规则为：topic名称+有序序号，第一个序号从0开始，最大的序号为partition数量减1，partition是实际物理上的概念，而topic是逻辑上的概念,partition还可以细分为segment，这个segment是什么呢？ 假设kafka以partition为最小存储单位，那么我们可以想象当kafka producer不断发送消息，必然会引起partition文件的无线扩张，这样对于消息文件的维护以及被消费的消息的清理带来非常大的挑战，所以kafka以segment为单位又把partition进行细分。每个partition相当于一个巨型文件被平均分配到多个大小相等的segment数据文件中（每个setment文件中的消息不一定相等），这种特性方便已经被消费的消息的清理，提高磁盘的利用率。
-segment file组成：由2大部分组成，分别为index file和data file，此2个文件一一对应，成对出现，后缀".index"和".log"分别表示为segment索引文件、数据文件.
+在kafka文件存储中，同一个topic下有多个不同的partition，每个partition为一个目录，partition的名称规则为：topic名称+有序序号，第一个序号从0开始，最大的序号为partition数量减1，partition是实际物理上的概念，而topic是逻辑上的概念，partition还可以细分为segment，这个segment是什么呢？ 假设kafka以partition为最小存储单位，那么我们可以想象当kafka producer不断发送消息，必然会引起partition文件的无线扩张，这样对于消息文件的维护以及被消费的消息的清理带来非常大的挑战，所以kafka以segment为单位又把partition进行细分。
+
+每个partition相当于一个巨型文件被平均分配到多个大小相等的segment数据文件中（每个setment文件中的消息不一定相等），这种特性方便已经被消费的消息的清理，提高磁盘的利用率。
+segment file组成：由2大部分组成，分别为index file和data file，此2个文件一一对应，成对出现，后缀".index"和".log"分别表示为segment索引文件、数据文件。
+
 segment文件命名规则：partion全局的第一个segment从0开始，后续每个segment文件名为上一个segment文件最后一条消息的offset值。数值最大为64位long大小，19位数字字符长度，没有数字用0填充
 
 
@@ -74,14 +86,16 @@ segment文件命名规则：partion全局的第一个segment从0开始，后续�
 4.	消费者主动取消对某个topic的订阅
 5.	也就是说，把分区的所有权从一个消费者移到另外一个消费者上，这个是kafka consumer 的rebalance机制。如何rebalance就涉及到前面说的分区分配策略。
 
-### 两种分区策略
-Range 策略（默认）
+### 三种分区策略
+1、Range 策略（默认）
 ```
 0 ，1 ，2 ，3 ，4，5，6，7，8，9
 c0 [0,3] c1 [4,6] c2 [7,9]
 10(partition num/3(consumer num) =3
 ```
-roundrobin 策略
+2、roundrobin 策略，使用轮询分区策略必须满足两个条件
+1. 每个主题的消费者实例具有相同数量的流
+2. 每个消费者订阅的主题必须是相同的
 ```
 0 ，1 ，2 ，3 ，4，5，6，7，8，9
 c0,c1,c2
@@ -89,11 +103,39 @@ c0 [0,3,6,9]
 c1 [1,4,7]
 c2 [2,5,8]
 ```
-kafka 的key 为null， 是随机｛一个Metadata的同步周期内，默认是10分钟｝
+3、StrickyAssignor粘滞策略，
+有两个主要目标：
+* 分区的分配尽可能的均匀
+* 分区的分配尽可能和上次分配保持相同
+
+## 谁来执行Rebalance以及管理consumer的group呢？
+Kafka提供了一个角色：coordinator来执行对于consumer group的管理，Kafka提供了一个角色： coordinator来执行对于consumer group的管理，当consumer group的第一个consumer启动的时 候，它会去和kafka server确定谁是它们组的coordinator。之后该group内的所有成员都会和该 coordinator进行协调通信
+
+## 如何确定coordinator？
+consumer group如何确定自己的coordinator是谁呢, 消费者向kafka集群中的任意一个broker发送一个 GroupCoordinatorRequest请求，服务端会返回一个负载最小的broker节点的id，并将该broker设置 为coordinator
 
 ## kafka如何保证消息顺序性
 * 一个 topic，一个 partition，一个 consumer，内部单线程消费，单线程吞吐量太低，一般不会用这个。
 * 写 N 个内存 queue，具有相同 key 的数据都到同一个内存 queue；然后对于 N 个线程，每个线程分别消费一个内存 queue 即可，这样就能保证顺序性。
+
+## kafka日志管理
+### 1、日志写入策略
+一个topic的多个partition在物理磁盘上的保存路径，路径保存在 /tmp/kafka-logs/topic_partition，包 含日志文件、索引文件和时间索引文件。
+
+#### 在partition中如何通过oﬀset查找message
+查找的算法：
+1. 根据oﬀset的值，查找segment段中的index索引文件。由于索引文件命名是以上一个文件的最后 一个oﬀset进行命名的，所以，使用二分查找算法能够根据oﬀset快速定位到指定的索引文件。
+2. 找到索引文件后，根据oﬀset进行定位，找到索引文件中的符合范围的索引。（kafka采用稀疏索 引的方式来提高查找性能）
+3. 得到position以后，再到对应的log文件中，从position出开始查找oﬀset对应的消息，将每条消息 的oﬀset与目标oﬀset进行比较，直到找到消息
+
+### 2、日志清理策略
+日志的分段存储，一方面能够减少单个文件内容的大小，另一方面，方便kafka进行日志 清理。日志的清理策略有两个。
+1. 根据消息的保留时间，当消息在kafka中保存的时间超过了指定的时间，就会触发清理过程
+2. 根据topic存储的数据大小，当topic所占的日志文件大小大于一定的阀值，则可以开始删除最旧的 消息。kafka会启动一个后台线程，定期检查是否存在可以删除的消息。
+
+通过`log.retention.bytes`和`log.retention.hours`这两个参数来设置，当其中任意一个达到要求，都会执行删除。默认的保留时间是：7天
+### 3、日志压缩策略
+
 
 ## 数据库同步服务如何保证消息的顺序性
 
