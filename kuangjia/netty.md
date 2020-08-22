@@ -23,11 +23,31 @@ Netty是业界最流⾏的NIO框架之⼀，它的健壮性、功能、性能、
 3. 默认使用protobuf作为序列化框架，性能高
 4. 使用内存池进行内存分配
 
+
+
+## Reactor线程模型
+
+### 单线程模式
+
+![image-20200822171056947](../images/kuangjia/reactor-single.png)
+
+
+
+### 多线程模式
+
+![image-20200822171153798](../images/kuangjia/reactor-threads.png)
+
+
+
+### 主从线程模型
+
+![image-20200822171253357](../images/kuangjia/reactor-master.png)
+
 ## TCP粘包和拆包
 一个完整的数据包被tcp分成多个数据包发送，就是粘包和拆包。
 
 假设客户端分别发送了两个数据包D1和D2给服务端，由于服务端⼀次读取到的字节数是不 确定的，故可能存在以下4种情况。
-![TCP粘包和拆包](../images/tcp-data.png)
+![TCP粘包和拆包](../images/network/tcp-data.png)
 
 1. 服务端分两次读取到了两个独⽴的数据包，分别是D1和D2，没有粘包和拆包；
 2. 服务端⼀次接收到了两个数据包，D1和D2粘合在⼀起，被称为TCP粘包；

@@ -73,8 +73,19 @@
 * 3）如果也没有这样的唯一索引，则 InnoDB 会选择内置 6 字节长的 ROWID 作为隐藏的聚集索引，它会随着行记录的写入而主键递增。
 
 
+
+## mysql如何通过索引找到具体行？
+
+B+树索引本省不能找到具体的一条记录吗，只能找到记录所在的页（Page），数据库把页载入到内存，然后通过`Page Directory`在进行二叉查找。
+
+1. `Page Directory`中存放了行记录的相对位置，
+
+
+
+
 ## mysql优化的步骤
-1、show status，查看执行状态
+1、`show status`，查看执行状态
+
    1. Com_select：执⾏SELECT操作的次数，⼀次查询只累加1。
    2. Com_insert：执⾏INSERT操作的次数，对于批量插⼊的INSERT操作，只累加⼀次。
    3. Com_update：执⾏UPDATE操作的次数。
@@ -82,10 +93,10 @@
 
 
 2、 慢查询日志找出慢sql
-   1. 通过慢查询⽇志定位那些执⾏效率较低的SQL语句，⽤--log-slow-queries[= file_name]选项启动时，mysqld写⼀个包含所有执⾏时间超过long_query_time秒的SQL语句的⽇志⽂件。
-
+   1. 通过慢查询⽇志定位那些执⾏效率较低的SQL语句，⽤`--log-slow-queries[= file_name]`选项启动时，mysqld写⼀个包含所有执⾏时间超过long_query_time秒的SQL语句的⽇志⽂件。
 
 3、 Explain查看执行计划（type，key，Extra）
+
 ```sql
    mysql> explain select sum(amount) from customer a, payment b where 1=1 and
     a.customer_id= b.customer_id and email = 'JANE.BENNETT@sakilacustomer.org'\G
@@ -119,7 +130,7 @@
   * UNION（UNION中的第⼆个或者后⾯的查询语句）、
   * SUBQUERY（⼦查询中的第⼀个SELECT）等。
 * table：输出结果集的表。
-* type：表⽰MySQL在表中找到所需⾏的⽅式，或者叫访问类型，
+* **type**：表⽰MySQL在表中找到所需⾏的⽅式，或者叫访问类型，
   * type=ALL，全表扫描
   * type=index，索引全扫描
   * type=range，索引范围扫描
@@ -134,8 +145,7 @@
 * rows：扫描⾏的数量。
 * Extra：执⾏情况的说明和描述，包含不适合在其他列中显⽰但是对执⾏计划⾮常重要的额外信息。
 
-
-4、show profile查看mysql线程消耗掉具体时间（高级）
+4、`show profile`查看mysql线程消耗掉具体时间（高级）
 通过have_profiling参数，能够看到当前MySQL是否⽀持profile
 show profile能够在做SQL优化时帮助我们了解时间都耗费到哪⾥去了。⽽MySQL
 5.6则通过trace⽂件进⼀步向我们展⽰了优化器是如何选择执⾏计划的。
@@ -173,8 +183,8 @@ SQL语言共分为四大类：查询语言DQL，控制语言DCL，操纵语言DM
    ```
 2. Innodb存储引擎
    1. 因为InnoDB类型的表是按照主键的顺序保存的， 所以将导⼊的数据按照主键的顺序排列， 可以有效地提⾼导⼊数据的效率
-   2. 在导⼊数据前执⾏SET UNIQUE_CHECKS=0， 关闭唯⼀性校验， 在导⼊结束后执⾏SET UNIQUE_CHECKS=1， 恢复唯⼀性校验， 可以提⾼导⼊的效率
-   3. 如果应⽤使⽤⾃动提交的⽅式， 建议在导⼊前执⾏SET AUTOCOMMIT=0，关闭⾃动提交， 导⼊结束后再执⾏SET AUTOCOMMIT=1， 打开⾃动提交， 也可以提⾼导⼊的效率
+   2. 在导⼊数据前执⾏`SET UNIQUE_CHECKS=0`， 关闭唯⼀性校验， 在导⼊结束后执⾏`SET UNIQUE_CHECKS=1`， 恢复唯⼀性校验， 可以提⾼导⼊的效率
+   3. 如果应⽤使⽤⾃动提交的⽅式， 建议在导⼊前执⾏`SET AUTOCOMMIT=0`，关闭⾃动提交， 导⼊结束后再执⾏`SET AUTOCOMMIT=1`， 打开⾃动提交， 也可以提⾼导⼊的效率
 
 ### insert语句优化
 1. 如果同时从同⼀客户端插⼊很多⾏， 应尽量使⽤多个值表的INSERT语句， 这种⽅式将⼤⼤缩减客户端与数据库之间的连接、 关闭等消耗。
