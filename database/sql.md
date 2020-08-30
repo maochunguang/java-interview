@@ -2,7 +2,7 @@
 
 
 
-![image-20200816210542707](C:/Users/mao/AppData/Roaming/Typora/typora-user-images/image-20200816210542707.png)![image-20200816210626069](C:/Users/mao/AppData/Roaming/Typora/typora-user-images/image-20200816210626069.png)
+![image-20200816210542707](../images/database/student.png)![image-20200816210626069](../images/database/score.png)
 
 
 
