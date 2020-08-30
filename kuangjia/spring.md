@@ -63,7 +63,7 @@ Spring切面可以应用五种类型的通知：
 
 ## spring的bean的单例如何保证？
 
-## spring什么时候使用jdk代理，什么时候使用cglib？
+
 
 ## Spring支持的几种bean的作用域
 Spring框架支持以下五种bean的作用域：
@@ -186,6 +186,7 @@ The dependencies of some of the beans in the application context form a cycle:
 
 
 >参考文章：1. https://www.cnblogs.com/better-farther-world2099/articles/11585939.html  
+>
 >2. https://zhuanlan.zhihu.com/p/84267654
 
 ## BeanFactory和FactoryBean的区别
