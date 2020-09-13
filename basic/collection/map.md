@@ -17,16 +17,24 @@ static final int MIN_TREEIFY_CAPACITY = 64;
 ```
 
 ### put元素的流程
-首先根据对象计算hashcode值，映射到map中数组的下标，如果改数组没有元素，new Node()直接放置。
-如果有元素，key是否一样，如果key一样，直接替换value。
-key不一样，说明有hash冲突，node是否可以转换为TreeNode，可以转换的话，使用TreeNode的put方法。
-不能转为TreeNode，放到数组下标对应的链表上，如果链表长度>=8，转为红黑树。
+1. 检查table的size==0，如果为0，初始化table
+2. 首先根据对象计算hashcode值，映射到map中数组的下标，如果改数组没有元素，new Node()直接放置。
+3. 如果有元素，key是否一样，如果key一样，直接替换value。
+4. key不一样，说明有hash冲突，node是否可以转换为TreeNode，可以转换的话，使用TreeNode的put方法。不能转为TreeNode，放到数组下标对应的链表上，如果链表长度>=8，转为红黑树。
+5. 判断size>loadFactor，如果到达阈值，触发扩容，进行rehash
 
 ### get元素的逻辑
-首先根据对象计算hashcode值，映射到map中数组的下标。如果是一个元素，就直接返回。如果是一个链表，遍历链表，根据key值判断元素，返回。不存在hash冲突的情况下，时间复杂度是o(1)。
+1. 首先根据对象计算hashcode值，映射到map中数组的下标。
+2. 如果是一个元素，就直接返回。
+3. 如果是一个链表，遍历链表，根据key值判断元素，返回。不存在hash冲突的情况下，时间复杂度是o(1)。
 
 ### hash冲突、hash碰撞
-碰撞处理：常用的有两种方式，一种是open hashing，即 >拉链法；另一种就是 closed hashing，即开地址法(opened addressing)。
+碰撞处理：常用的有四种方式，
+
+1. 开放定址法(线性探测，二次探测，伪随机探测)
+2. 拉链法
+3. 再散列法（双重散列，多重散列）
+4. 建立一个公共溢出区
 
 ### hashmap负载因子为什么是0.75
 hashmap容量永远不会用完，当容量达到0.75的时候就会扩容，也就意味着四分之一的空间浪费。
