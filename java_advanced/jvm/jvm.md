@@ -171,6 +171,17 @@ jvm第一次垃圾回收时不会处理软引用，第二次回收时内存不�
   * 离线程序快照
 
 ## jvm类加载机制
+java类加载器：
+
+![img](../../images/jvm/classload.png)
+
+1. bootstrap加载器
+2. Extension加载器
+3. Application加载器
+4. custom加载器
+
+
+
 双亲委派模型
 
 
