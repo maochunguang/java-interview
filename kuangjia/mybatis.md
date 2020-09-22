@@ -3,6 +3,8 @@ MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过�
 
 ## mybatis原理？
 
+![mybaties框架](../images/kuangjia/mybaties.png)
+
 ## mybatis核心对象及其作用？
 SqlSessionFactoryBuilder，创建工厂类
 SqlSessionFactory，创建会话
