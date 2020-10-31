@@ -14,7 +14,14 @@ ubuntu，centos，redhat，
 vim，less，cat，
 
 ## 常用命令
-文件系统相关，mv，cp，
+文件操作相关，
+1. mv，cp，-r参数
+2. mkdir -p参数
+3. 
+
+
+
+
 
 ## vim常用命令
 
