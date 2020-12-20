@@ -21,3 +21,27 @@ studentB
 
 studentA
 5、放入singletonObjects，放入registeredSingletons,earlySingletonObjects中删除
+
+
+
+
+
+## spring如何解决循环依赖的？
+
+例子：两个Bean，StudentA，StudentB，互相依赖
+1、如果两个bean都用构造方法注入，无法解决，会报错
+
+```
+The dependencies of some of the beans in the application context form a cycle:
+
+┌─────┐
+|  studentA defined in file [D:\work\features-research\target\classes\com\mcg\framwork\featuresresearch\beans\StudentA.class]
+↑     ↓
+|  studentB defined in file [D:\work\features-research\target\classes\com\mcg\framwork\featuresresearch\beans\StudentB.class]
+└─────┘
+```
+
+2、一个使用@Autowired，一个使用构造方法，分两种情况，按照类加载顺序，StudentA在前，StudentA可以构造方法注入StudentB，可以正常启动。反之会启动失败。
+
+3、都是用@Autowired注入，正常启动
+

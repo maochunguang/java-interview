@@ -2132,7 +2132,30 @@ listNode * tail;
 <h3 id="6&#x3001;hyperloglog">6&#x3001;HyperLogLog</h3>
 <p>Redis HyperLogLog &#x662F;&#x7528;&#x6765;&#x505A;&#x57FA;&#x6570;&#x7EDF;&#x8BA1;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;HyperLogLog &#x7684;&#x4F18;&#x70B9;&#x662F;&#xFF0C;&#x5728;&#x8F93;&#x5165;&#x5143;&#x7D20;&#x7684;&#x6570;&#x91CF;&#x6216;&#x8005;&#x4F53;&#x79EF;&#x975E;&#x5E38;&#x975E;&#x5E38;&#x5927;&#x65F6;&#xFF0C;&#x8BA1;&#x7B97;&#x57FA;&#x6570;&#x6240;&#x9700;&#x7684;&#x7A7A;&#x95F4;&#x603B;&#x662F;&#x56FA;&#x5B9A; &#x7684;&#x3001;&#x5E76;&#x4E14;&#x662F;&#x5F88;&#x5C0F;&#x7684;&#x3002;</p>
 <p>&#x5728; Redis &#x91CC;&#x9762;&#xFF0C;&#x6BCF;&#x4E2A; HyperLogLog &#x952E;&#x53EA;&#x9700;&#x8981;&#x82B1;&#x8D39; 12 KB &#x5185;&#x5B58;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8BA1;&#x7B97;&#x63A5;&#x8FD1; 2^64 &#x4E2A;&#x4E0D;&#x540C;&#x5143;&#x7D20;&#x7684;&#x57FA; &#x6570;&#x3002;&#x8FD9;&#x548C;&#x8BA1;&#x7B97;&#x57FA;&#x6570;&#x65F6;&#xFF0C;&#x5143;&#x7D20;&#x8D8A;&#x591A;&#x8017;&#x8D39;&#x5185;&#x5B58;&#x5C31;&#x8D8A;&#x591A;&#x7684;&#x96C6;&#x5408;&#x5F62;&#x6210;&#x9C9C;&#x660E;&#x5BF9;&#x6BD4;</p>
+<ol>
+<li>&#x539F;&#x7406;&#xFF1A;&#x901A;&#x8FC7;N&#x6B21;&#x4F2F;&#x52AA;&#x5229;&#x8FC7;&#x7A0B;&#x6765;&#x8BA1;&#x7B97;&#x7EDF;&#x8BA1;&#x7684;&#x6570;&#xFF0C;&#x6709;&#x4E00;&#x5B9A;&#x8BEF;&#x5DEE;&#x3002;</li>
+<li>&#x590D;&#x6742;&#x5EA6;&#xFF1A;</li>
+</ol>
 <h3 id="7&#x3001;bitmap">7&#x3001;BitMap</h3>
+<ol>
+<li>&#x539F;&#x7406;&#xFF1A;&#x628A;key&#x6620;&#x5C04;&#x5230;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x5B58;&#x50A8;&#x4F4D;&#xFF0C;&#x56E0;&#x4E3A;&#x662F;byte&#x7C7B;&#x578B;&#xFF0C;&#x53EA;&#x80FD;&#x5B58;&#x50A8;0&#x3001;1&#xFF0C;&#x8868;&#x793A;&#x72B6;&#x6001;&#x3002;<ol>
+<li>&#x6570;&#x5B57;&#x7C7B;&#x578B;&#xFF1A;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5B58;&#x50A8;&#x5230;&#x5177;&#x4F53;&#x4F4D;&#x7F6E;&#xFF0C;&#x6BD4;&#x5982;10&#xFF0C;&#x5B58;&#x5230;&#x4E0B;&#x6807;10&#x7684;&#x4F4D;&#x7F6E;</li>
+<li>&#x5B57;&#x7B26;&#x4E32;&#xFF1A;&#x8FDB;&#x884C;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x67D0;&#x4E2A;&#x4E0B;&#x6807;&#xFF0C;&#x628A;&#x72B6;&#x6001;&#x8FDB;&#x884C;&#x5B58;&#x50A8;</li>
+</ol>
+</li>
+</ol>
+<p><img src="../images/redis/bitmap.png" alt="img"></p>
+<ol>
+<li>&#x7B97;&#x6CD5;&#x590D;&#x6742;&#x5EA6;&#xFF1A;&#x5B58;&#x50A8;&#x590D;&#x6742;&#x5EA6;O(1)&#xFF0C;&#x83B7;&#x53D6;&#x590D;&#x6742;&#x5EA6;O(1)</li>
+<li>&#x7528;&#x9014;&#xFF1A;<ol>
+<li>&#x7528;&#x6237;&#x767B;&#x5F55;&#x72B6;&#x6001;&#x5224;&#x65AD;&#x5B58;&#x50A8;&#xFF0C;</li>
+<li>&#x5E03;&#x9686;&#x8FC7;&#x6EE4;&#x5668;</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>&#x53C2;&#x8003;&#x6587;&#x7AE0;&#xFF1A;<a href="https://cloud.tencent.com/developer/article/1006113" target="_blank">https://cloud.tencent.com/developer/article/1006113</a></p>
+</blockquote>
 <h3 id="&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;">&#x6570;&#x636E;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;</h3>
 <p>Redis&#x4F7F;&#x2F64;&#x5BF9;&#x8C61;&#x6765;&#x8868;&#x2F70;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x952E;&#x548C;&#x503C;&#xFF0C; &#x6BCF;&#x6B21;&#x5F53;&#x6211;&#x4EEC;&#x5728;Redis&#x7684;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x65B0;&#x521B;&#x5EFA;&#x2F00;&#x4E2A;&#x952E;&#x503C;&#x5BF9;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x2F84;&#x5C11;&#x4F1A;&#x521B;&#x5EFA;&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x2F00;&#x4E2A;&#x5BF9;&#x8C61;&#x2F64;&#x4F5C;&#x952E;&#x503C;&#x5BF9;&#x7684;&#x952E;&#xFF08;&#x952E;&#x5BF9;&#x8C61;&#xFF09;&#xFF0C;&#x53E6;&#x2F00;&#x4E2A;&#x5BF9;&#x8C61;&#x2F64;&#x4F5C;&#x952E;&#x503C;&#x5BF9;&#x7684;
 &#x503C;&#xFF08;&#x503C;&#x5BF9;&#x8C61;&#xFF09;&#x3002;</p>
@@ -2398,7 +2421,7 @@ Sentinel&#x5728;&#x8FDE;&#x63A5;&#x4E3B;&#x670D;&#x52A1;&#x5668;&#x6216;&#x8005;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"redis","level":"1.5.3","depth":2,"next":{"title":"tair","level":"1.5.4","depth":2,"path":"database/tair.md","ref":"database/tair.md","articles":[]},"previous":{"title":"mongodb","level":"1.5.2","depth":2,"path":"database/mongodb.md","ref":"database/mongodb.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","expandable-chapters-small","page-toc-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"maocg","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Offer终结者","language":"zh-hans","gitbook":"*","description":"java offer终结者"},"file":{"path":"database/redis.md","mtime":"2020-09-02T00:36:24.902Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-01T10:40:06.511Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"redis","level":"1.5.3","depth":2,"next":{"title":"tair","level":"1.5.4","depth":2,"path":"database/tair.md","ref":"database/tair.md","articles":[]},"previous":{"title":"mongodb","level":"1.5.2","depth":2,"path":"database/mongodb.md","ref":"database/mongodb.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","expandable-chapters-small","page-toc-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"maocg","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Offer终结者","language":"zh-hans","gitbook":"*","description":"java offer终结者"},"file":{"path":"database/redis.md","mtime":"2020-10-31T14:55:33.278Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-20T15:19:35.048Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

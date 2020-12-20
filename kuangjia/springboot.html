@@ -1917,6 +1917,82 @@
                                 
                                 <h2 id="springboot&#x539F;&#x7406;">springboot&#x539F;&#x7406;</h2>
 <h2 id="springboot&#x5E38;&#x7528;&#x7684;&#x6CE8;&#x89E3;">springboot&#x5E38;&#x7528;&#x7684;&#x6CE8;&#x89E3;</h2>
+<ol>
+<li><code>@Configuration</code><ol>
+<li>&#x88AB;@Bean&#x5B9A;&#x4E49;&#x7684;bean&#x4F1A;&#x88AB;&#x6CE8;&#x518C;&#x5230;IOC&#x5BB9;&#x5668;</li>
+</ol>
+</li>
+<li><code>@EnableAutoConfiguration</code><ol>
+<li>&#x628A;&#x6240;&#x6709;&#x7B26;&#x5408;@Configuration&#x7684;bean&#x52A0;&#x8F7D;&#x5230;IOC&#x5BB9;&#x5668;</li>
+</ol>
+</li>
+<li><code>@ComponentScan</code><ol>
+<li>&#x9ED8;&#x8BA4;&#x626B;&#x63CF;&#x5F53;&#x524D;package&#x4E0B;&#x6240;&#x6709;&#x6CE8;&#x89E3;&#x7684;&#x7C7B;&#x5230;IOC&#x5BB9;&#x5668;</li>
+</ol>
+</li>
+<li><code>@Import&#xFF1A;AutoConfigurationImportSelector</code>  <ol>
+<li>&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x666E;&#x901A;bean&#x548C;Configuration&#x6CE8;&#x5165;&#x7684;bean</li>
+<li>&#x5B9E;&#x73B0;<code>ImportSelector</code>  &#x63A5;&#x53E3;&#x8FDB;&#x884C;&#x52A8;&#x6001;&#x6CE8;&#x5165;</li>
+<li>&#x5B9E;&#x73B0;<code>ImportBeanDefinitionRegistrar</code>  &#x63A5;&#x53E3;&#x52A8;&#x6001;&#x6CE8;&#x5165;</li>
+</ol>
+</li>
+<li>Conditional&#x6761;&#x4EF6;&#x6CE8;&#x5165;&#xFF1A;</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Conditions</th>
+<th>&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@ConditionalOnBean</td>
+<td>&#x5728;&#x5B58;&#x5728;&#x67D0;&#x4E2A; bean &#x7684;&#x65F6;&#x5019;</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingBean</td>
+<td>&#x4E0D;&#x5B58;&#x5728;&#x67D0;&#x4E2A; bean &#x7684;&#x65F6;&#x5019;</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass</td>
+<td>&#x5F53;&#x524D; classpath &#x53EF;&#x4EE5;&#x627E;&#x5230;&#x67D0;&#x4E2A;&#x7C7B;&#x578B;&#x7684;&#x7C7B;&#x65F6;</td>
+</tr>
+<tr>
+<td>@ConditionalOnMissingClass</td>
+<td>&#x5F53;&#x524D; classpath &#x4E0D;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x67D0;&#x4E2A;&#x7C7B;&#x578B;&#x7684;&#x7C7B; &#x65F6;</td>
+</tr>
+<tr>
+<td>@ConditionalOnResource</td>
+<td>&#x5F53;&#x524D; classpath &#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x4E2A;&#x8D44;&#x6E90;&#x6587;&#x4EF6;</td>
+</tr>
+<tr>
+<td>@ConditionalOnProperty</td>
+<td>&#x5F53;&#x524D; jvm &#x662F;&#x5426;&#x5305;&#x542B;&#x67D0;&#x4E2A;&#x7CFB;&#x7EDF;&#x5C5E;&#x6027;&#x4E3A;&#x67D0;&#x4E2A;&#x503C;</td>
+</tr>
+<tr>
+<td>@ConditionalOnWebApplication</td>
+<td>&#x5F53;&#x524D; spring context &#x662F;&#x5426;&#x662F; web &#x5E94;&#x7528;&#x7A0B;&#x5E8F;</td>
+</tr>
+<tr>
+<td>@AutoConfigureAfter</td>
+<td>&#x5728;&#x67D0;&#x4E2A;bean&#x914D;&#x7F6E;&#x540E;&#x5B9E;&#x4F8B;&#x5316;</td>
+</tr>
+<tr>
+<td>@AutoConfigureBefore</td>
+<td>&#x5728;&#x67D0;&#x4E2A;bean&#x914D;&#x7F6E;&#x524D;&#x5B9E;&#x4F8B;&#x5316;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;starter">&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;starter</h2>
+<ol>
+<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;maven&#x5DE5;&#x7A0B;&#xFF0C;&#x5F15;&#x5165;spring&#x4F9D;&#x8D56;</li>
+<li>&#x4F7F;&#x7528;@Configuration&#x5B9E;&#x73B0;bean&#x6CE8;&#x5165;</li>
+<li>&#x65B0;&#x5EFA;classpath/META-INF/spring.factories &#x6587;&#x4EF6;<ol>
+<li><code>`org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.educore.HelloAutoConfig</code></li>
+</ol>
+</li>
+</ol>
 <h2 id="springboot&#x81EA;&#x52A8;&#x5316;&#x914D;&#x7F6E;">springboot&#x81EA;&#x52A8;&#x5316;&#x914D;&#x7F6E;</h2>
 <blockquote>
 <p>&#x53C2;&#x8003;&#x300A;springboot&#x5B9E;&#x6218;&#x300B;&#xFF0C;springboot&#x5B98;&#x65B9;&#x6587;&#x6863;&#x3002;</p>
@@ -1964,7 +2040,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"springboot","level":"1.4.1.2","depth":3,"next":{"title":"mybatis","level":"1.4.2","depth":2,"path":"kuangjia/mybatis.md","ref":"kuangjia/mybatis.md","articles":[]},"previous":{"title":"spring中设计模式","level":"1.4.1.1","depth":3,"path":"kuangjia/spring-pattern.md","ref":"kuangjia/spring-pattern.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","expandable-chapters-small","page-toc-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"maocg","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Offer终结者","language":"zh-hans","gitbook":"*","description":"java offer终结者"},"file":{"path":"kuangjia/springboot.md","mtime":"2020-08-30T00:51:16.194Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-01T10:40:06.511Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"springboot","level":"1.4.1.2","depth":3,"next":{"title":"mybatis","level":"1.4.2","depth":2,"path":"kuangjia/mybatis.md","ref":"kuangjia/mybatis.md","articles":[]},"previous":{"title":"spring中设计模式","level":"1.4.1.1","depth":3,"path":"kuangjia/spring-pattern.md","ref":"kuangjia/spring-pattern.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","expandable-chapters-small","page-toc-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"maocg","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Offer终结者","language":"zh-hans","gitbook":"*","description":"java offer终结者"},"file":{"path":"kuangjia/springboot.md","mtime":"2020-12-20T15:10:56.632Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-20T15:19:35.048Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
