@@ -167,22 +167,6 @@ Resource 接口是 Spring 资源访问策略的抽象，它本身并不提供任
 5. InputStreamResource：访问输入流资源的实现类。
 6. ByteArrayResource：访问字节数组资源的实现类。 这些 Resource 实现类，针对不同的的底层资源，提供了相应的资源访问逻辑，并提供便捷的包装，以利于客户端程序的资源访问。
 
-## spring如何解决循环依赖的？
-例子：两个Bean，StudentA，StudentB，互相依赖
-1、如果两个bean都用构造方法注入，无法解决，会报错
-```
-The dependencies of some of the beans in the application context form a cycle:
-
-┌─────┐
-|  studentA defined in file [D:\work\features-research\target\classes\com\mcg\framwork\featuresresearch\beans\StudentA.class]
-↑     ↓
-|  studentB defined in file [D:\work\features-research\target\classes\com\mcg\framwork\featuresresearch\beans\StudentB.class]
-└─────┘
-```
-2、一个使用@Autowired，一个使用构造方法，分两种情况，按照类加载顺序，StudentA在前，StudentA可以构造方法注入StudentB，可以正常启动。反之会启动失败。
-
-3、都是用@Autowired注入，正常启动
-
 
 
 >参考文章：1. https://www.cnblogs.com/better-farther-world2099/articles/11585939.html  
