@@ -63,7 +63,71 @@ Spring切面可以应用五种类型的通知：
 
 ## spring的bean的单例如何保证？
 
+常见的单例模式有懒汉式和饿汉式，但是spring不是通过这两种方式实现的，而是通过采用单例注册表的方式进行实现的。
 
+`````java
+public abstract class AbstractBeanFactory implements ConfigurableBeanFactory{  
+       /** 
+        * 充当了Bean实例的缓存，实现方式和单例注册表相同 
+        */  
+       private final Map singletonCache=new HashMap();  
+       public Object getBean(String name)throws BeansException{  
+           return getBean(name,null,null);  
+       }  
+    ...  
+       public Object getBean(String name,Class requiredType,Object[] args)throws BeansException{  
+          //对传入的Bean name稍做处理，防止传入的Bean name名有非法字符(或则做转码)  
+          String beanName=transformedBeanName(name);  
+          Object bean=null;  
+          //手工检测单例注册表  
+          Object sharedInstance=null;  
+          //使用了代码锁定同步块，原理和同步方法相似，但是这种写法效率更高  
+          synchronized(this.singletonCache){  
+             sharedInstance=this.singletonCache.get(beanName);  
+           }  
+          if(sharedInstance!=null){  
+             ...  
+             //返回合适的缓存Bean实例  
+             bean=getObjectForSharedInstance(name,sharedInstance);  
+          }else{  
+            ...  
+            //取得Bean的定义  
+            RootBeanDefinition mergedBeanDefinition=getMergedBeanDefinition(beanName,false);  
+             ...  
+            //根据Bean定义判断，此判断依据通常来自于组件配置文件的单例属性开关  
+            //<bean id="date" class="java.util.Date" scope="singleton"/>  
+            //如果是单例，做如下处理  
+            if(mergedBeanDefinition.isSingleton()){  
+               synchronized(this.singletonCache){  
+                //再次检测单例注册表  
+                 sharedInstance=this.singletonCache.get(beanName);  
+                 if(sharedInstance==null){  
+                    ...  
+                   try {  
+                      //真正创建Bean实例  
+                      sharedInstance=createBean(beanName,mergedBeanDefinition,args);  
+                      //向单例注册表注册Bean实例  
+                       addSingleton(beanName,sharedInstance);  
+                   }catch (Exception ex) {  
+                      ...  
+                   }finally{  
+                      ...  
+                  }  
+                 }  
+               }  
+              bean=getObjectForSharedInstance(name,sharedInstance);  
+            }  
+           //如果是非单例，即prototpye，每次都要新创建一个Bean实例  
+           //<bean id="date" class="java.util.Date" scope="prototype"/>  
+           else{  
+              bean=createBean(beanName,mergedBeanDefinition,args);  
+           }  
+    }  
+    ...  
+       return bean;  
+    }  
+    }
+`````
 
 ## Spring支持的几种bean的作用域
 Spring框架支持以下五种bean的作用域：
@@ -180,8 +244,13 @@ FactoryBean为我们实例化Bean提供了一个更为灵活的方式，我们�
 
 ## 两个方法都有AOP配置，方法之间相互调用，切面如何执行？
 
+如果直接调用，第二个无法执行。如果使用AopContext来调用，都可以执行切面
+
+
 
 ## 两个方法都是用事务注解，内部互相调用，结果如何。
+
+
 
 
 > 参考《spring技术内幕》。
