@@ -1432,6 +1432,32 @@
             
         </li>
     
+        <li class="chapter " data-level="1.12.3" data-path="../architecture_design/friend_feed.html">
+            
+                <a href="../architecture_design/friend_feed.html">
+            
+                    
+                    朋友圈系统设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../architecture_design/RPC.html">
+            
+                <a href="../architecture_design/RPC.html">
+            
+                    
+                    rpc框架设计
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -1637,9 +1663,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.17" data-path="../interview_topn/alibaba.html">
+        <li class="chapter " data-level="1.17" data-path="../interview_topn/readme.html">
             
-                <a href="../interview_topn/alibaba.html">
+                <a href="../interview_topn/readme.html">
             
                     
                     topN公司面试题汇总
@@ -1703,9 +1729,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.17.5" data-path="../interview_topn/alibaba.html">
+        <li class="chapter " data-level="1.17.5" data-path="../interview_topn/kuaishou.html">
             
-                <a href="../interview_topn/alibaba.html">
+                <a href="../interview_topn/kuaishou.html">
             
                     
                     快手面试题
@@ -1973,6 +1999,69 @@ JDK&#x7684;&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x4E3B;&#x8981;&#x6D89;&#x53CA;java.
 <li>around: &#x5728;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x4E4B;&#x524D;&#x548C;&#x4E4B;&#x540E;&#x8C03;&#x7528;&#x7684;&#x901A;&#x77E5;&#x3002;</li>
 </ol>
 <h2 id="spring&#x7684;bean&#x7684;&#x5355;&#x4F8B;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#xFF1F;">spring&#x7684;bean&#x7684;&#x5355;&#x4F8B;&#x5982;&#x4F55;&#x4FDD;&#x8BC1;&#xFF1F;</h2>
+<p>&#x5E38;&#x89C1;&#x7684;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x6709;&#x61D2;&#x6C49;&#x5F0F;&#x548C;&#x997F;&#x6C49;&#x5F0F;&#xFF0C;&#x4F46;&#x662F;spring&#x4E0D;&#x662F;&#x901A;&#x8FC7;&#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x5B9E;&#x73B0;&#x7684;&#xFF0C;&#x800C;&#x662F;&#x901A;&#x8FC7;&#x91C7;&#x7528;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AbstractBeanFactory</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ConfigurableBeanFactory</span></span>{  
+       <span class="hljs-comment">/** 
+        * &#x5145;&#x5F53;&#x4E86;Bean&#x5B9E;&#x4F8B;&#x7684;&#x7F13;&#x5B58;&#xFF0C;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x548C;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;&#x76F8;&#x540C; 
+        */</span>  
+       <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map singletonCache=<span class="hljs-keyword">new</span> HashMap();  
+       <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getBean</span><span class="hljs-params">(String name)</span><span class="hljs-keyword">throws</span> BeansException</span>{  
+           <span class="hljs-keyword">return</span> getBean(name,<span class="hljs-keyword">null</span>,<span class="hljs-keyword">null</span>);  
+       }  
+    ...  
+       <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">getBean</span><span class="hljs-params">(String name,Class requiredType,Object[] args)</span><span class="hljs-keyword">throws</span> BeansException</span>{  
+          <span class="hljs-comment">//&#x5BF9;&#x4F20;&#x5165;&#x7684;Bean name&#x7A0D;&#x505A;&#x5904;&#x7406;&#xFF0C;&#x9632;&#x6B62;&#x4F20;&#x5165;&#x7684;Bean name&#x540D;&#x6709;&#x975E;&#x6CD5;&#x5B57;&#x7B26;(&#x6216;&#x5219;&#x505A;&#x8F6C;&#x7801;)  </span>
+          String beanName=transformedBeanName(name);  
+          Object bean=<span class="hljs-keyword">null</span>;  
+          <span class="hljs-comment">//&#x624B;&#x5DE5;&#x68C0;&#x6D4B;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;  </span>
+          Object sharedInstance=<span class="hljs-keyword">null</span>;  
+          <span class="hljs-comment">//&#x4F7F;&#x7528;&#x4E86;&#x4EE3;&#x7801;&#x9501;&#x5B9A;&#x540C;&#x6B65;&#x5757;&#xFF0C;&#x539F;&#x7406;&#x548C;&#x540C;&#x6B65;&#x65B9;&#x6CD5;&#x76F8;&#x4F3C;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x79CD;&#x5199;&#x6CD5;&#x6548;&#x7387;&#x66F4;&#x9AD8;  </span>
+          <span class="hljs-keyword">synchronized</span>(<span class="hljs-keyword">this</span>.singletonCache){  
+             sharedInstance=<span class="hljs-keyword">this</span>.singletonCache.get(beanName);  
+           }  
+          <span class="hljs-keyword">if</span>(sharedInstance!=<span class="hljs-keyword">null</span>){  
+             ...  
+             <span class="hljs-comment">//&#x8FD4;&#x56DE;&#x5408;&#x9002;&#x7684;&#x7F13;&#x5B58;Bean&#x5B9E;&#x4F8B;  </span>
+             bean=getObjectForSharedInstance(name,sharedInstance);  
+          }<span class="hljs-keyword">else</span>{  
+            ...  
+            <span class="hljs-comment">//&#x53D6;&#x5F97;Bean&#x7684;&#x5B9A;&#x4E49;  </span>
+            RootBeanDefinition mergedBeanDefinition=getMergedBeanDefinition(beanName,<span class="hljs-keyword">false</span>);  
+             ...  
+            <span class="hljs-comment">//&#x6839;&#x636E;Bean&#x5B9A;&#x4E49;&#x5224;&#x65AD;&#xFF0C;&#x6B64;&#x5224;&#x65AD;&#x4F9D;&#x636E;&#x901A;&#x5E38;&#x6765;&#x81EA;&#x4E8E;&#x7EC4;&#x4EF6;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x5355;&#x4F8B;&#x5C5E;&#x6027;&#x5F00;&#x5173;  </span>
+            <span class="hljs-comment">//&lt;bean id=&quot;date&quot; class=&quot;java.util.Date&quot; scope=&quot;singleton&quot;/&gt;  </span>
+            <span class="hljs-comment">//&#x5982;&#x679C;&#x662F;&#x5355;&#x4F8B;&#xFF0C;&#x505A;&#x5982;&#x4E0B;&#x5904;&#x7406;  </span>
+            <span class="hljs-keyword">if</span>(mergedBeanDefinition.isSingleton()){  
+               <span class="hljs-keyword">synchronized</span>(<span class="hljs-keyword">this</span>.singletonCache){  
+                <span class="hljs-comment">//&#x518D;&#x6B21;&#x68C0;&#x6D4B;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;  </span>
+                 sharedInstance=<span class="hljs-keyword">this</span>.singletonCache.get(beanName);  
+                 <span class="hljs-keyword">if</span>(sharedInstance==<span class="hljs-keyword">null</span>){  
+                    ...  
+                   <span class="hljs-keyword">try</span> {  
+                      <span class="hljs-comment">//&#x771F;&#x6B63;&#x521B;&#x5EFA;Bean&#x5B9E;&#x4F8B;  </span>
+                      sharedInstance=createBean(beanName,mergedBeanDefinition,args);  
+                      <span class="hljs-comment">//&#x5411;&#x5355;&#x4F8B;&#x6CE8;&#x518C;&#x8868;&#x6CE8;&#x518C;Bean&#x5B9E;&#x4F8B;  </span>
+                       addSingleton(beanName,sharedInstance);  
+                   }<span class="hljs-keyword">catch</span> (Exception ex) {  
+                      ...  
+                   }<span class="hljs-keyword">finally</span>{  
+                      ...  
+                  }  
+                 }  
+               }  
+              bean=getObjectForSharedInstance(name,sharedInstance);  
+            }  
+           <span class="hljs-comment">//&#x5982;&#x679C;&#x662F;&#x975E;&#x5355;&#x4F8B;&#xFF0C;&#x5373;prototpye&#xFF0C;&#x6BCF;&#x6B21;&#x90FD;&#x8981;&#x65B0;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;Bean&#x5B9E;&#x4F8B;  </span>
+           <span class="hljs-comment">//&lt;bean id=&quot;date&quot; class=&quot;java.util.Date&quot; scope=&quot;prototype&quot;/&gt;  </span>
+           <span class="hljs-keyword">else</span>{  
+              bean=createBean(beanName,mergedBeanDefinition,args);  
+           }  
+    }  
+    ...  
+       <span class="hljs-keyword">return</span> bean;  
+    }  
+    }
+</code></pre>
 <h2 id="spring&#x652F;&#x6301;&#x7684;&#x51E0;&#x79CD;bean&#x7684;&#x4F5C;&#x7528;&#x57DF;">Spring&#x652F;&#x6301;&#x7684;&#x51E0;&#x79CD;bean&#x7684;&#x4F5C;&#x7528;&#x57DF;</h2>
 <p>Spring&#x6846;&#x67B6;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x4E94;&#x79CD;bean&#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF1A;</p>
 <ol>
@@ -2077,6 +2166,7 @@ PROPAGATION_NESTED&#xFF1A; &#x5982;&#x679C;&#x5F53;&#x524D;&#x5B58;&#x5728;&#x4E
 BeanFactory&#x662F;Spring&#x5BB9;&#x5668;&#x7684;&#x9876;&#x5C42;&#x63A5;&#x53E3;&#xFF0C;FactoryBean&#x66F4;&#x7C7B;&#x4F3C;&#x4E8E;&#x7528;&#x6237;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x5DE5;&#x5382;&#x63A5;&#x53E3;&#x3002;
 FactoryBean&#x4E3A;&#x6211;&#x4EEC;&#x5B9E;&#x4F8B;&#x5316;Bean&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x66F4;&#x4E3A;&#x7075;&#x6D3B;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;FactoryBean&#x521B;&#x5EFA;&#x51FA;&#x66F4;&#x4E3A;&#x590D;&#x6742;&#x7684;Bean&#x5B9E;&#x4F8B;</p>
 <h2 id="&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x90FD;&#x6709;aop&#x914D;&#x7F6E;&#xFF0C;&#x65B9;&#x6CD5;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x8C03;&#x7528;&#xFF0C;&#x5207;&#x9762;&#x5982;&#x4F55;&#x6267;&#x884C;&#xFF1F;">&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x90FD;&#x6709;AOP&#x914D;&#x7F6E;&#xFF0C;&#x65B9;&#x6CD5;&#x4E4B;&#x95F4;&#x76F8;&#x4E92;&#x8C03;&#x7528;&#xFF0C;&#x5207;&#x9762;&#x5982;&#x4F55;&#x6267;&#x884C;&#xFF1F;</h2>
+<p>&#x5982;&#x679C;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x65E0;&#x6CD5;&#x6267;&#x884C;&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;AopContext&#x6765;&#x8C03;&#x7528;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x5207;&#x9762;</p>
 <h2 id="&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x7528;&#x4E8B;&#x52A1;&#x6CE8;&#x89E3;&#xFF0C;&#x5185;&#x90E8;&#x4E92;&#x76F8;&#x8C03;&#x7528;&#xFF0C;&#x7ED3;&#x679C;&#x5982;&#x4F55;&#x3002;">&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x90FD;&#x662F;&#x7528;&#x4E8B;&#x52A1;&#x6CE8;&#x89E3;&#xFF0C;&#x5185;&#x90E8;&#x4E92;&#x76F8;&#x8C03;&#x7528;&#xFF0C;&#x7ED3;&#x679C;&#x5982;&#x4F55;&#x3002;</h2>
 <blockquote>
 <p>&#x53C2;&#x8003;&#x300A;spring&#x6280;&#x672F;&#x5185;&#x5E55;&#x300B;&#x3002;</p>
@@ -2124,7 +2214,7 @@ FactoryBean&#x4E3A;&#x6211;&#x4EEC;&#x5B9E;&#x4F8B;&#x5316;Bean&#x63D0;&#x4F9B;&
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"spring","level":"1.4.1","depth":2,"next":{"title":"spring中设计模式","level":"1.4.1.1","depth":3,"path":"kuangjia/spring-pattern.md","ref":"kuangjia/spring-pattern.md","articles":[]},"previous":{"title":"java框架","level":"1.4","depth":1,"path":"kuangjia/readme.md","ref":"kuangjia/readme.md","articles":[{"title":"spring","level":"1.4.1","depth":2,"path":"kuangjia/spring.md","ref":"kuangjia/spring.md","articles":[{"title":"spring中设计模式","level":"1.4.1.1","depth":3,"path":"kuangjia/spring-pattern.md","ref":"kuangjia/spring-pattern.md","articles":[]},{"title":"springboot","level":"1.4.1.2","depth":3,"path":"kuangjia/springboot.md","ref":"kuangjia/springboot.md","articles":[]}]},{"title":"mybatis","level":"1.4.2","depth":2,"path":"kuangjia/mybatis.md","ref":"kuangjia/mybatis.md","articles":[]},{"title":"hibernate","level":"1.4.3","depth":2,"path":"kuangjia/hibernate.md","ref":"kuangjia/hibernate.md","articles":[]},{"title":"netty","level":"1.4.4","depth":2,"path":"kuangjia/netty.md","ref":"kuangjia/netty.md","articles":[]},{"title":"dubbo","level":"1.4.5","depth":2,"path":"kuangjia/dubbo.md","ref":"kuangjia/dubbo.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","expandable-chapters-small","page-toc-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"maocg","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Offer终结者","language":"zh-hans","gitbook":"*","description":"java offer终结者"},"file":{"path":"kuangjia/spring.md","mtime":"2020-12-19T09:19:55.579Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-12-20T15:19:35.048Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"spring","level":"1.4.1","depth":2,"next":{"title":"spring中设计模式","level":"1.4.1.1","depth":3,"path":"kuangjia/spring-pattern.md","ref":"kuangjia/spring-pattern.md","articles":[]},"previous":{"title":"java框架","level":"1.4","depth":1,"path":"kuangjia/readme.md","ref":"kuangjia/readme.md","articles":[{"title":"spring","level":"1.4.1","depth":2,"path":"kuangjia/spring.md","ref":"kuangjia/spring.md","articles":[{"title":"spring中设计模式","level":"1.4.1.1","depth":3,"path":"kuangjia/spring-pattern.md","ref":"kuangjia/spring-pattern.md","articles":[]},{"title":"springboot","level":"1.4.1.2","depth":3,"path":"kuangjia/springboot.md","ref":"kuangjia/springboot.md","articles":[]}]},{"title":"mybatis","level":"1.4.2","depth":2,"path":"kuangjia/mybatis.md","ref":"kuangjia/mybatis.md","articles":[]},{"title":"hibernate","level":"1.4.3","depth":2,"path":"kuangjia/hibernate.md","ref":"kuangjia/hibernate.md","articles":[]},{"title":"netty","level":"1.4.4","depth":2,"path":"kuangjia/netty.md","ref":"kuangjia/netty.md","articles":[]},{"title":"dubbo","level":"1.4.5","depth":2,"path":"kuangjia/dubbo.md","ref":"kuangjia/dubbo.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","expandable-chapters-small","page-toc-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"maocg","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Offer终结者","language":"zh-hans","gitbook":"*","description":"java offer终结者"},"file":{"path":"kuangjia/spring.md","mtime":"2020-12-27T09:06:43.225Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-16T13:46:39.544Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

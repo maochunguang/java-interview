@@ -12,13 +12,13 @@ SqlSession，提供操作接口
 MapperProxy， 代理mapper接口后，用于找到sql执行
 
 ## mybatis和hibernate的优缺点
-相同点
+#### 相同点
 
 Hibernate与MyBatis都可以是通过SessionFactoryBuider由XML配置文件生成SessionFactory，然后由SessionFactory 生成Session，最后由Session来开启执行事务和SQL语句。
 
 其中SessionFactoryBuider，SessionFactory，Session的生命周期都是差不多的。Hibernate和MyBatis都支持JDBC和JTA事务处理。
 
-不同点
+#### 不同点
 
 （1）hibernate是全自动，而mybatis是半自动
 
@@ -97,7 +97,16 @@ SqlSessionManager 同时实现了 SqlSessionFactory、SqlSession 接口，通过
 ## mybatis中的设计模式
 1. 工厂模式：SqlSessionFactory
 2. 单例模式：SqlSessionFactory，Configuration
-3. 建造者：SqlSessionFactoryBuilder
-4. 装饰者模式：CachingExecor simple reuse batch三种exector的装饰，LRUCache FifoCache对PerpetualCache的装饰
-5. 代理模式：Spring集成Mybatis SqlSessionInterceptor，MapperProxy，Plugin，延迟加载，Log输出（ConnectionLogger，StatementLogger）
+3. 建造者：SqlSessionFactoryBuilder，XMLConfigBuilder、 XMLMapperBuilder、 XMLStatementBuidler
+4. 装饰者模式：
+   1. CachingExecor simple reuse batch三种exector的装饰，
+   2. LRUCache FifoCache对PerpetualCache的装饰
+5. 代理模式：
+   1. 绑定： MapperProxy 
+   2. 延迟加载： ProxyFactory（CGLIB、 JAVASSIT）
+   3.  插件： Plugin 
+   4. Spring 集成 MyBaits： SqlSessionTemplate 的内部类 SqlSessionInterceptor 
+   5. MyBatis 自带连接池： PooledDataSource 管理的 PooledConnection 
+   6. 日志打印： ConnectionLogger、 StatementLogger
 6. 模板方法：Executor，BaseExecutor,SimpleExecutor
+7. 责任链模式：InterceptorChain，插件拦截器链

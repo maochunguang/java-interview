@@ -23,7 +23,9 @@ Java远程方法调用，即Java RMI（Java Remote Method Invocation）是Java�
 4. 便于测试，能并行开发，较高可靠性和良好可伸缩性。
 
 
+
 ## 正向代理和反向代理
+
 正向代理中，proxy和client同属一个LAN，对server透明，对于client代理，不感知访问哪一个server；
 反向代理中，proxy和server同属一个LAN，对client透明。对于server代理，不感知哪一个client来访问。
 
