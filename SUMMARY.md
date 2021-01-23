@@ -66,7 +66,6 @@
 * [开发工具](devtools/readme.md)
     * [maven](devtools/maven.md)
     * [gradle](devtools/gradle.md)
-    * [ant](devtools/ant.md)
     * [git](devtools/git.md)
     * [hexo](devtools/hexo.md)
     * [wordpress](devtools/wordpress.md)
