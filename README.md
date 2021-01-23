@@ -21,4 +21,5 @@ gitbook pdf . ## 在目录下生成pdf文件
 gitbook epub .  ## 在目录下生成epub文件
 ```
 3. 在线阅读该文档
-[java-inteview](https://maochunguang.github.io/java-interview/)
+[github java-inteview](https://maochunguang.github.io/java-interview/)
+[gitee java-inteview](https://mcg_dev.gitee.io/java-interview/)
