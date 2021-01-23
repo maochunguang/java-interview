@@ -1,11 +1,11 @@
-# java架构师成长手册
+# java架构师面试手册
 
-![java面试](images/interview.gif)
-## 致找工作的java程序员
-当你怀着忐忑不安的心情开始自己的程序员生涯时，那就注定要不断学习新的技术和思想，否则你就被后辈拍在沙滩上了，不对，应该是办公桌上。
+![java面试](images/interview.jpeg)
+
+## 致各位努力搬砖的程序员
+小编本人是双非学校，非计算机专业。通过自学2014进入java编程行业，从刚入职场的惴惴不安，经历了各种困难，一步一步迈入高级开发工程师。从18线小公司，到腾讯，再到美团，目前就职于字节跳动，面试也是收到的offer很多。这其中的困难和曲折就不说了，这里只是把我面试的经验和知识总结分享给大家，希望大家早日拿到满意的offer！
 
 ![书籍截图](images/book.png)
-
 
 ## 本地运行，或者发布到github的gh-pages
 1. 全局安装gitbook-cli,gh-pages
@@ -23,3 +23,6 @@ gitbook epub .  ## 在目录下生成epub文件
 3. 在线阅读该文档
 [github java-inteview](https://maochunguang.github.io/java-interview/)
 [gitee java-inteview](https://mcg_dev.gitee.io/java-interview/)
+
+## 版权问题
+由于之前很多文章都是从网上找的，没有写引用的出处，如果大家看到了，请指正，小编会第一时间更新出处。
