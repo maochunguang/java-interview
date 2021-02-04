@@ -1,31 +1,73 @@
----
-typora-root-url: ..\images
----
+# kafka
 
 ## kafka是什么？
 
-## kafka原理
+kafka是分布式的，分区的，多副本的，多订阅者，高吞吐量，支持水平扩展，基于zookeeper的分布式消息系统。常用于日志处理，高性能消息服务。
+
+
+
+## kafka设计理念
+
+● 低延迟：以时间复杂为O(1)的方式提供消息持久化的能力，对TB级别的数据也能提供
+常数级别的复杂度的访问能力，最低延迟只有几毫秒。
+● 高吞吐：每秒可处理几十万条消息，即使在非常廉价的商用机器上也能做到单机支持
+每秒十万条以上消息的传输。
+● 高伸缩：消息按照 topic 进行分类，每个topic下有多个 partition， topic中的 partition
+可以分布在不同的主机上，防止消息丢失。
+● 容错性： Kafka 集群中的一个节点宕机失败以后，集群仍然可以正常工作。
+● 高并发：同时支持数千个客户端读写  
+
+
 
 ## zookeeper在kafka中的作用
-1. broker注册
-2. topic注册
-3. 生产者负载均衡
-4. 消费者与分组对应
-5. 消费者与分区的对应关系
-6. 消费者负载均衡
-7. 消费者的offset
+
+1. broker注册：`/brokers/ids/{broker.id}  `
+2. topic注册：`/brokers/topics/{topic_name}  `
+3. 生产者负载均衡：
+4. 消费组注册：`/ls/consumers/{group_id}  `
+   1. ids：消费者与分组对应关系
+   2. owners：记录消费组消费的topic信息
+   3. offsets：记录每个topic下每个partition的offset
+
+
+
+## kafka重要组成部分
+
+![kafka重要概念](../images/mq/kafka-parts.png)
+
+1. Broker：kafka中每一个服务节点称为broker
+2. Topic：逻辑概念，一系列消息的集合。就是给消息做分类，提高性能
+3. Partition：分区存储，一个topic分布到多个partition进行存储，
+4. Replicas：每个partition的消息副本，保证消息不丢失
+5. Producer：消息的生产者，给消费者发送消息
+6. Consumer：消息的消费者
+7. Consumer Group：逻辑概念，对消费者进行分组
+8. Offset：partition中每个消息都有一个连续的序列号叫做offset，消息的唯一标识
+9. Message：消息是kafka最基本的数据单元
+
+
 
 ## topic和partition
+
 Topic是用于存储消息的逻辑概念，可以看作一个消息集合。每个topic可以有多个生产者向其推送消息，也可以有任意多个消费者消费其中的消息。
 每个topic可以划分多个分区（每个Topic至少有一个分区），同一topic下的不同分区包含的消息是不同的。每个消息在被添加到分区时，都会被分配一个offset（称之为偏移量），它是消息在此分区中的唯一编号，kafka通过offset保证消息在分区内的顺序，offset的顺序不跨分区，即kafka只保证在同一个分区内的消息是有序的。
 
 
+
 ## kafka高吞吐量的原因（高性能）
-1. 采用顺序写的方式存储数据。
-2. 批量发送（异步发送模式中）
-3. 零拷贝
+
+1、采用顺序写的方式存储数据。
+![kafka文件存储](../images/mq/kafka消息存储.png)
+
+<img src="../images/mq/ikafka-segment.png" alt="kafka segment数据格式" style="zoom:50%;" />
+
+1. 批量发送（异步发送模式中）
+2. 零拷贝
+
+
 
 ## kafka高可用如何保证？
+
 kafka可靠性依靠的是副本机制。（副本同步队列）副本维护的有资格的follower节点。
 1. 副本的所有节点和zookeeper保持连接状态
 2. 副本的最后一条消息的offset和leader的最后一条消息的offset不能超过阀值。
