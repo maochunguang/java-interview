@@ -62,6 +62,7 @@
     * [rpc框架](ds/rpc.md)
     * [分布式事务](ds/dsTransaction.md)
     * [分布式锁](ds/dsLock.md)
+    * [注册中心对比](ds/register-center.md)
     * [多机房部署](ds/datarooms.md)
 * [开发工具](devtools/readme.md)
     * [maven](devtools/maven.md)
