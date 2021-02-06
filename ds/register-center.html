@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>分布式锁 · Offer终结者</title>
+        <title>注册中心对比 · Offer终结者</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -69,10 +69,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="register-center.html" />
+    <link rel="next" href="datarooms.html" />
     
     
-    <link rel="prev" href="dsTransaction.html" />
+    <link rel="prev" href="dsLock.html" />
     
 
     </head>
@@ -973,7 +973,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7.7" data-path="dsLock.html">
+        <li class="chapter " data-level="1.7.7" data-path="dsLock.html">
             
                 <a href="dsLock.html">
             
@@ -986,7 +986,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.8" data-path="register-center.html">
+        <li class="chapter active" data-level="1.7.8" data-path="register-center.html">
             
                 <a href="register-center.html">
             
@@ -1926,7 +1926,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >分布式锁</a>
+        <a href=".." >注册中心对比</a>
     </h1>
 </div>
 
@@ -1941,159 +1941,122 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5206;&#x5E03;&#x5F0F;&#x9501;">&#x5206;&#x5E03;&#x5F0F;&#x9501;</h1>
-<p>[TOC]</p>
-<h2 id="&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x4EC0;&#x4E48;&#xFF1F;">&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x4EC0;&#x4E48;&#xFF1F;</h2>
-<p>&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x662F;&#x4E00;&#x4E2A;&#x5206;&#x5E03;&#x5F0F;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x91CD;&#x8981;&#x539F;&#x8BED;&#xFF0C;&#x7528;&#x4E8E;&#x4FDD;&#x8BC1;&#x8FDB;&#x7A0B;&#x95F4;&#x91C7;&#x7528;&#x4E92;&#x65A5;&#x7684;&#x65B9;&#x5F0F;&#x64CD;&#x4F5C;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x3002;&#x901A;&#x5E38;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x4EE5;SDK&#x7684;&#x5F62;&#x5F0F;&#x88AB;&#x5F15;&#x5165;&#x5230;&#x5206;&#x5E03;&#x5F0F;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x4E3B;&#x8981;&#x5E94;&#x7528;&#x4E8E;&#x4EE5;&#x4E0B;&#x4E24;&#x7C7B;&#x573A;&#x666F;&#xFF1A;</p>
-<ul>
-<li>&#x63D0;&#x5347;&#x6548;&#x7387;&#xFF1A;&#x52A0;&#x9501;&#x662F;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x91CD;&#x590D;&#x5904;&#x7406;&#xFF0C;&#x9632;&#x6B62;&#x4EFB;&#x52A1;&#x88AB;&#x591A;&#x4E2A;&#x6267;&#x884C;&#x8005;&#x62A2;&#x5360;&#xFF0C;&#x907F;&#x514D;&#x51FA;&#x73B0;&#x5927;&#x91CF;&#x56DE;&#x6EDA;&#x64CD;&#x4F5C;&#x3002;</li>
-<li>&#x9AD8;&#x53EF;&#x9760;&#x4E92;&#x65A5;&#xFF1A;&#x52A0;&#x9501;&#x662F;&#x4E3A;&#x4E86;&#x907F;&#x514D;Race Condition&#x5BFC;&#x81F4;&#x903B;&#x8F91;&#x9519;&#x8BEF;&#xFF0C;&#x5206;&#x5E03;&#x5F0F;&#x573A;&#x666F;&#x4E0B;&#x5BF9;&#x5F3A;&#x4E00;&#x81F4;&#x7684;&#x8981;&#x6C42;&#x9AD8;&#x3002;</li>
-</ul>
-<h2 id="&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x73B0;&#x8981;&#x6C42;">&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x5B9E;&#x73B0;&#x8981;&#x6C42;</h2>
-<ol>
-<li>&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x5728;&#x5206;&#x5E03;&#x5F0F;&#x96C6;&#x7FA4;&#x4E2D;&#xFF0C;&#x540C;&#x4E00;&#x65F6;&#x523B;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#x83B7;&#x5F97;&#x9501;&#x3002;</li>
-<li>&#x8FD9;&#x628A;&#x9501;&#x8981;&#x662F;&#x4E00;&#x628A;&#x53EF;&#x91CD;&#x5165;&#x9501;&#xFF08;&#x907F;&#x514D;&#x6B7B;&#x9501;&#xFF09;</li>
-<li>&#x8FD9;&#x628A;&#x9501;&#x6700;&#x597D;&#x662F;&#x4E00;&#x628A;&#x963B;&#x585E;&#x9501;&#x963B;&#x585E;&#x9501;&#xFF0C;&#x8BA9;&#x7EBF;&#x7A0B;&#x8FDB;&#x5165;&#x963B;&#x585E;&#x72B6;&#x6001;&#x8FDB;&#x884C;&#x7B49;&#x5F85;&#xFF0C;&#x5F53;&#x83B7;&#x5F97;&#x76F8;&#x5E94;&#x7684;&#x4FE1;&#x53F7;&#xFF08;&#x5524;&#x9192;&#xFF0C;&#x65F6;&#x95F4;&#xFF09; &#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDB;&#x5165;&#x5C31;&#x7EEA;&#x72B6;&#x6001;&#xFF0C;&#x5C31;&#x7EEA;&#x72B6;&#x6001;&#x4E2D;&#x6240;&#x6709;&#x7EBF;&#x7A0B;&#x901A;&#x8FC7;&#x7ADE;&#x4E89;&#xFF0C;&#x8FDB;&#x5165;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x3002;</li>
-<li>&#x8FD9;&#x628A;&#x9501;&#x6700;&#x597D;&#x662F;&#x4E00;&#x628A;&#x516C;&#x5E73;&#x9501;&#xFF0C;&#x516C;&#x5E73;&#x9501;&#x5C31;&#x662F;&#x7EBF;&#x7A0B;&#x6309;&#x7167;&#x6267;&#x884C;&#x987A;&#x5E8F;&#x4F9D;&#x6B21;&#x83B7;&#x53D6;&#x9501;&#xFF0C;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x516C;&#x5E73;&#x7684;&#x8BA9;&#x7EBF;&#x7A0B;&#x83B7;&#x53D6;&#x9501;&#xFF0C;&#x907F;&#x514D;&#x6709;&#x7EBF;&#x7A0B;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x83B7;&#x53D6;&#x4E0D;&#x5230;&#x9501;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4E5F;&#x6709;&#x5F0A;&#x7AEF;&#xFF1A;&#x989D;&#x5916;&#x7EF4;&#x62A4;&#x6392;&#x961F;&#x903B;&#x8F91;&#xFF0C;&#x989D;&#x5916;&#x635F;&#x8017;&#x6027;&#x80FD;&#x3002;</li>
-<li>&#x6709;&#x9AD8;&#x6027;&#x80FD;&#x3001;&#x9AD8;&#x53EF;&#x7528;&#x7684;&#x83B7;&#x53D6;&#x9501;&#x548C;&#x91CA;&#x653E;&#x9501;&#x529F;&#x80FD;</li>
-</ol>
-<h2 id="&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;">&#x5206;&#x5E03;&#x5F0F;&#x9501;&#x7684;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;</h2>
-<h3 id="1&#x3001;&#x57FA;&#x4E8E;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x9501;">1&#x3001;&#x57FA;&#x4E8E;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x9501;</h3>
-<h4 id="&#x5B9E;&#x73B0;&#x903B;&#x8F91;&#xFF1A;">&#x5B9E;&#x73B0;&#x903B;&#x8F91;&#xFF1A;</h4>
-<p><img src="../images/ds/lock.png" alt="lock"></p>
-<ol>
-<li>&#x539F;&#x7406;&#xFF1A;&#x901A;&#x8FC7;&#x5411;&#x6570;&#x636E;&#x8868;&#x4E2D;&#x6DFB;&#x52A0;&#x8BB0;&#x5F55;&#x8868;&#x793A;&#x52A0;&#x9501;&#xFF0C;&#x5220;&#x9664;&#x8868;&#x4E2D;&#x8BB0;&#x5F55;&#x8868;&#x793A;&#x91CA;&#x653E;&#x9501;</li>
-<li>&#x52A0;&#x9501;&#xFF1A;&#x5148;select &#x7136;&#x540E;&#x6267;&#x884C; insert or update</li>
-<li>&#x91CA;&#x653E;&#x9501;&#xFF1A;&#x5220;&#x9664;&#x6570;&#x636E; <code>delete from contentMethodLock where resource_name=XXX and client_info= XXX</code></li>
-</ol>
-<h4 id="&#x529F;&#x80FD;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;">&#x529F;&#x80FD;&#x5B9E;&#x73B0;&#x7EC6;&#x8282;</h4>
-<ol>
-<li><p>&#x60B2;&#x89C2;&#x9501;&#xFF1A;</p>
-<ol>
-<li>&#x52A0;&#x9501;&#xFF1A;&#x6BCF;&#x6B21;&#x5728;&#x62FF;&#x53D6;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x4F1A;&#x5BF9;&#x6570;&#x636E;&#x4E0A;&#x9501;&#xFF0C;<code>`select * from contentMethodLock where client_info =&apos;asdfb12345&apos; and resource_name = &apos;order_in_stock&apos; for update</code></li>
-<li>&#x91CA;&#x653E;&#x9501;&#xFF1A;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#xFF0C;<code>`connection.commit()</code></li>
-</ol>
-</li>
-<li><p>&#x4E50;&#x89C2;&#x9501;&#xFF1A;&#x5148;&#x5728;&#x6570;&#x636E;&#x8868;&#x4E2D;&#x6DFB;&#x52A0;&#x5BF9;&#x5E94;&#x7684;&#x7248;&#x672C;&#x53F7;&#x5B57;&#x6BB5;&#xFF0C;&#x6BCF;&#x5F53;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x66F4;&#x65B0;&#x65F6;&#xFF0C;&#x7ED9;&#x5BF9;&#x5E94;&#x7684;&#x7248;&#x672C;&#x53F7;&#x52A0;1&#x3002;</p>
-<ol>
-<li><pre><code class="lang-sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">version</span> <span class="hljs-keyword">from</span> distributed_lock <span class="hljs-keyword">where</span> resource_name = <span class="hljs-string">&apos;order_in_stock&apos;</span>;
-
-<span class="hljs-keyword">update</span> distributed_lock <span class="hljs-keyword">set</span> client_info=<span class="hljs-string">&apos;asdfb12345&apos;</span>,<span class="hljs-keyword">version</span>=<span class="hljs-keyword">version</span>+<span class="hljs-number">1</span>
-<span class="hljs-keyword">where</span> resource_name = <span class="hljs-string">&apos;order_in_stock&apos;</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">version</span>=${<span class="hljs-keyword">version</span>};
-</code></pre>
-</li>
-</ol>
-</li>
-</ol>
-<h4 id="&#x4F18;&#x7F3A;&#x70B9;&#x5206;&#x6790;">&#x4F18;&#x7F3A;&#x70B9;&#x5206;&#x6790;</h4>
-<ul>
-<li>&#x4F18;&#x70B9;&#xFF1A;<ul>
-<li>&#x64CD;&#x4F5C;&#x7B80;&#x5355;&#x3001;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x3002;</li>
-<li>&#x53EA;&#x7528;mysql&#x5C31;&#x80FD;&#x5B9E;&#x73B0;&#xFF0C;&#x65E0;&#x9700;&#x5916;&#x90E8;&#x4F9D;&#x8D56;&#x3002;</li>
-</ul>
-</li>
-<li>&#x7F3A;&#x70B9;&#xFF1A;<ul>
-<li>&#x9891;&#x7E41;&#x64CD;&#x4F5C;&#x6570;&#x636E;&#x5E93;&#x6027;&#x80FD;&#x5DEE;&#xFF0C;</li>
-<li>&#x6EE1;&#x8DB3;&#x4E0D;&#x4E86;&#x9AD8;&#x53EF;&#x7528;&#xFF0C;&#x5B58;&#x5728;&#x5355;&#x70B9;&#x95EE;&#x9898;&#x3001;&#x901A;&#x8FC7;&#x4E3B;&#x5907;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x7F13;&#x89E3;&#xFF0C;&#x7531;&#x4E8E;&#x4E3B;&#x4ECE;&#x540C;&#x6B65;&#x7684;&#x5EF6;&#x8FDF;&#xFF0C;&#x4F1A;&#x6709;&#x6570;&#x636E;&#x4E00;&#x81F4;&#x6027;&#x95EE;&#x9898;&#x3001;</li>
-<li>&#x9700;&#x8981;&#x81EA;&#x884C;&#x5B9E;&#x73B0;&#x9501;&#x7684;&#x963B;&#x585E;&#xFF0C;&#x91CD;&#x5165;&#x7B49;&#x903B;&#x8F91;&#xFF1B;</li>
-</ul>
-</li>
-</ul>
-<h3 id="2&#x3001;&#x57FA;&#x4E8E;&#x7F13;&#x5B58;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#xFF1A;">2&#x3001;&#x57FA;&#x4E8E;&#x7F13;&#x5B58;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x9501;&#xFF1A;</h3>
-<h4 id="&#x5B9E;&#x73B0;&#x539F;&#x7406;">&#x5B9E;&#x73B0;&#x539F;&#x7406;</h4>
-<p><img src="../images/ds/redis-lock.svg" alt="drawio" style="zoom: 80%;"></p>
-<ol>
-<li>&#x52A0;&#x9501;&#xFF1A;<ol>
-<li>&#xFF08;1&#xFF09;&#x5224;&#x65AD;&#x52A0;&#x9501;&#x662F;&#x5426;&#x8D85;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8D85;&#x65F6;&#x6267;&#x884C;setnx(key,expireTime),&#x5982;&#x679C;&#x52A0;&#x9501;&#x6210;&#x529F;&#x5219;&#x6267;&#x884C;&#x4E1A;&#x52A1;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6CA1;&#x6709;&#x52A0;&#x9501;&#x6210;&#x529F;&#x8FDB;&#x5165;&#x4E0B;&#x4E00;&#x6B65;&#x3002;</li>
-<li>&#xFF08;2&#xFF09;get(key)&#x83B7;&#x53D6;&#x8FC7;&#x671F;&#x65F6;&#x95F4;expireTime&#xFF0C;&#x5224;&#x65AD;expireTime&#x662F;&#x5426;&#x5C0F;&#x4E8E;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5C0F;&#x4E8E;&#x8BF4;&#x660E;&#x9501;&#x672A;&#x8FC7;&#x671F;&#xFF0C;&#x5219;&#x7EE7;&#x7EED;&#x8FD4;&#x56DE;&#x52A0;&#x9501;&#x6D41;&#x7A0B;&#xFF0C;&#x5982;&#x679C;expireTime&#x5C0F;&#x4E8E;&#x5F53;&#x524D;&#x65F6;&#x95F4;&#x8BF4;&#x660E;&#x9501;&#x5DF2;&#x8FC7;&#x671F;&#x8FDB;&#x5165;&#x4E0B;&#x4E00;&#x6B65;&#x3002;</li>
-<li>&#xFF08;3&#xFF09;&#x5F53;&#x9501;&#x8FC7;&#x671F;&#x8BF4;&#x660E; &#x53EF;&#x4EE5;&#x52A0;&#x9501;&#x4E86;&#xFF0C;&#x6267;&#x884C;getSet(key, &#x65B0;expireTime)&#x64CD;&#x4F5C;&#x5F97;&#x5230;oldExpireTime&#x3002;</li>
-<li>&#xFF08;4&#xFF09;&#x6B64;&#x65F6;&#x5224;&#x65AD;oldExpireTime&#x662F;&#x5426;&#x7B49;&#x4E8E;expireTime&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x76F8;&#x7B49;&#x8BF4;&#x660E;&#x6709;&#x5176;&#x4ED6;&#x5BA2;&#x6237;&#x7AEF;&#x5DF2;&#x7ECF;&#x52A0;&#x9501;&#x4E86;&#xFF0C;&#x6B64;&#x65F6;&#x7EE7;&#x7EED;&#x8FD4;&#x56DE;&#x52A0;&#x9501;&#x6D41;&#x7A0B;&#x3002;&#x5982;&#x679C;oldExpireTime&#x7B49;&#x4E8E;expireTime&#x8FD4;&#x56DE;&#x503C; &#x8BF4;&#x660E;&#x5176;&#x4ED6;&#x5BA2;&#x6237;&#x7AEF;&#x6CA1;&#x6709;&#x52A0;&#x9501;&#xFF0C;&#x5219;&#x83B7;&#x53D6;&#x5230;&#x9501;</li>
-</ol>
-</li>
-<li>&#x91CA;&#x653E;&#x9501;&#xFF1A;&#x5728;&#x4E1A;&#x52A1;&#x6267;&#x884C;&#x5B8C;&#x540E;&#xFF0C;&#x76F4;&#x63A5;&#x8C03;&#x7528;Redis&#x4E2D;&#x7684;del()&#x65B9;&#x6CD5;&#x3002;&#x4F46;&#x662F;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF1A;<em>&#x52A0;&#x9501;&#x548C;&#x91CA;&#x653E;&#x9501;&#x9700;&#x8981;&#x5F15;&#x5165;&#x4E00;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#x6807;&#x8BC6;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x6709;&#x8BEF;&#x5220;&#x5176;&#x4ED6;&#x5BA2;&#x6237;&#x7AEF;&#x9501;&#x60C5;&#x51B5;</em><ol>
-<li>&#xFF08;1&#xFF09;&#x8FDB;&#x7A0B;&#x5F00;&#x59CB;&#x83B7;&#x53D6;&#x9501;&#x6210;&#x529F;&#xFF0C;&#x5F97;&#x5230;&#x9501;lockA</li>
-<li>&#xFF08;2&#xFF09;A&#x8FDB;&#x7A0B;&#x5728;&#x91CA;&#x653E;&#x9501;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6267;&#x884C;del()&#x64CD;&#x4F5C;&#x4E4B;&#x524D;&#xFF0C;&#x9501;lockA&#x6B63;&#x597D;&#x8FC7;&#x671F;&#x4E86;&#xFF0C;&#x8FDB;&#x7A0B;B&#x5F97;&#x5230;&#x4E86;&#x9501;&#xFF0C;&#x5E76;&#x8BBE;&#x7F6E;&#x6210;&#x529F;&#x4E86;lockB</li>
-<li>&#xFF08;3&#xFF09;A&#x8FDB;&#x7A0B;&#x5728;&#x6267;&#x884C;del()&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x5220;&#x9664;&#x9501;B</li>
-</ol>
-</li>
-</ol>
-<h4 id="&#x5F00;&#x6E90;&#x89E3;&#x51B3;&#x65B9;&#x6848;">&#x5F00;&#x6E90;&#x89E3;&#x51B3;&#x65B9;&#x6848;</h4>
-<ol>
-<li>Redisson&#x5B9E;&#x73B0;<ol>
-<li>&#x539F;&#x7406;&#x56FE;&#xFF1A;</li>
-</ol>
-</li>
-<li>&#x4F7F;&#x7528;lua&#x811A;&#x672C;</li>
-</ol>
-<h4 id="&#x4F18;&#x7F3A;&#x70B9;&#x5206;&#x6790;">&#x4F18;&#x7F3A;&#x70B9;&#x5206;&#x6790;</h4>
-<ul>
-<li>&#x4F18;&#x70B9;&#xFF1A;<ul>
-<li>&#x5BF9;&#x7F13;&#x5B58;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x6027;&#x80FD;&#x597D;&#x3002;</li>
-<li>&#x80FD;&#x6EE1;&#x8DB3;&#x9AD8;&#x5E76;&#x53D1;&#x9700;&#x6C42;</li>
-</ul>
-</li>
-<li>&#x7F3A;&#x70B9;&#xFF1A;<ul>
-<li>&#x5B9E;&#x73B0;&#x903B;&#x8F91;&#x8F83;&#x590D;&#x6742;&#xFF0C;&#x9700;&#x8981;&#x8003;&#x8651;&#x5404;&#x79CD;&#x60C5;&#x51B5;</li>
-<li>&#x4E0D;&#x652F;&#x6301;&#x53EF;&#x91CD;&#x5165;&#xFF0C;&#x516C;&#x5E73;&#x9501;&#xFF08;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#xFF09;</li>
-<li>&#x5982;&#x679C;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x6216;&#x96C6;&#x7FA4;&#x51FA;&#x95EE;&#x9898;&#xFF0C;&#x4E3B;&#x4ECE;&#x590D;&#x5236;&#x6CA1;&#x5B8C;&#x6210;&#xFF0C;&#x9020;&#x6210;&#x591A;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#x83B7;&#x53D6;&#x9501;&#x3002;</li>
-</ul>
-</li>
-</ul>
-<h3 id="3&#x3001;&#x57FA;&#x4E8E;zk&#x5B9E;&#x73B0;&#x5206;&#x5E03;&#x5F0F;&#x9501;">3&#x3001;&#x57FA;&#x4E8E;ZK&#x5B9E;&#x73B0;&#x5206;&#x5E03;&#x5F0F;&#x9501;</h3>
-<p>zk&#x5206;&#x5E03;&#x5F0F;&#x9501;&#xFF1A;&#x901A;&#x8FC7;&#x6709;&#x5E8F;&#x4E34;&#x65F6;&#x8282;&#x70B9;&#x5B9E;&#x73B0;&#x9501;&#x673A;&#x5236;&#xFF0C;&#x81EA;&#x5DF1;&#x5BF9;&#x5E94;&#x7684;&#x8282;&#x70B9;&#x9700;&#x8981;&#x6700;&#x5C0F;&#xFF0C;&#x5219;&#x88AB;&#x8BA4;&#x4E3A;&#x662F;&#x83B7;&#x5F97;&#x4E86;&#x9501;&#x3002;</p>
-<h4 id="&#x5B9E;&#x73B0;&#x539F;&#x7406;">&#x5B9E;&#x73B0;&#x539F;&#x7406;</h4>
-<p><img src="../images/ds/zk-lock.svg" alt="drawio (1)"></p>
-<p>&#xFF08;1&#xFF09;&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x7528;create()&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x540D;&#x4E3A;&#x201C;<em>Lock</em>/node&#x201D;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x8FD9;&#x91CC;&#x8282;&#x70B9;&#x7684;&#x521B;&#x5EFA;&#x7C7B;&#x578B;&#x9700;&#x8981;&#x8BBE;&#x7F6E;&#x4E3A;EPHEMERAL_SEQUENTIAL&#xFF08;&#x4E34;&#x65F6;&#x6392;&#x5E8F;&#x8282;&#x70B9;&#xFF09;&#x3002;</p>
-<p>&#xFF08;2&#xFF09;&#x5BA2;&#x6237;&#x7AEF;&#x8C03;&#x7528;getChildren(&#x201C;<em>Lock</em>&#x201D;)&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;&#x6240;&#x6709;&#x5DF2;&#x7ECF;&#x521B;&#x5EFA;&#x7684;&#x5B50;&#x8282;&#x70B9;&#x3002;</p>
-<p>&#xFF08;3&#xFF09;&#x5BA2;&#x6237;&#x7AEF;&#x83B7;&#x53D6;&#x5230;&#x6240;&#x6709;&#x5B50;&#x8282;&#x70B9;&#x8DEF;&#x5F84;&#x4E4B;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0;&#x81EA;&#x5DF1;&#x5728;&#x6B65;&#x9AA4;1&#x4E2D;&#x521B;&#x5EFA;&#x7684;&#x8282;&#x70B9;&#x662F;&#x6240;&#x6709;&#x8282;&#x70B9;&#x4E2D;&#x5E8F;&#x53F7;&#x6700;&#x5C0F;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x8BA4;&#x4E3A;&#x8FD9;&#x4E2A;&#x5BA2;&#x6237;&#x7AEF;&#x83B7;&#x5F97;&#x4E86;&#x9501;&#x3002;</p>
-<p>&#xFF08;4&#xFF09;&#x5982;&#x679C;&#x521B;&#x5EFA;&#x7684;&#x8282;&#x70B9;&#x4E0D;&#x662F;&#x6240;&#x6709;&#x8282;&#x70B9;&#x4E2D;&#x9700;&#x8981;&#x6700;&#x5C0F;&#x7684;&#xFF0C;&#x90A3;&#x4E48;&#x5219;&#x76D1;&#x89C6;&#x6BD4;&#x81EA;&#x5DF1;&#x521B;&#x5EFA;&#x8282;&#x70B9;&#x7684;&#x5E8F;&#x5217;&#x53F7;&#x5C0F;&#x7684;&#x6700;&#x5927;&#x7684;&#x8282;&#x70B9;&#xFF0C;&#x8FDB;&#x5165;&#x7B49;&#x5F85;&#x3002;&#x76F4;&#x5230;&#x4E0B;&#x6B21;&#x76D1;&#x89C6;&#x7684;&#x5B50;&#x8282;&#x70B9;&#x53D8;&#x66F4;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x518D;&#x8FDB;&#x884C;&#x5B50;&#x8282;&#x70B9;&#x7684;&#x83B7;&#x53D6;&#xFF0C;&#x5224;&#x65AD;&#x662F;&#x5426;&#x83B7;&#x53D6;&#x9501;&#x3002;</p>
-<h4 id="&#x5F00;&#x6E90;&#x89E3;&#x51B3;&#x65B9;&#x6848;">&#x5F00;&#x6E90;&#x89E3;&#x51B3;&#x65B9;&#x6848;</h4>
-<ol>
-<li>Curator&#x5BA2;&#x6237;&#x7AEF;&#x5B9E;&#x73B0;&#xFF1A;</li>
-<li>&#x539F;&#x7406;&#x56FE;&#xFF1A;<img src="../images/ds/curator-lock.svg" alt="drawio (2)"></li>
-</ol>
-<h4 id="&#x4F18;&#x7F3A;&#x70B9;&#x5206;&#x6790;">&#x4F18;&#x7F3A;&#x70B9;&#x5206;&#x6790;</h4>
-<ul>
-<li>&#x4F18;&#x70B9;&#xFF1A;<ul>
-<li>&#x53EF;&#x9760;&#x6027;&#x9AD8;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x5B95;&#x673A;zk&#x4F1A;&#x81EA;&#x52A8;&#x558A;&#x51FA;&#x4E34;&#x65F6;&#x8282;&#x70B9;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#x9501;&#x3002;</li>
-</ul>
-</li>
-<li>&#x7F3A;&#x70B9;&#xFF1A;<ul>
-<li>&#x6548;&#x7387;&#x8F83;&#x4F4E;&#xFF0C;&#x6027;&#x80FD;&#x8F83;&#x5DEE;&#xFF0C;&#x9700;&#x8981;&#x9891;&#x7E41;&#x521B;&#x5EFA;&#x548C;&#x5220;&#x9664;&#x8282;&#x70B9;&#x6765;&#x52A0;&#x9501;&#x548C;&#x91CA;&#x653E;&#x9501;</li>
-<li>&#x9700;&#x8981;&#x624B;&#x52A8;&#x5B9E;&#x73B0;&#xFF0C;&#x52A0;&#x9501;&#x548C;&#x91CA;&#x653E;&#x9501;&#x7684;&#x903B;&#x8F91;&#x3002;</li>
-</ul>
-</li>
-</ul>
-<h2 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h2>
+                                <h1 id="&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;&#x6846;&#x67B6;">&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;&#x6846;&#x67B6;</h1>
+<p>&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;</p>
+<h2 id="&#x5404;&#x4E2A;&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;&#x5BF9;&#x6BD4;">&#x5404;&#x4E2A;&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;&#x5BF9;&#x6BD4;</h2>
 <table>
 <thead>
 <tr>
-<th>&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;</th>
-<th>&#x6027;&#x80FD;</th>
-<th></th>
-<th></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"><strong>Nacos</strong></th>
+<th style="text-align:left"><strong>Eureka</strong></th>
+<th style="text-align:left"><strong>Consul</strong></th>
+<th style="text-align:left"><strong>Zookeeper</strong></th>
+<th style="text-align:left">etcd</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>&#x6570;&#x636E;&#x5E93;</td>
-<td>&#x5DEE;</td>
-<td></td>
-<td></td>
+<td style="text-align:left">&#x4E00;&#x81F4;&#x6027;&#x534F;&#x8BAE;</td>
+<td style="text-align:left">CP+AP</td>
+<td style="text-align:left">AP</td>
+<td style="text-align:left">CP</td>
+<td style="text-align:left">CP</td>
+<td style="text-align:left">CP</td>
 </tr>
 <tr>
-<td>&#x7F13;&#x5B58;</td>
-<td>&#x597D;</td>
-<td></td>
-<td></td>
+<td style="text-align:left">&#x5065;&#x5EB7;&#x68C0;&#x67E5;</td>
+<td style="text-align:left">TCP/HTTP/MYSQL/ Client Beat</td>
+<td style="text-align:left">Client Beat</td>
+<td style="text-align:left">TCP/HTTP/ gRPC/ Cmd</td>
+<td style="text-align:left">Keep Alive</td>
+<td style="text-align:left">HTTP/Client</td>
 </tr>
 <tr>
-<td>zookeeper</td>
-<td>&#x4E00;&#x822C;</td>
-<td></td>
+<td style="text-align:left">&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7B56;&#x7565;</td>
+<td style="text-align:left">&#x6743;&#x91CD;/ metadata/ Selector</td>
+<td style="text-align:left">Ribbon</td>
+<td style="text-align:left">Fabio</td>
+<td style="text-align:left">&#x2014;</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&#x96EA;&#x5D29;&#x4FDD;&#x62A4;</td>
+<td style="text-align:left">&#x6709;</td>
+<td style="text-align:left">&#x6709;</td>
+<td style="text-align:left">&#x65E0;</td>
+<td style="text-align:left">&#x65E0;</td>
+<td style="text-align:left">&#x65E0;</td>
+</tr>
+<tr>
+<td style="text-align:left">&#x81EA;&#x52A8;&#x6CE8;&#x9500;&#x5B9E;&#x4F8B;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&#x8BBF;&#x95EE;&#x534F;&#x8BAE;</td>
+<td style="text-align:left">HTTP/DNS</td>
+<td style="text-align:left">HTTP</td>
+<td style="text-align:left">HTTP/DNS</td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&#x76D1;&#x542C;&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&#x591A;&#x6570;&#x636E;&#x4E2D;&#x5FC3;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x4E0D;&#x652F;&#x6301;</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&#x8DE8;&#x6CE8;&#x518C;&#x4E2D;&#x5FC3;&#x540C;&#x6B65;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x4E0D;&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x4E0D;&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x4E0D;&#x652F;&#x6301;</td>
+</tr>
+<tr>
+<td style="text-align:left">SpringCloud&#x96C6;&#x6210;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x4E0D;&#x652F;&#x6301;</td>
+</tr>
+<tr>
+<td style="text-align:left">Dubbo&#x96C6;&#x6210;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x4E0D;&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+</tr>
+<tr>
+<td style="text-align:left">K8S&#x96C6;&#x6210;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x4E0D;&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x4E0D;&#x652F;&#x6301;</td>
+<td style="text-align:left">&#x652F;&#x6301;</td>
 </tr>
 </tbody>
 </table>
+<h2 id="nacos">nacos</h2>
+<h2 id="etcd">etcd</h2>
+<h2 id="consul">consul</h2>
 
                                 
                                 </section>
@@ -2121,12 +2084,12 @@
 
             
                 
-                <a href="dsTransaction.html" class="navigation navigation-prev " aria-label="Previous page: 分布式事务">
+                <a href="dsLock.html" class="navigation navigation-prev " aria-label="Previous page: 分布式锁">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="register-center.html" class="navigation navigation-next " aria-label="Next page: 注册中心对比">
+                <a href="datarooms.html" class="navigation navigation-next " aria-label="Next page: 多机房部署">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -2137,7 +2100,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"分布式锁","level":"1.7.7","depth":2,"next":{"title":"注册中心对比","level":"1.7.8","depth":2,"path":"ds/register-center.md","ref":"ds/register-center.md","articles":[]},"previous":{"title":"分布式事务","level":"1.7.6","depth":2,"path":"ds/dsTransaction.md","ref":"ds/dsTransaction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","expandable-chapters-small","page-toc-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"maocg","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Offer终结者","language":"zh-hans","gitbook":"*","description":"java offer终结者"},"file":{"path":"ds/dsLock.md","mtime":"2020-08-19T15:25:42.677Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-02-06T16:10:35.786Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"注册中心对比","level":"1.7.8","depth":2,"next":{"title":"多机房部署","level":"1.7.9","depth":2,"path":"ds/datarooms.md","ref":"ds/datarooms.md","articles":[]},"previous":{"title":"分布式锁","level":"1.7.7","depth":2,"path":"ds/dsLock.md","ref":"ds/dsLock.md","articles":[]},"dir":"ltr"},"config":{"plugins":["back-to-top-button","expandable-chapters-small","page-toc-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{},"back-to-top-button":{},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"maocg","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Offer终结者","language":"zh-hans","gitbook":"*","description":"java offer终结者"},"file":{"path":"ds/register-center.md","mtime":"2021-02-06T14:37:41.390Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-02-06T16:10:35.786Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
