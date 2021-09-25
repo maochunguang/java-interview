@@ -3,7 +3,7 @@
 
 ## 各个注册中心对比
 
-|                 | **Nacos**                   | **Eureka**  | **Consul**          | **Zookeeper** | etcd        |
+|     功能\框架    | **Nacos**                   | **Eureka**  | **Consul**          | **Zookeeper** | etcd        |
 | :-------------- | :-------------------------- | :---------- | :------------------ | :------------ | :---------- |
 | 一致性协议      | CP+AP                       | AP          | CP                  | CP            | CP          |
 | 健康检查        | TCP/HTTP/MYSQL/ Client Beat | Client Beat | TCP/HTTP/ gRPC/ Cmd | Keep Alive    | HTTP/Client |
