@@ -94,3 +94,15 @@ FutureTask除了实现Future接⼜外，还实现了Runnable接⼜。因此，Fu
 1. 未启动。FutureTask.run()⽅法还没有被执⾏之前，FutureTask处于未启动状态。当创建 ⼀个FutureTask，且没有执⾏FutureTask.run()⽅法之前，这个FutureTask处于未启动状态。
 2. 已启动。FutureTask.run()⽅法被执⾏的过程中，FutureTask处于已启动状态。
 3. 已完成。FutureTask.run()⽅法执⾏完后正常结束，或被取消 （FutureTask.cancel（…）），或执⾏FutureTask.run()⽅法时抛出异常⽽异常结束，FutureTask 处于已完成状态。
+
+## 核心线程池能不能销毁
+使用构造函数设置的线程池核心线程池是不会销毁的，因为构造器没有这个参数，
+而`ThreadPoolExecutor` 有一个成员变量，如果设置位true，核心线程数也是可以销毁的
+```java
+    /**
+     * If false (default), core threads stay alive even when idle.
+     * If true, core threads use keepAliveTime to time out waiting
+     * for work.
+     */
+    private volatile boolean allowCoreThreadTimeOut;
+```

@@ -31,6 +31,8 @@
       * [原子操作](java_advanced/locks/atomic.md)
       * [锁优化](java_advanced/locks/optimizingLock.md)
   * [jvm虚拟机](java_advanced/jvm/jvm.md)
+      * [g1虚拟机](java_advanced/jvm/G1.md)
+      * [zgc虚拟机](java_advanced/jvm/zgc.md)
 * [java框架](kuangjia/readme.md)
     * [spring](kuangjia/spring.md)
       * [spring中设计模式](kuangjia/spring-pattern.md)

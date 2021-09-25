@@ -54,7 +54,7 @@ insert into SEQUENCE_ID(value) VALUES ('values');
 1. DB单点存在宕机风险，
 2. 无法扛住高并发场景
 
-
+扩展方式
 
 
 
