@@ -1,6 +1,7 @@
 # Summary
 
 * [介绍](README.md)
+* [如何面试](howtoInteview.md)
 * [java基础](basic/basic.md)
   * [java二进制操作符](basic/java-binary.md)
   * [java-web基础](basic/javaweb.md)
@@ -109,6 +110,7 @@
 * [网络](network/readme.md)
   * [http协议](network/http.md)
   * [tcp协议](network/tcp-ip.md)
+* [推荐书籍](recommend_books/readme.md)
 * [实战演练](codingInAction/coding.md)
 * [topN公司面试题汇总](interview_topn/readme.md)
     * [阿里巴巴面试题](interview_topn/alibaba.md)
@@ -127,7 +129,6 @@
     * [redis集群搭建](devenv/redis.md)
     * [docker环境搭建](devenv/docker.md)
     * [zookeeper集群搭建](devenv/zookeeper.md)
-
 
 
 
