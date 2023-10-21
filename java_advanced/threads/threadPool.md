@@ -1,22 +1,28 @@
-## 线程池的使用和原理
-1. corePoolSize：线程池中的核心线程数，当提交一个任务时，线程池创建一个新线程执行任务，直到当前线程数等于corePoolSize；
+## 线程池的参数和原理
+1. `corePoolSize`：线程池中的核心线程数，当提交一个任务时，线程池创建一个新线程执行任务，直到当前线程数等于corePoolSize；
 如果当前线程数为corePoolSize，继续提交的任务被保存到阻塞队列中，等待被执行；
 如果执行了线程池的prestartAllCoreThreads()方法，线程池会提前创建并启动所有核心线程。
 
-2. maximumPoolSize：线程池中允许的最大线程数。如果当前阻塞队列满了，且继续提交任务，则创建新的线程执行任务，前提是当前线程数小于maximumPoolSize
+2. `maximumPoolSize`：线程池中允许的最大线程数。如果当前阻塞队列满了，且继续提交任务，则创建新的线程执行任务，前提是当前线程数小于maximumPoolSize
 
-3. keepAliveTime：线程空闲时的存活时间，即当线程没有任务执行时，继续存活的时间。默认情况下，该参数只在线程数大于corePoolSize时才有用
+3. `keepAliveTime`：线程空闲时的存活时间，即当线程没有任务执行时，继续存活的时间。默认情况下，该参数只在线程数大于corePoolSize时才有用
 
 4. workQueue：必须是BlockingQueue阻塞队列。当线程池中的线程数超过它的corePoolSize的时候，线程会进入阻塞队列进行阻塞等待。通过workQueue，线程池实现了阻塞功能
-5. RejectedExecutionHandler（饱和策略）
-线程池的饱和策略，当阻塞队列满了，且没有空闲的工作线程，如果继续提交任务，必须采取一种策略处理该任务，线程池提供了5种策略：
+
+5. `RejectedExecutionHandler`（饱和策略）:
+   线程池的饱和策略，当阻塞队列满了，且没有空闲的工作线程，如果继续提交任务，必须采取一种策略处理该任务，线程池提供了5种策略：
+   
     * （1）AbortPolicy：直接抛出异常，默认策略；
     * （2）CallerRunsPolicy：用调用者所在的线程来执行任务；
     * （3）DiscardOldestPolicy：丢弃阻塞队列中靠最前的任务，并执行当前任务；
     * （4）DiscardPolicy：直接丢弃任务；
     * （5）实现RejectedExecutionHandler接口，自定义饱和策略
+   
+6. `allowCoreThreadTimeOut`（核心线程是否销毁）:该参数不在构造函数中，默认是false；如果设置为true，核心线程依然会被回收。
 
-### 几种排队的策略：
+   
+
+### 几种排allowCoreThreadTimeOut队的策略：
 1. 不排队，直接提交
 将任务直接交给线程处理而不保持它们，可使用SynchronousQueue
 如果不存在可用于立即运行任务的线程（即线程池中的线程都在工作），则试图把任务加入缓冲队列将会失败，因此会构造一个新的线程来处理新添加的任务，并将其加入到线程池中（corePoolSize-->maximumPoolSize扩容）
@@ -46,7 +52,7 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 }
 ```
 ### FixedThreadPool的原理
-![FixedThreadPool工作原理](../../images/fixedThreadPool.png)
+![FixedThreadPool工作原理](../../images/java/fixedThreadPool.png)
 
 1. 如果当前运行的线程数少于corePoolSize，则创建新线程来执行任务。
 2. 在线程池完成预热之后（当前运行的线程数等于corePoolSize），将任务加入 LinkedBlockingQueue。
