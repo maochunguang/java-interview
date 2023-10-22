@@ -84,14 +84,13 @@ JNDI：使用容器的数据源，比如Tomcat配置了C3P0
 
 ## DefaultSqlSession和SqlSessionTemplate的区别？
 SqlSessionTemplate是线程安全的。
-### 1）为什么 SqlSessionTemplate 是线程安全的？
-
+（1）为什么 SqlSessionTemplate 是线程安全的？
 其内部类 SqlSessionInterceptor 的 invoke()方法中的 getSqlSession()方法：
 如果当前线程已经有存在的 SqlSession 对象，会在 ThreadLocal 的容器中拿到SqlSessionHolder，获取 DefaultSqlSession。
 如果没有，则会 new 一个 SqlSession，并且绑定到 SqlSessionHolder，放到ThreadLocal 中。
 SqlSessionTemplate 中在同一个事务中使用同一个 SqlSession。
 调用 closeSqlSession()关闭会话时，如果存在事务，减少 holder 的引用计数。否则直接关闭 SqlSession。
-### 2）在编程式的开发中，有什么方法保证 SqlSession 的线程安全？
+（2）在编程式的开发中，有什么方法保证 SqlSession 的线程安全？
 SqlSessionManager 同时实现了 SqlSessionFactory、SqlSession 接口，通过ThreadLocal 容器维护 SqlSession
 
 ## mybatis中的设计模式
