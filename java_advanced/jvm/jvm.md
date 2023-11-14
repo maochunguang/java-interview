@@ -74,6 +74,7 @@ Mark Word的32个比特存储空间中的25个比特用于存储对象哈希码�
 2. ParNew+CMS
 3. Parallel Scavenge+Parallel Old
 4. G1
+5. zgc
 
 
 
