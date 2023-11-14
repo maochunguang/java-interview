@@ -251,6 +251,26 @@ FactoryBean为我们实例化Bean提供了一个更为灵活的方式，我们�
 ## 两个方法都是用事务注解，内部互相调用，结果如何。
 
 
+## spring的扩展点有哪些？
+Spring框架提供了许多扩展点，允许开发者在不修改Spring核心代码的情况下，对框架进行定制和扩展。以下是一些常见的Spring扩展点：
+
+1. **BeanPostProcessor：** 允许在Bean初始化前后进行定制。通过实现`BeanPostProcessor`接口，你可以在Spring容器实例化、配置和初始化Bean的过程中插入自定义逻辑。
+
+2. **BeanFactoryPostProcessor：** 允许在Bean工厂标准初始化之后修改Bean定义。通过实现`BeanFactoryPostProcessor`接口，你可以在容器加载Bean定义后但在Bean实例化之前对其进行修改。
+
+3. **ApplicationContextInitializer：** 允许在`ApplicationContext`初始化之前对其进行进一步的配置。通过实现`ApplicationContextInitializer`接口，你可以向应用上下文添加自定义的初始化逻辑。
+
+4. **ApplicationListener：** 允许应用程序对Spring的事件体系做出响应。通过实现`ApplicationListener`接口，你可以监听并响应容器中发布的事件，例如上下文刷新事件、上下文关闭事件等。
+
+5. **HandlerInterceptor：** 用于拦截Spring MVC请求的处理器。通过实现`HandlerInterceptor`接口，你可以在控制器执行前、执行后和视图渲染后执行自定义逻辑。
+
+6. **SmartInitializingSingleton：** 该接口允许在所有单例Bean都被实例化后调用自定义逻辑。通常用于在应用上下文初始化完成后执行某些操作。
+
+7. **FactoryBean：** 允许开发者定义自己的工厂Bean，该Bean负责创建其他Bean实例。通过实现`FactoryBean`接口，你可以定制Bean的创建逻辑。
+
+8. **BeanDefinitionRegistryPostProcessor：** 允许在所有Bean定义被加载但在Bean实例化之前修改Bean定义。通过实现`BeanDefinitionRegistryPostProcessor`接口，你可以对Bean定义进行修改、添加或删除。
+
+这些扩展点提供了丰富的机制，使开发者能够以非侵入性的方式对Spring进行定制和扩展。通过使用这些扩展点，你可以在不修改核心框架代码的情况下，满足特定应用程序需求。
 
 
 > 参考《spring技术内幕》。
