@@ -103,7 +103,7 @@ SqlSessionManager 同时实现了 SqlSessionFactory、SqlSession 接口，通过
 5. 代理模式：
    1. 绑定： MapperProxy 
    2. 延迟加载： ProxyFactory（CGLIB、 JAVASSIT）
-   3.  插件： Plugin 
+   3. 插件： Plugin 
    4. Spring 集成 MyBaits： SqlSessionTemplate 的内部类 SqlSessionInterceptor 
    5. MyBatis 自带连接池： PooledDataSource 管理的 PooledConnection 
    6. 日志打印： ConnectionLogger、 StatementLogger
