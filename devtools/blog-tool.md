@@ -213,3 +213,7 @@
 49. **Giterplish:**
     - **GitHub 仓库：** [Giterplish GitHub](https://github.com/Mingling94/Giterplish)
     - **描述：** Giterplish 是一个使用 GitHub Gists 创建、编辑和分享文档的工具。它支持 Markdown 和实时渲染。
+
+
+## 目标
+在github创建一个awesome-blog的开源项目。
