@@ -45,17 +45,17 @@
    - `Commander.js` 是一个用于 Node.js 的流行的命令行解析库，提供了简单而强大的接口，用于创建命令行工具的命令和选项。
    - GitHub 链接: [Commander.js](https://github.com/tj/commander.js)
 
-当然，以下是 PHP 和 Rust 中的两个命令行解析库：
-
 12. PHP - Symfony Console Component:
     - **Symfony Console Component:** Symfony 是 PHP 中一个流行的框架，它包含了 `Console Component`，这是一个功能强大的命令行解析库。它支持命令、参数、选项、自动生成的帮助文档等。
 
       - GitHub 链接: [Symfony Console](https://github.com/symfony/console)
 
-### Rust - Clap:
+13. Rust - Clap:
+    - **Clap:** `Clap` 是 Rust 中一款优秀的命令行解析库，提供了简洁而灵活的 API。它支持参数、子命令、值验证等，并生成详细的帮助文档。
 
-- **Clap:** `Clap` 是 Rust 中一款优秀的命令行解析库，提供了简洁而灵活的 API。它支持参数、子命令、值验证等，并生成详细的帮助文档。
+      - GitHub 链接: [Clap](https://github.com/clap-rs/clap)
 
-  - GitHub 链接: [Clap](https://github.com/clap-rs/clap)
+13. Node.js - Commander.js:
+    - **Commander.js:** `Commander.js` 是一个用于 Node.js 的流行的命令行解析库，提供了简单而强大的接口，用于创建命令行工具的命令和选项。它支持命令、子命令、选项等，并提供了清晰的链式 API。
 
-这两个库都在各自的语言社区中得到了广泛的应用，具有丰富的功能和活跃的维护。你可以根据项目的需求选择适合的库。
+    - GitHub 链接: [Commander.js](https://github.com/tj/commander.js)
