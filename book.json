@@ -8,6 +8,7 @@
     "plugins": [
         "back-to-top-button",
         "expandable-chapters-small",
-        "page-toc-button"
+        "page-toc-button",
+        "mermaid-gb3"
     ]
 }
