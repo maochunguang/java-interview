@@ -14,6 +14,25 @@ Paxos将系统中的角色分为提议者 (Proposer)，决策者 (Acceptor)，�
 - **Acceptor**：参与决策，回应Proposers的提案。收到Proposal后可以接受提案，若Proposal获得多数Acceptors的接受，则称该Proposal被批准。
 - **Learner**：不参与决策，从Proposers/Acceptors学习最新达成一致的提案（Value）。
 
+```mermaid
+sequenceDiagram
+  participant Proposer
+  participant Acceptor
+  participant Learner
+
+  Proposer -> Acceptor: Prepare(n)
+  Acceptor -> Proposer: Promise(n, v)
+  Proposer -> Learner: Accept(n, v)
+  Learner -> Learner: Ack(n, v)
+
+  alt Ack(n, v) > 2/3
+    Learner -> Learner: Stable(n, v)
+  end
+
+```
+
+
+
 
 
 Paxos算法通过一个决议分为三个阶段（Learn阶段之前决议已经形成）：

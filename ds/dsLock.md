@@ -99,6 +99,37 @@
 
 zk分布式锁：通过有序临时节点实现锁机制，自己对应的节点需要最小，则被认为是获得了锁。
 
+```mermaid
+sequenceDiagram
+  participant Client1
+  participant Client2
+  participant Zookeeper
+
+  Client1 -> Zookeeper: create(/lock, "", "EPHEMERAL")
+  Zookeeper -> Client1: create(/lock, "", "EPHEMERAL")
+  Client1 -> Client1: /lock 节点创建成功
+  Client2 -> Zookeeper: create(/lock, "", "EPHEMERAL")
+  Zookeeper -> Client2: sync(/lock)
+  Client2 -> Zookeeper: sync(/lock)
+  Zookeeper -> Client2: sync(/lock)
+  Client2 -> Client2: /lock 节点已经存在，获取锁失败
+
+  alt Client1 业务处理
+    Client1 -> Zookeeper: delete(/lock)
+    Zookeeper -> Client1: delete(/lock)
+    Client1 -> Client1: /lock 节点删除成功
+    Client2 -> Zookeeper: create(/lock, "", "EPHEMERAL")
+    Zookeeper -> Client2: create(/lock, "", "EPHEMERAL")
+    Client2 -> Client2: /lock 节点创建成功
+    Client2 -> Client2: 业务处理
+  end
+
+```
+
+
+
+
+
 #### 实现原理
 
 ![drawio (1)](../images/ds/zk-lock.svg)

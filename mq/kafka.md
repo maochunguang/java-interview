@@ -19,6 +19,12 @@ kafka是分布式的，分区的，多副本的，多订阅者，高吞吐量，
 
 
 
+## kafka为什么这么快
+
+![kafka-sofast](https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/kafka-sofast.webp)
+
+
+
 ## zookeeper在kafka中的作用
 
 1. broker注册：`/brokers/ids/{broker.id}  `
@@ -193,8 +199,10 @@ consumer group如何确定自己的coordinator是谁呢, 消费者向kafka集群
 4. 接着临时征用 10 倍的机器来部署 consumer，每一批 consumer 消费一个临时 queue 的数据。这种做法相当于是临时将 queue 资源和 consumer 资源扩大 10 倍，以正常的 10 倍速度来消费数据。
 5. 等快速消费完积压数据之后，得恢复原先部署的架构，重新用原先的 consumer 机器来消费消息。
 
+
+
 ## mq 中的消息过期失效了
+
 通过历史数据手动写程序进行修复。
 > 参考《kafka技术内幕》，kafka官方文档。
-
 

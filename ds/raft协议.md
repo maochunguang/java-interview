@@ -6,7 +6,7 @@ Paxos算法可能不少人都听说过，几乎垄断了一致性算法领域，
 
 为了让一致性协议变得简单可理解，Raft协议主要使用了两种策略。
 
-一是将复杂问题进行分解，在Raft协议中，一致性问题被分解为：leader election、log replication、safety三个简单问题；
+一是将复杂问题进行分解，在Raft协议中，一致性问题被分解为：`leader election`、`log replication`、`safety`三个简单问题；
 
 二是减少状态空间中的状态数目。下面我们详细看一下Raft协议是怎样设计的。
 
@@ -15,6 +15,33 @@ Paxos算法可能不少人都听说过，几乎垄断了一致性算法领域，
 1. leader选举：当已有的leader故障时必须选出一个新的leader。
 2. 日志复制：leader接受来自客户端的命令，记录为日志，并复制给集群中的其他服务器，并强制其他节点的日志与leader保持一致。
 3. 安全safety措施：通过一些措施确保系统的安全性，如确保所有状态机按照相同顺序执行相同命令的措施。
+
+```mermaid
+sequenceDiagram
+  participant Leader
+  participant Follower
+  participant Candidate
+
+  Leader -> Leader: AppendEntries(n, v)
+  Leader -> Follower: AppendEntries(n, v)
+  Leader -> Follower: AppendEntries(n, v)
+  Follower -> Leader: AppendEntriesResponse(n, true)
+  Follower -> Leader: AppendEntriesResponse(n, true)
+  Follower -> Leader: AppendEntriesResponse(n, true)
+  Leader -> Leader: Commit(n, v)
+  Follower -> Follower: Apply(n, v)
+
+  alt Leader 失去多数
+    Follower -> Candidate: RequestVote(n)
+    Candidate -> Candidate: Vote(n, v)
+    alt Candidate 得到多数票
+      Candidate -> Candidate: BecomeLeader()
+    end
+  end
+
+```
+
+
 
 ## 3、raft协议详解
 
