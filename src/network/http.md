@@ -15,9 +15,15 @@ HTTP协议：超文本传输协议（HTTP，HyperText Transfer Protocol)是互�
 301: 永久性
 302: 暂时性
 
-200: ok
-201:
-202:
+20x 状态码的具体含义：
+
+200 OK：请求成功。
+201 Created：请求已成功创建新资源。
+202 Accepted：请求已被接受，但处理尚未完成。
+203 Non-Authoritative Information：请求成功，但响应中的信息可能不是最新的。
+204 No Content：请求成功，但响应体为空。
+205 Reset Content：请求成功，要求客户端重置表单。
+206 Partial Content：请求成功，但只有部分资源已被传输。
 
 ## get请求和post请求区别
 
