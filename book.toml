@@ -14,7 +14,6 @@ create-missing = true
 [preprocessor.mermaid]
 command = "mdbook-mermaid"
 
-[output.wordcount]
 [output.html]
 default-theme = "light"
 additional-js = ["mermaid.min.js", "mermaid-init.js"]
