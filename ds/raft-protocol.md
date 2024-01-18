@@ -38,7 +38,6 @@ sequenceDiagram
       Candidate -> Candidate: BecomeLeader()
     end
   end
-
 ```
 
 

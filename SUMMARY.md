@@ -60,6 +60,8 @@
 * [分布式架构](ds/readme.md)
     * [架构基础](ds/architecture.md)
     * [分布式协议](ds/dsProtocol.md)
+    * [raft协议](ds/raft-protocol.md)
+    * [paxos协议](ds/paxos-protocol.md)
     * [微服务](ds/microService.md)
     * [分库分表](ds/splitdb.md)
     * [rpc框架](ds/rpc.md)

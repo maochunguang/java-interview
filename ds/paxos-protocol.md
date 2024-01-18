@@ -28,7 +28,6 @@ sequenceDiagram
   alt Ack(n, v) > 2/3
     Learner -> Learner: Stable(n, v)
   end
-
 ```
 
 
