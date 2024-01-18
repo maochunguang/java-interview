@@ -21,6 +21,7 @@
     * [并发容器](basic/collection/safeCollection.md)
 * [java高级](java_advanced/senior.md)
   * [javaSE高级](java_advanced/senior.md)
+  * [java高级特性](java_advanced/advance-features.md)
   * [多线程](java_advanced/threads/thread.md)
       * [线程池](java_advanced/threads/threadPool.md)
       * [并发工具类](java_advanced/threads/threadTools.md)
