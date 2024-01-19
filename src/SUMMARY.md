@@ -56,6 +56,7 @@
 * [消息队列](mq/readme.md)
     * [kafka](mq/kafka.md)
     * [rabbitmq](mq/rabbitmq.md)
+    * [rocketmq](mq/rocketmq.md)
     * [jms](mq/jms.md)
     * [消息中间件](mq/mq-middleware.md)
 * [分布式架构](ds/readme.md)
