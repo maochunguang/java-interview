@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>分布式锁 - java offer终结者</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="java找工作，offer终结者！">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> 介绍</a></li><li class="chapter-item "><a href="../howtoInteview.html"><strong aria-hidden="true">2.</strong> 如何面试</a></li><li class="chapter-item "><a href="../basic/basic.html"><strong aria-hidden="true">3.</strong> java基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/java-binary.html"><strong aria-hidden="true">3.1.</strong> java二进制操作符</a></li><li class="chapter-item "><a href="../basic/javaweb.html"><strong aria-hidden="true">3.2.</strong> java-web基础</a></li><li class="chapter-item "><a href="../basic/java-versions.html"><strong aria-hidden="true">3.3.</strong> java版本特性</a></li><li class="chapter-item "><a href="../basic/io/index.html"><strong aria-hidden="true">3.4.</strong> io流</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/io/bio.html"><strong aria-hidden="true">3.4.1.</strong> bio</a></li><li class="chapter-item "><a href="../basic/io/nio.html"><strong aria-hidden="true">3.4.2.</strong> nio</a></li><li class="chapter-item "><a href="../basic/io/aio.html"><strong aria-hidden="true">3.4.3.</strong> aio</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/index.html"><strong aria-hidden="true">3.5.</strong> java数据类型和集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/basic.html"><strong aria-hidden="true">3.5.1.</strong> basic</a></li><li class="chapter-item "><a href="../basic/collection/list.html"><strong aria-hidden="true">3.5.2.</strong> list</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/arrayList扩容机制.html"><strong aria-hidden="true">3.5.2.1.</strong> arrayList扩容</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/map.html"><strong aria-hidden="true">3.5.3.</strong> map</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/hashmap死循环问题.html"><strong aria-hidden="true">3.5.3.1.</strong> hashmap死循环解析</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/set.html"><strong aria-hidden="true">3.5.4.</strong> set</a></li><li class="chapter-item "><a href="../basic/collection/queue.html"><strong aria-hidden="true">3.5.5.</strong> queue</a></li><li class="chapter-item "><a href="../basic/collection/safeCollection.html"><strong aria-hidden="true">3.5.6.</strong> 并发容器</a></li></ol></li></ol></li><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.</strong> java高级</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.1.</strong> javaSE高级</a></li><li class="chapter-item "><a href="../java_advanced/advance-features.html"><strong aria-hidden="true">4.2.</strong> java高级特性</a></li><li class="chapter-item "><a href="../java_advanced/threads/thread.html"><strong aria-hidden="true">4.3.</strong> 多线程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/threads/threadPool.html"><strong aria-hidden="true">4.3.1.</strong> 线程池</a></li><li class="chapter-item "><a href="../java_advanced/threads/threadTools.html"><strong aria-hidden="true">4.3.2.</strong> 并发工具类</a></li><li class="chapter-item "><a href="../java_advanced/threads/asyncThread.html"><strong aria-hidden="true">4.3.3.</strong> java异步</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/locks/index.html"><strong aria-hidden="true">4.4.</strong> 锁</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/locks/synchronize.html"><strong aria-hidden="true">4.4.1.</strong> 悲观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/lock.html"><strong aria-hidden="true">4.4.2.</strong> 乐观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/atomic.html"><strong aria-hidden="true">4.4.3.</strong> 原子操作</a></li><li class="chapter-item "><a href="../java_advanced/locks/optimizingLock.html"><strong aria-hidden="true">4.4.4.</strong> 锁优化</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/jvm/jvm.html"><strong aria-hidden="true">4.5.</strong> jvm虚拟机</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/jvm/G1.html"><strong aria-hidden="true">4.5.1.</strong> g1虚拟机</a></li><li class="chapter-item "><a href="../java_advanced/jvm/zgc.html"><strong aria-hidden="true">4.5.2.</strong> zgc虚拟机</a></li></ol></li></ol></li><li class="chapter-item "><a href="../kuangjia/index.html"><strong aria-hidden="true">5.</strong> java框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring.html"><strong aria-hidden="true">5.1.</strong> spring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring-pattern.html"><strong aria-hidden="true">5.1.1.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../kuangjia/springboot.html"><strong aria-hidden="true">5.1.2.</strong> springboot</a></li></ol></li><li class="chapter-item "><a href="../kuangjia/mybatis.html"><strong aria-hidden="true">5.2.</strong> mybatis</a></li><li class="chapter-item "><a href="../kuangjia/hibernate.html"><strong aria-hidden="true">5.3.</strong> hibernate</a></li><li class="chapter-item "><a href="../kuangjia/netty.html"><strong aria-hidden="true">5.4.</strong> netty</a></li><li class="chapter-item "><a href="../kuangjia/dubbo.html"><strong aria-hidden="true">5.5.</strong> dubbo</a></li></ol></li><li class="chapter-item "><a href="../database/index.html"><strong aria-hidden="true">6.</strong> 数据库</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql.html"><strong aria-hidden="true">6.1.</strong> mysql</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql-process.html"><strong aria-hidden="true">6.1.1.</strong> sql执行流程解析</a></li><li class="chapter-item "><a href="../database/mysql-lock.html"><strong aria-hidden="true">6.1.2.</strong> sql锁与事务</a></li></ol></li><li class="chapter-item "><a href="../database/mongodb.html"><strong aria-hidden="true">6.2.</strong> mongodb</a></li><li class="chapter-item "><a href="../database/redis.html"><strong aria-hidden="true">6.3.</strong> redis</a></li><li class="chapter-item "><a href="../database/tair.html"><strong aria-hidden="true">6.4.</strong> tair</a></li><li class="chapter-item "><a href="../database/ElasticSearch.html"><strong aria-hidden="true">6.5.</strong> ElasticSearch</a></li><li class="chapter-item "><a href="../database/memcached.html"><strong aria-hidden="true">6.6.</strong> memcached</a></li><li class="chapter-item "><a href="../database/cache.html"><strong aria-hidden="true">6.7.</strong> 缓存架构</a></li><li class="chapter-item "><a href="../database/db-middleware.html"><strong aria-hidden="true">6.8.</strong> 数据库中间件</a></li></ol></li><li class="chapter-item "><a href="../mq/index.html"><strong aria-hidden="true">7.</strong> 消息队列</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../mq/kafka.html"><strong aria-hidden="true">7.1.</strong> kafka</a></li><li class="chapter-item "><a href="../mq/rabbitmq.html"><strong aria-hidden="true">7.2.</strong> rabbitmq</a></li><li class="chapter-item "><a href="../mq/rocketmq.html"><strong aria-hidden="true">7.3.</strong> rocketmq</a></li><li class="chapter-item "><a href="../mq/jms.html"><strong aria-hidden="true">7.4.</strong> jms</a></li><li class="chapter-item "><a href="../mq/mq-middleware.html"><strong aria-hidden="true">7.5.</strong> 消息中间件</a></li></ol></li><li class="chapter-item expanded "><a href="../ds/index.html"><strong aria-hidden="true">8.</strong> 分布式架构</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../ds/architecture.html"><strong aria-hidden="true">8.1.</strong> 架构基础</a></li><li class="chapter-item "><a href="../ds/dsProtocol.html"><strong aria-hidden="true">8.2.</strong> 分布式协议</a></li><li class="chapter-item "><a href="../ds/raft-protocol.html"><strong aria-hidden="true">8.3.</strong> raft协议</a></li><li class="chapter-item "><a href="../ds/paxos-protocol.html"><strong aria-hidden="true">8.4.</strong> paxos协议</a></li><li class="chapter-item "><a href="../ds/microService.html"><strong aria-hidden="true">8.5.</strong> 微服务</a></li><li class="chapter-item "><a href="../ds/splitdb.html"><strong aria-hidden="true">8.6.</strong> 分库分表</a></li><li class="chapter-item "><a href="../ds/rpc.html"><strong aria-hidden="true">8.7.</strong> rpc框架</a></li><li class="chapter-item "><a href="../ds/dsTransaction.html"><strong aria-hidden="true">8.8.</strong> 分布式事务</a></li><li class="chapter-item expanded "><a href="../ds/dsLock.html" class="active"><strong aria-hidden="true">8.9.</strong> 分布式锁</a></li><li class="chapter-item "><a href="../ds/register-center.html"><strong aria-hidden="true">8.10.</strong> 注册中心对比</a></li><li class="chapter-item "><a href="../ds/datarooms.html"><strong aria-hidden="true">8.11.</strong> 多机房部署</a></li></ol></li><li class="chapter-item "><a href="../devtools/index.html"><strong aria-hidden="true">9.</strong> 开发工具</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devtools/maven.html"><strong aria-hidden="true">9.1.</strong> maven</a></li><li class="chapter-item "><a href="../devtools/gradle.html"><strong aria-hidden="true">9.2.</strong> gradle</a></li><li class="chapter-item "><a href="../devtools/git.html"><strong aria-hidden="true">9.3.</strong> git</a></li><li class="chapter-item "><a href="../devtools/blog-tool.html"><strong aria-hidden="true">9.4.</strong> blog工具</a></li></ol></li><li class="chapter-item "><a href="../linux/index.html"><strong aria-hidden="true">10.</strong> linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../linux/theory.html"><strong aria-hidden="true">10.1.</strong> linux原理</a></li><li class="chapter-item "><a href="../linux/caozuo.html"><strong aria-hidden="true">10.2.</strong> linux操作</a></li></ol></li><li class="chapter-item "><a href="../server/index.html"><strong aria-hidden="true">11.</strong> web服务器常用框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../server/nginx.html"><strong aria-hidden="true">11.1.</strong> nginx</a></li><li class="chapter-item "><a href="../server/apache.html"><strong aria-hidden="true">11.2.</strong> apache</a></li><li class="chapter-item "><a href="../server/tomcat.html"><strong aria-hidden="true">11.3.</strong> tomcat</a></li><li class="chapter-item "><a href="../server/docker.html"><strong aria-hidden="true">11.4.</strong> docker</a></li><li class="chapter-item "><a href="../server/zookeeper.html"><strong aria-hidden="true">11.5.</strong> zookeeper</a></li></ol></li><li class="chapter-item "><a href="../pattern/index.html"><strong aria-hidden="true">12.</strong> 设计模式</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../pattern/singleton.html"><strong aria-hidden="true">12.1.</strong> 单例模式</a></li><li class="chapter-item "><a href="../pattern/factory.html"><strong aria-hidden="true">12.2.</strong> 工厂模式</a></li><li class="chapter-item "><a href="../pattern/proxy.html"><strong aria-hidden="true">12.3.</strong> 代理模式</a></li><li class="chapter-item "><a href="../pattern/observer.html"><strong aria-hidden="true">12.4.</strong> 观察者模式</a></li><li class="chapter-item "><a href="../pattern/strategy.html"><strong aria-hidden="true">12.5.</strong> 策略模式</a></li><li class="chapter-item "><a href="../pattern/template.html"><strong aria-hidden="true">12.6.</strong> 模板方法模式</a></li><li class="chapter-item "><a href="../pattern/state.html"><strong aria-hidden="true">12.7.</strong> 状态模式</a></li><li class="chapter-item "><a href="../pattern/chain.html"><strong aria-hidden="true">12.8.</strong> 责任链模式</a></li><li class="chapter-item "><a href="../pattern/jdk-pattern.html"><strong aria-hidden="true">12.9.</strong> jdk中设计模式</a></li><li class="chapter-item "><a href="../pattern/spring-pattern.html"><strong aria-hidden="true">12.10.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../pattern/thinkInDeep.html"><strong aria-hidden="true">12.11.</strong> 编程思想相关</a></li></ol></li><li class="chapter-item "><a href="../architecture_design/index.html"><strong aria-hidden="true">13.</strong> 系统架构设计</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../architecture_design/secondsKill.html"><strong aria-hidden="true">13.1.</strong> 秒杀系统设计</a></li><li class="chapter-item "><a href="../architecture_design/ds_id.html"><strong aria-hidden="true">13.2.</strong> 分布式Id生成系统</a></li><li class="chapter-item "><a href="../architecture_design/friend_feed.html"><strong aria-hidden="true">13.3.</strong> 朋友圈系统设计</a></li><li class="chapter-item "><a href="../architecture_design/RPC.html"><strong aria-hidden="true">13.4.</strong> rpc框架设计</a></li></ol></li><li class="chapter-item "><a href="../bigdata/bigdata.html"><strong aria-hidden="true">14.</strong> 大数据处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../bigdata/hadoop.html"><strong aria-hidden="true">14.1.</strong> hadoop</a></li><li class="chapter-item "><a href="../bigdata/spark.html"><strong aria-hidden="true">14.2.</strong> spark</a></li><li class="chapter-item "><a href="../bigdata/ds-nosql.html"><strong aria-hidden="true">14.3.</strong> hdfs，hive和hbase</a></li></ol></li><li class="chapter-item "><a href="../algorithm/index.html"><strong aria-hidden="true">15.</strong> 算法基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../algorithm/struct.html"><strong aria-hidden="true">15.1.</strong> 数据结构</a></li><li class="chapter-item "><a href="../algorithm/sort.html"><strong aria-hidden="true">15.2.</strong> 排序算法</a></li><li class="chapter-item "><a href="../algorithm/search.html"><strong aria-hidden="true">15.3.</strong> 查找算法</a></li><li class="chapter-item "><a href="../algorithm/classic.html"><strong aria-hidden="true">15.4.</strong> 经典算法</a></li><li class="chapter-item "><a href="../algorithm/tree.html"><strong aria-hidden="true">15.5.</strong> 树相关算法</a></li></ol></li><li class="chapter-item "><a href="../network/index.html"><strong aria-hidden="true">16.</strong> 网络</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../network/http.html"><strong aria-hidden="true">16.1.</strong> http协议</a></li><li class="chapter-item "><a href="../network/tcp-ip.html"><strong aria-hidden="true">16.2.</strong> tcp协议</a></li></ol></li><li class="chapter-item "><a href="../recommend_books/index.html"><strong aria-hidden="true">17.</strong> 推荐书籍</a></li><li class="chapter-item "><a href="../codingInAction/coding.html"><strong aria-hidden="true">18.</strong> 实战演练</a></li><li class="chapter-item "><a href="../interview_topn/index.html"><strong aria-hidden="true">19.</strong> topN公司面试题汇总</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../interview_topn/alibaba.html"><strong aria-hidden="true">19.1.</strong> 阿里巴巴面试题</a></li><li class="chapter-item "><a href="../interview_topn/toutiao.html"><strong aria-hidden="true">19.2.</strong> 字节跳动面试题</a></li><li class="chapter-item "><a href="../interview_topn/meituan.html"><strong aria-hidden="true">19.3.</strong> 美团点评面试题</a></li><li class="chapter-item "><a href="../interview_topn/tengxun.html"><strong aria-hidden="true">19.4.</strong> 腾讯面试题</a></li><li class="chapter-item "><a href="../interview_topn/kuaishou.html"><strong aria-hidden="true">19.5.</strong> 快手面试题</a></li></ol></li><li class="chapter-item "><a href="../devenv/index.html"><strong aria-hidden="true">20.</strong> 附录-环境搭建</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devenv/gitlab.html"><strong aria-hidden="true">20.1.</strong> gitlab搭建</a></li><li class="chapter-item "><a href="../devenv/jenkins.html"><strong aria-hidden="true">20.2.</strong> jenkins搭建</a></li><li class="chapter-item "><a href="../devenv/maven.html"><strong aria-hidden="true">20.3.</strong> maven私服搭建</a></li><li class="chapter-item "><a href="../devenv/mysql.html"><strong aria-hidden="true">20.4.</strong> mysql集群搭建</a></li><li class="chapter-item "><a href="../devenv/mongodb.html"><strong aria-hidden="true">20.5.</strong> mongodb集群搭建</a></li><li class="chapter-item "><a href="../devenv/nginx.html"><strong aria-hidden="true">20.6.</strong> nginx配置</a></li><li class="chapter-item "><a href="../devenv/tomcat.html"><strong aria-hidden="true">20.7.</strong> tomcat集群搭建</a></li><li class="chapter-item "><a href="../devenv/redis.html"><strong aria-hidden="true">20.8.</strong> redis集群搭建</a></li><li class="chapter-item "><a href="../devenv/docker.html"><strong aria-hidden="true">20.9.</strong> docker环境搭建</a></li><li class="chapter-item "><a href="../devenv/zookeeper.html"><strong aria-hidden="true">20.10.</strong> zookeeper集群搭建</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">java offer终结者</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="分布式锁"><a class="header" href="#分布式锁">分布式锁</a></h1>
+<p>[TOC]</p>
+<h2 id="分布式锁什么"><a class="header" href="#分布式锁什么">分布式锁什么？</a></h2>
+<p>分布式锁是一个分布式环境中的重要原语，用于保证进程间采用互斥的方式操作共享资源。通常分布式锁以SDK的形式被引入到分布式项目中，主要应用于以下两类场景：</p>
+<ul>
+<li>提升效率：加锁是为了避免重复处理，防止任务被多个执行者抢占，避免出现大量回滚操作。</li>
+<li>高可靠互斥：加锁是为了避免Race Condition导致逻辑错误，分布式场景下对强一致的要求高。</li>
+</ul>
+<h2 id="分布式锁实现要求"><a class="header" href="#分布式锁实现要求">分布式锁实现要求</a></h2>
+<ol>
+<li>可以保证在分布式集群中，同一时刻只有一个客户端获得锁。</li>
+<li>这把锁要是一把可重入锁（避免死锁）</li>
+<li>这把锁最好是一把阻塞锁阻塞锁，让线程进入阻塞状态进行等待，当获得相应的信号（唤醒，时间） 时，可以进入就绪状态，就绪状态中所有线程通过竞争，进入运行状态。</li>
+<li>这把锁最好是一把公平锁，公平锁就是线程按照执行顺序依次获取锁，好处是可以公平的让线程获取锁，避免有线程等待时间过长获取不到锁的情况，但是这种方式也有弊端：额外维护排队逻辑，额外损耗性能。</li>
+<li>有高性能、高可用的获取锁和释放锁功能</li>
+</ol>
+<h2 id="分布式锁的实现方式"><a class="header" href="#分布式锁的实现方式">分布式锁的实现方式</a></h2>
+<h3 id="1基于数据库的分布式锁"><a class="header" href="#1基于数据库的分布式锁">1、基于数据库的分布式锁</a></h3>
+<h4 id="实现逻辑"><a class="header" href="#实现逻辑">实现逻辑：</a></h4>
+<p><img src="../images/ds/lock.png" alt="lock" /></p>
+<ol>
+<li>原理：通过向数据表中添加记录表示加锁，删除表中记录表示释放锁</li>
+<li>加锁：先select 然后执行 insert or update</li>
+<li>释放锁：删除数据 <code>delete from contentMethodLock where resource_name=XXX and client_info= XXX</code></li>
+</ol>
+<h4 id="功能实现细节"><a class="header" href="#功能实现细节">功能实现细节</a></h4>
+<ol>
+<li>
+<p>悲观锁：</p>
+<ol>
+<li>加锁：每次在拿取数据的时候都会对数据上锁，``select * from contentMethodLock where client_info ='asdfb12345' and resource_name = 'order_in_stock' for update`</li>
+<li>释放锁：提交事务，``connection.commit()`</li>
+</ol>
+</li>
+<li>
+<p>乐观锁：先在数据表中添加对应的版本号字段，每当数据库中进行数据更新时，给对应的版本号加1。</p>
+<ol>
+<li>
+<pre><code class="language-sql">select version from distributed_lock where resource_name = 'order_in_stock';
+
+update distributed_lock set client_info='asdfb12345',version=version+1
+where resource_name = 'order_in_stock' and version=${version};
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="优缺点分析"><a class="header" href="#优缺点分析">优缺点分析</a></h4>
+<ul>
+<li>优点：
+<ul>
+<li>操作简单、容易理解。</li>
+<li>只用mysql就能实现，无需外部依赖。</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>频繁操作数据库性能差，</li>
+<li>满足不了高可用，存在单点问题、通过主备方式可以缓解，由于主从同步的延迟，会有数据一致性问题、</li>
+<li>需要自行实现锁的阻塞，重入等逻辑；</li>
+</ul>
+</li>
+</ul>
+<h3 id="2基于缓存的分布式锁"><a class="header" href="#2基于缓存的分布式锁">2、基于缓存的分布式锁：</a></h3>
+<h4 id="实现原理"><a class="header" href="#实现原理">实现原理</a></h4>
+<img src="../images/ds/redis-lock.svg" alt="drawio" style="zoom: 80%;" />
+<ol>
+<li>加锁：
+<ol>
+<li>（1）判断加锁是否超时，如果没有超时执行setnx(key,expireTime),如果加锁成功则执行业务，如果没有没有加锁成功进入下一步。</li>
+<li>（2）get(key)获取过期时间expireTime，判断expireTime是否小于当前时间，如果不小于说明锁未过期，则继续返回加锁流程，如果expireTime小于当前时间说明锁已过期进入下一步。</li>
+<li>（3）当锁过期说明 可以加锁了，执行getSet(key, 新expireTime)操作得到oldExpireTime。</li>
+<li>（4）此时判断oldExpireTime是否等于expireTime返回值，如果不相等说明有其他客户端已经加锁了，此时继续返回加锁流程。如果oldExpireTime等于expireTime返回值 说明其他客户端没有加锁，则获取到锁</li>
+</ol>
+</li>
+<li>释放锁：在业务执行完后，直接调用Redis中的del()方法。但是需要注意的是：<em>加锁和释放锁需要引入一个客户端标识，否则会有误删其他客户端锁情况</em>
+<ol>
+<li>（1）进程开始获取锁成功，得到锁lockA</li>
+<li>（2）A进程在释放锁的时候，执行del()操作之前，锁lockA正好过期了，进程B得到了锁，并设置成功了lockB</li>
+<li>（3）A进程在执行del()操作时，会导致删除锁B</li>
+</ol>
+</li>
+</ol>
+<h4 id="开源解决方案"><a class="header" href="#开源解决方案">开源解决方案</a></h4>
+<ol>
+<li>Redisson实现
+<ol>
+<li>原理图：</li>
+</ol>
+</li>
+<li>使用lua脚本</li>
+</ol>
+<h4 id="优缺点分析-1"><a class="header" href="#优缺点分析-1">优缺点分析</a></h4>
+<ul>
+<li>优点：
+<ul>
+<li>对缓存进行操作性能好。</li>
+<li>能满足高并发需求</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>实现逻辑较复杂，需要考虑各种情况</li>
+<li>不支持可重入，公平锁（需要自己实现）</li>
+<li>如果一个节点或集群出问题，主从复制没完成，造成多个客户端获取锁。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3基于zk实现分布式锁"><a class="header" href="#3基于zk实现分布式锁">3、基于ZK实现分布式锁</a></h3>
+<p>zk分布式锁：通过有序临时节点实现锁机制，自己对应的节点需要最小，则被认为是获得了锁。</p>
+<pre class="mermaid">sequenceDiagram
+  participant Client1
+  participant Client2
+  participant Zookeeper
+
+  Client1 -&gt; Zookeeper: create(/lock, &quot;&quot;, &quot;EPHEMERAL&quot;)
+  Zookeeper -&gt; Client1: create(/lock, &quot;&quot;, &quot;EPHEMERAL&quot;)
+  Client1 -&gt; Client1: /lock 节点创建成功
+  Client2 -&gt; Zookeeper: create(/lock, &quot;&quot;, &quot;EPHEMERAL&quot;)
+  Zookeeper -&gt; Client2: sync(/lock)
+  Client2 -&gt; Zookeeper: sync(/lock)
+  Zookeeper -&gt; Client2: sync(/lock)
+  Client2 -&gt; Client2: /lock 节点已经存在，获取锁失败
+
+  alt Client1 业务处理
+    Client1 -&gt; Zookeeper: delete(/lock)
+    Zookeeper -&gt; Client1: delete(/lock)
+    Client1 -&gt; Client1: /lock 节点删除成功
+    Client2 -&gt; Zookeeper: create(/lock, &quot;&quot;, &quot;EPHEMERAL&quot;)
+    Zookeeper -&gt; Client2: create(/lock, &quot;&quot;, &quot;EPHEMERAL&quot;)
+    Client2 -&gt; Client2: /lock 节点创建成功
+    Client2 -&gt; Client2: 业务处理
+  end
+
+</pre>
+<h4 id="实现原理-1"><a class="header" href="#实现原理-1">实现原理</a></h4>
+<p><img src="../images/ds/zk-lock.svg" alt="drawio (1)" /></p>
+<p>（1）客户端调用create()方法创建名为“<em>Lock</em>/node”的节点，需要注意的是，这里节点的创建类型需要设置为EPHEMERAL_SEQUENTIAL（临时排序节点）。</p>
+<p>（2）客户端调用getChildren(“<em>Lock</em>”)方法来获取所有已经创建的子节点。</p>
+<p>（3）客户端获取到所有子节点路径之后，如果发现自己在步骤1中创建的节点是所有节点中序号最小的，那么就认为这个客户端获得了锁。</p>
+<p>（4）如果创建的节点不是所有节点中需要最小的，那么则监视比自己创建节点的序列号小的最大的节点，进入等待。直到下次监视的子节点变更的时候，再进行子节点的获取，判断是否获取锁。</p>
+<h4 id="开源解决方案-1"><a class="header" href="#开源解决方案-1">开源解决方案</a></h4>
+<ol>
+<li>Curator客户端实现：</li>
+<li>原理图：<img src="../images/ds/curator-lock.svg" alt="drawio (2)" /></li>
+</ol>
+<h4 id="优缺点分析-2"><a class="header" href="#优缺点分析-2">优缺点分析</a></h4>
+<ul>
+<li>优点：
+<ul>
+<li>可靠性高，客户端宕机zk会自动喊出临时节点，相当于自动释放锁。</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>效率较低，性能较差，需要频繁创建和删除节点来加锁和释放锁</li>
+<li>需要手动实现，加锁和释放锁的逻辑。</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a class="header" href="#总结">总结</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>实现方式</th><th>性能</th><th></th><th></th></tr></thead><tbody>
+<tr><td>数据库</td><td>差</td><td></td><td></td></tr>
+<tr><td>缓存</td><td>好</td><td></td><td></td></tr>
+<tr><td>zookeeper</td><td>一般</td><td></td><td></td></tr>
+</tbody></table>
+</div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../ds/dsTransaction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../ds/register-center.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../ds/dsTransaction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../ds/register-center.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

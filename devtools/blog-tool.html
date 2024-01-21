@@ -1,0 +1,545 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>blog工具 - java offer终结者</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="java找工作，offer终结者！">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> 介绍</a></li><li class="chapter-item "><a href="../howtoInteview.html"><strong aria-hidden="true">2.</strong> 如何面试</a></li><li class="chapter-item "><a href="../basic/basic.html"><strong aria-hidden="true">3.</strong> java基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/java-binary.html"><strong aria-hidden="true">3.1.</strong> java二进制操作符</a></li><li class="chapter-item "><a href="../basic/javaweb.html"><strong aria-hidden="true">3.2.</strong> java-web基础</a></li><li class="chapter-item "><a href="../basic/java-versions.html"><strong aria-hidden="true">3.3.</strong> java版本特性</a></li><li class="chapter-item "><a href="../basic/io/index.html"><strong aria-hidden="true">3.4.</strong> io流</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/io/bio.html"><strong aria-hidden="true">3.4.1.</strong> bio</a></li><li class="chapter-item "><a href="../basic/io/nio.html"><strong aria-hidden="true">3.4.2.</strong> nio</a></li><li class="chapter-item "><a href="../basic/io/aio.html"><strong aria-hidden="true">3.4.3.</strong> aio</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/index.html"><strong aria-hidden="true">3.5.</strong> java数据类型和集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/basic.html"><strong aria-hidden="true">3.5.1.</strong> basic</a></li><li class="chapter-item "><a href="../basic/collection/list.html"><strong aria-hidden="true">3.5.2.</strong> list</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/arrayList扩容机制.html"><strong aria-hidden="true">3.5.2.1.</strong> arrayList扩容</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/map.html"><strong aria-hidden="true">3.5.3.</strong> map</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/hashmap死循环问题.html"><strong aria-hidden="true">3.5.3.1.</strong> hashmap死循环解析</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/set.html"><strong aria-hidden="true">3.5.4.</strong> set</a></li><li class="chapter-item "><a href="../basic/collection/queue.html"><strong aria-hidden="true">3.5.5.</strong> queue</a></li><li class="chapter-item "><a href="../basic/collection/safeCollection.html"><strong aria-hidden="true">3.5.6.</strong> 并发容器</a></li></ol></li></ol></li><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.</strong> java高级</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.1.</strong> javaSE高级</a></li><li class="chapter-item "><a href="../java_advanced/advance-features.html"><strong aria-hidden="true">4.2.</strong> java高级特性</a></li><li class="chapter-item "><a href="../java_advanced/threads/thread.html"><strong aria-hidden="true">4.3.</strong> 多线程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/threads/threadPool.html"><strong aria-hidden="true">4.3.1.</strong> 线程池</a></li><li class="chapter-item "><a href="../java_advanced/threads/threadTools.html"><strong aria-hidden="true">4.3.2.</strong> 并发工具类</a></li><li class="chapter-item "><a href="../java_advanced/threads/asyncThread.html"><strong aria-hidden="true">4.3.3.</strong> java异步</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/locks/index.html"><strong aria-hidden="true">4.4.</strong> 锁</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/locks/synchronize.html"><strong aria-hidden="true">4.4.1.</strong> 悲观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/lock.html"><strong aria-hidden="true">4.4.2.</strong> 乐观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/atomic.html"><strong aria-hidden="true">4.4.3.</strong> 原子操作</a></li><li class="chapter-item "><a href="../java_advanced/locks/optimizingLock.html"><strong aria-hidden="true">4.4.4.</strong> 锁优化</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/jvm/jvm.html"><strong aria-hidden="true">4.5.</strong> jvm虚拟机</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/jvm/G1.html"><strong aria-hidden="true">4.5.1.</strong> g1虚拟机</a></li><li class="chapter-item "><a href="../java_advanced/jvm/zgc.html"><strong aria-hidden="true">4.5.2.</strong> zgc虚拟机</a></li></ol></li></ol></li><li class="chapter-item "><a href="../kuangjia/index.html"><strong aria-hidden="true">5.</strong> java框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring.html"><strong aria-hidden="true">5.1.</strong> spring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring-pattern.html"><strong aria-hidden="true">5.1.1.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../kuangjia/springboot.html"><strong aria-hidden="true">5.1.2.</strong> springboot</a></li></ol></li><li class="chapter-item "><a href="../kuangjia/mybatis.html"><strong aria-hidden="true">5.2.</strong> mybatis</a></li><li class="chapter-item "><a href="../kuangjia/hibernate.html"><strong aria-hidden="true">5.3.</strong> hibernate</a></li><li class="chapter-item "><a href="../kuangjia/netty.html"><strong aria-hidden="true">5.4.</strong> netty</a></li><li class="chapter-item "><a href="../kuangjia/dubbo.html"><strong aria-hidden="true">5.5.</strong> dubbo</a></li></ol></li><li class="chapter-item "><a href="../database/index.html"><strong aria-hidden="true">6.</strong> 数据库</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql.html"><strong aria-hidden="true">6.1.</strong> mysql</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql-process.html"><strong aria-hidden="true">6.1.1.</strong> sql执行流程解析</a></li><li class="chapter-item "><a href="../database/mysql-lock.html"><strong aria-hidden="true">6.1.2.</strong> sql锁与事务</a></li></ol></li><li class="chapter-item "><a href="../database/mongodb.html"><strong aria-hidden="true">6.2.</strong> mongodb</a></li><li class="chapter-item "><a href="../database/redis.html"><strong aria-hidden="true">6.3.</strong> redis</a></li><li class="chapter-item "><a href="../database/tair.html"><strong aria-hidden="true">6.4.</strong> tair</a></li><li class="chapter-item "><a href="../database/ElasticSearch.html"><strong aria-hidden="true">6.5.</strong> ElasticSearch</a></li><li class="chapter-item "><a href="../database/memcached.html"><strong aria-hidden="true">6.6.</strong> memcached</a></li><li class="chapter-item "><a href="../database/cache.html"><strong aria-hidden="true">6.7.</strong> 缓存架构</a></li><li class="chapter-item "><a href="../database/db-middleware.html"><strong aria-hidden="true">6.8.</strong> 数据库中间件</a></li></ol></li><li class="chapter-item "><a href="../mq/index.html"><strong aria-hidden="true">7.</strong> 消息队列</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../mq/kafka.html"><strong aria-hidden="true">7.1.</strong> kafka</a></li><li class="chapter-item "><a href="../mq/rabbitmq.html"><strong aria-hidden="true">7.2.</strong> rabbitmq</a></li><li class="chapter-item "><a href="../mq/rocketmq.html"><strong aria-hidden="true">7.3.</strong> rocketmq</a></li><li class="chapter-item "><a href="../mq/jms.html"><strong aria-hidden="true">7.4.</strong> jms</a></li><li class="chapter-item "><a href="../mq/mq-middleware.html"><strong aria-hidden="true">7.5.</strong> 消息中间件</a></li></ol></li><li class="chapter-item "><a href="../ds/index.html"><strong aria-hidden="true">8.</strong> 分布式架构</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../ds/architecture.html"><strong aria-hidden="true">8.1.</strong> 架构基础</a></li><li class="chapter-item "><a href="../ds/dsProtocol.html"><strong aria-hidden="true">8.2.</strong> 分布式协议</a></li><li class="chapter-item "><a href="../ds/raft-protocol.html"><strong aria-hidden="true">8.3.</strong> raft协议</a></li><li class="chapter-item "><a href="../ds/paxos-protocol.html"><strong aria-hidden="true">8.4.</strong> paxos协议</a></li><li class="chapter-item "><a href="../ds/microService.html"><strong aria-hidden="true">8.5.</strong> 微服务</a></li><li class="chapter-item "><a href="../ds/splitdb.html"><strong aria-hidden="true">8.6.</strong> 分库分表</a></li><li class="chapter-item "><a href="../ds/rpc.html"><strong aria-hidden="true">8.7.</strong> rpc框架</a></li><li class="chapter-item "><a href="../ds/dsTransaction.html"><strong aria-hidden="true">8.8.</strong> 分布式事务</a></li><li class="chapter-item "><a href="../ds/dsLock.html"><strong aria-hidden="true">8.9.</strong> 分布式锁</a></li><li class="chapter-item "><a href="../ds/register-center.html"><strong aria-hidden="true">8.10.</strong> 注册中心对比</a></li><li class="chapter-item "><a href="../ds/datarooms.html"><strong aria-hidden="true">8.11.</strong> 多机房部署</a></li></ol></li><li class="chapter-item expanded "><a href="../devtools/index.html"><strong aria-hidden="true">9.</strong> 开发工具</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devtools/maven.html"><strong aria-hidden="true">9.1.</strong> maven</a></li><li class="chapter-item "><a href="../devtools/gradle.html"><strong aria-hidden="true">9.2.</strong> gradle</a></li><li class="chapter-item "><a href="../devtools/git.html"><strong aria-hidden="true">9.3.</strong> git</a></li><li class="chapter-item expanded "><a href="../devtools/blog-tool.html" class="active"><strong aria-hidden="true">9.4.</strong> blog工具</a></li></ol></li><li class="chapter-item "><a href="../linux/index.html"><strong aria-hidden="true">10.</strong> linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../linux/theory.html"><strong aria-hidden="true">10.1.</strong> linux原理</a></li><li class="chapter-item "><a href="../linux/caozuo.html"><strong aria-hidden="true">10.2.</strong> linux操作</a></li></ol></li><li class="chapter-item "><a href="../server/index.html"><strong aria-hidden="true">11.</strong> web服务器常用框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../server/nginx.html"><strong aria-hidden="true">11.1.</strong> nginx</a></li><li class="chapter-item "><a href="../server/apache.html"><strong aria-hidden="true">11.2.</strong> apache</a></li><li class="chapter-item "><a href="../server/tomcat.html"><strong aria-hidden="true">11.3.</strong> tomcat</a></li><li class="chapter-item "><a href="../server/docker.html"><strong aria-hidden="true">11.4.</strong> docker</a></li><li class="chapter-item "><a href="../server/zookeeper.html"><strong aria-hidden="true">11.5.</strong> zookeeper</a></li></ol></li><li class="chapter-item "><a href="../pattern/index.html"><strong aria-hidden="true">12.</strong> 设计模式</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../pattern/singleton.html"><strong aria-hidden="true">12.1.</strong> 单例模式</a></li><li class="chapter-item "><a href="../pattern/factory.html"><strong aria-hidden="true">12.2.</strong> 工厂模式</a></li><li class="chapter-item "><a href="../pattern/proxy.html"><strong aria-hidden="true">12.3.</strong> 代理模式</a></li><li class="chapter-item "><a href="../pattern/observer.html"><strong aria-hidden="true">12.4.</strong> 观察者模式</a></li><li class="chapter-item "><a href="../pattern/strategy.html"><strong aria-hidden="true">12.5.</strong> 策略模式</a></li><li class="chapter-item "><a href="../pattern/template.html"><strong aria-hidden="true">12.6.</strong> 模板方法模式</a></li><li class="chapter-item "><a href="../pattern/state.html"><strong aria-hidden="true">12.7.</strong> 状态模式</a></li><li class="chapter-item "><a href="../pattern/chain.html"><strong aria-hidden="true">12.8.</strong> 责任链模式</a></li><li class="chapter-item "><a href="../pattern/jdk-pattern.html"><strong aria-hidden="true">12.9.</strong> jdk中设计模式</a></li><li class="chapter-item "><a href="../pattern/spring-pattern.html"><strong aria-hidden="true">12.10.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../pattern/thinkInDeep.html"><strong aria-hidden="true">12.11.</strong> 编程思想相关</a></li></ol></li><li class="chapter-item "><a href="../architecture_design/index.html"><strong aria-hidden="true">13.</strong> 系统架构设计</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../architecture_design/secondsKill.html"><strong aria-hidden="true">13.1.</strong> 秒杀系统设计</a></li><li class="chapter-item "><a href="../architecture_design/ds_id.html"><strong aria-hidden="true">13.2.</strong> 分布式Id生成系统</a></li><li class="chapter-item "><a href="../architecture_design/friend_feed.html"><strong aria-hidden="true">13.3.</strong> 朋友圈系统设计</a></li><li class="chapter-item "><a href="../architecture_design/RPC.html"><strong aria-hidden="true">13.4.</strong> rpc框架设计</a></li></ol></li><li class="chapter-item "><a href="../bigdata/bigdata.html"><strong aria-hidden="true">14.</strong> 大数据处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../bigdata/hadoop.html"><strong aria-hidden="true">14.1.</strong> hadoop</a></li><li class="chapter-item "><a href="../bigdata/spark.html"><strong aria-hidden="true">14.2.</strong> spark</a></li><li class="chapter-item "><a href="../bigdata/ds-nosql.html"><strong aria-hidden="true">14.3.</strong> hdfs，hive和hbase</a></li></ol></li><li class="chapter-item "><a href="../algorithm/index.html"><strong aria-hidden="true">15.</strong> 算法基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../algorithm/struct.html"><strong aria-hidden="true">15.1.</strong> 数据结构</a></li><li class="chapter-item "><a href="../algorithm/sort.html"><strong aria-hidden="true">15.2.</strong> 排序算法</a></li><li class="chapter-item "><a href="../algorithm/search.html"><strong aria-hidden="true">15.3.</strong> 查找算法</a></li><li class="chapter-item "><a href="../algorithm/classic.html"><strong aria-hidden="true">15.4.</strong> 经典算法</a></li><li class="chapter-item "><a href="../algorithm/tree.html"><strong aria-hidden="true">15.5.</strong> 树相关算法</a></li></ol></li><li class="chapter-item "><a href="../network/index.html"><strong aria-hidden="true">16.</strong> 网络</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../network/http.html"><strong aria-hidden="true">16.1.</strong> http协议</a></li><li class="chapter-item "><a href="../network/tcp-ip.html"><strong aria-hidden="true">16.2.</strong> tcp协议</a></li></ol></li><li class="chapter-item "><a href="../recommend_books/index.html"><strong aria-hidden="true">17.</strong> 推荐书籍</a></li><li class="chapter-item "><a href="../codingInAction/coding.html"><strong aria-hidden="true">18.</strong> 实战演练</a></li><li class="chapter-item "><a href="../interview_topn/index.html"><strong aria-hidden="true">19.</strong> topN公司面试题汇总</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../interview_topn/alibaba.html"><strong aria-hidden="true">19.1.</strong> 阿里巴巴面试题</a></li><li class="chapter-item "><a href="../interview_topn/toutiao.html"><strong aria-hidden="true">19.2.</strong> 字节跳动面试题</a></li><li class="chapter-item "><a href="../interview_topn/meituan.html"><strong aria-hidden="true">19.3.</strong> 美团点评面试题</a></li><li class="chapter-item "><a href="../interview_topn/tengxun.html"><strong aria-hidden="true">19.4.</strong> 腾讯面试题</a></li><li class="chapter-item "><a href="../interview_topn/kuaishou.html"><strong aria-hidden="true">19.5.</strong> 快手面试题</a></li></ol></li><li class="chapter-item "><a href="../devenv/index.html"><strong aria-hidden="true">20.</strong> 附录-环境搭建</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devenv/gitlab.html"><strong aria-hidden="true">20.1.</strong> gitlab搭建</a></li><li class="chapter-item "><a href="../devenv/jenkins.html"><strong aria-hidden="true">20.2.</strong> jenkins搭建</a></li><li class="chapter-item "><a href="../devenv/maven.html"><strong aria-hidden="true">20.3.</strong> maven私服搭建</a></li><li class="chapter-item "><a href="../devenv/mysql.html"><strong aria-hidden="true">20.4.</strong> mysql集群搭建</a></li><li class="chapter-item "><a href="../devenv/mongodb.html"><strong aria-hidden="true">20.5.</strong> mongodb集群搭建</a></li><li class="chapter-item "><a href="../devenv/nginx.html"><strong aria-hidden="true">20.6.</strong> nginx配置</a></li><li class="chapter-item "><a href="../devenv/tomcat.html"><strong aria-hidden="true">20.7.</strong> tomcat集群搭建</a></li><li class="chapter-item "><a href="../devenv/redis.html"><strong aria-hidden="true">20.8.</strong> redis集群搭建</a></li><li class="chapter-item "><a href="../devenv/docker.html"><strong aria-hidden="true">20.9.</strong> docker环境搭建</a></li><li class="chapter-item "><a href="../devenv/zookeeper.html"><strong aria-hidden="true">20.10.</strong> zookeeper集群搭建</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">java offer终结者</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="文档博客网站生成工具"><a class="header" href="#文档博客网站生成工具">文档/博客网站生成工具</a></h2>
+<p>有一些开源软件项目提供类似于 GitBook 的功能，允许用户创建和发布文档、书籍或在线手册。以下是一些类似的开源文档编辑和发布工具：</p>
+<ol>
+<li><strong>GitBook:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/GitbookIO/gitbook">GitBook GitHub</a></li>
+<li><strong>官方网站：</strong> <a href="https://www.gitbook.com/">GitBook</a></li>
+<li><strong>功能介绍：</strong> GitBook 是一个基于 Node.js 的工具，用于创建漂亮的书籍和文档。它支持使用 Markdown 和 AsciiDoc 编写内容，并提供了易于使用的命令行界面。GitBook 具有强大的主题和插件系统，使得用户可以定制和扩展其功能。请注意，GitBook 的最新版本已经转移到了 GitBook 的商业服务中，但旧版本的代码仍然是开源的。你可以使用 GitBook 来创建静态网站，在线文档，电子书等。</li>
+</ul>
+</li>
+<li><strong>MkDocs:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://www.mkdocs.org/">MkDocs</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/mkdocs/mkdocs">MkDocs GitHub</a></li>
+<li><strong>功能介绍：</strong> MkDocs 是一个基于 Markdown 的文档生成器，它可以生成漂亮的静态站点。它支持自定义主题，并且易于配置和使用。</li>
+</ul>
+</li>
+<li><strong>Docusaurus:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://docusaurus.io/">Docusaurus</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/facebook/docusaurus">Docusaurus GitHub</a></li>
+<li><strong>功能介绍：</strong> 由 Facebook 开发的 Docusaurus 是一个用于构建开源项目文档的工具。它支持 Markdown 和 React，并提供了易于导航的文档结构。</li>
+</ul>
+</li>
+<li><strong>VuePress:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://vuepress.vuejs.org/">VuePress</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/vuejs/vuepress">VuePress GitHub</a></li>
+<li><strong>功能介绍：</strong> VuePress 是一个由 Vue 驱动的静态站点生成器，专注于文档。它支持 Markdown，并具有强大的主题和插件系统。</li>
+</ul>
+</li>
+<li><strong>GitBook (Legacy):</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/GitbookIO/gitbook">GitBook (Legacy) GitHub</a></li>
+<li><strong>功能介绍：</strong> GitBook 是一个基于 Node.js 的工具，用于创建漂亮的书籍和文档。请注意，GitBook 项目的最新版本已经转移到了 GitBook 的商业服务中，但旧版本的代码仍然是开源的。</li>
+</ul>
+</li>
+<li><strong>Docsify:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/docsifyjs/docsify">Docsify GitHub</a></li>
+<li><strong>功能介绍：</strong> Docsify 是一个动态生成文档网站的工具。它支持 Markdown，具有轻量、易用和强大的特点。</li>
+</ul>
+</li>
+<li><strong>Hugo:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://gohugo.io/">Hugo</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/gohugoio/hugo">Hugo GitHub</a></li>
+<li><strong>功能介绍：</strong> Hugo 是一个快速的静态站点生成器，适用于构建博客、文档和其他静态网站。它使用 Go 语言开发，支持 Markdown，并具有强大的主题系统。</li>
+</ul>
+</li>
+<li><strong>Sphinx:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://www.sphinx-doc.org/">Sphinx</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/sphinx-doc/sphinx">Sphinx GitHub</a></li>
+<li><strong>功能介绍：</strong> Sphinx 是一个面向文档的工具，主要用于 Python 项目的文档生成。它支持多种文档格式（包括 reStructuredText）和多种输出格式。</li>
+</ul>
+</li>
+<li><strong>Bookdown:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/rstudio/bookdown">Bookdown GitHub</a></li>
+<li><strong>功能介绍：</strong> Bookdown 是一个 R 包，用于创建书籍和文档，特别适用于统计学、数据科学和技术写作。它支持多种输出格式，包括 HTML、PDF 和电子书。</li>
+</ul>
+</li>
+<li><strong>Antora:</strong></li>
+</ol>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://antora.org/">Antora</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/antora/antora">Antora GitHub</a></li>
+<li><strong>功能介绍：</strong> Antora 是一个文档网站生成器，专注于构建技术文档。它支持 AsciiDoc 格式，并具有强大的版本管理和多仓库支持。</li>
+</ul>
+<ol start="11">
+<li><strong>DocFX:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/dotnet/docfx">DocFX GitHub</a></li>
+<li><strong>功能介绍：</strong> DocFX 是一个用于生成文档的工具，主要面向 .NET 项目。它支持 Markdown、YAML 和 JSON 文件，可以生成多种格式的文档。</li>
+</ul>
+</li>
+<li><strong>GitDocs:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/GitDocs-Org/GitDocs">GitDocs GitHub</a></li>
+<li><strong>功能介绍：</strong> GitDocs 是一个使用 Git 作为存储后端的文档工具，支持 Markdown 和 AsciiDoc 格式。它提供了一个简单的 Web UI 来管理文档。</li>
+</ul>
+</li>
+<li><strong>Hexo:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://hexo.io/">Hexo</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/hexojs/hexo">Hexo GitHub</a></li>
+<li><strong>功能介绍：</strong> Hexo 是一个快速、简单、强大的博客框架，使用 Node.js 构建。虽然它主要用于博客，但也可用于构建文档。</li>
+</ul>
+</li>
+<li><strong>Slate:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/slatedocs/slate">Slate GitHub</a></li>
+<li><strong>功能介绍：</strong> Slate 是一个帮助你创建漂亮 API 文档的工具。它使用 Markdown 编写文档，提供了一个干净的、交互式的界面。</li>
+</ul>
+</li>
+<li><strong>Wiki.js:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://wiki.js.org/">Wiki.js</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/Requarks/wiki">Wiki.js GitHub</a></li>
+<li><strong>功能介绍：</strong> Wiki.js 是一个现代化的、基于 Node.js 的文档平台，支持 Markdown 和 WYSIWYG 编辑器。它提供了用户友好的界面和强大的功能。</li>
+</ul>
+</li>
+<li><strong>Doxygen:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://www.doxygen.nl/index.html">Doxygen</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/doxygen/doxygen">Doxygen GitHub</a></li>
+<li><strong>功能介绍：</strong> Doxygen 是一个用于 C++、C、Objective-C、Python 等语言的文档生成器。它支持多种输入格式，包括 Markdown，用于生成各种文档，如代码文档和用户手册。</li>
+</ul>
+</li>
+<li><strong>Ghost:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://ghost.org/">Ghost</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/TryGhost/Ghost">Ghost GitHub</a></li>
+<li><strong>功能介绍：</strong> Ghost 是一个用于博客的现代化开源平台。它支持 Markdown 编辑，提供了一个直观的编辑器和强大的主题系统。</li>
+</ul>
+</li>
+<li><strong>Jekyll:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://jekyllrb.com/">Jekyll</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/jekyll/jekyll">Jekyll GitHub</a></li>
+<li><strong>功能介绍：</strong> Jekyll 是一个简单的、基于 Ruby 的静态网站生成器，适用于博客和文档。它支持 Markdown，并有丰富的主题和插件。</li>
+</ul>
+</li>
+<li><strong>Pelican:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://docs.getpelican.com/">Pelican</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/getpelican/pelican">Pelican GitHub</a></li>
+<li><strong>功能介绍：</strong> Pelican 是一个用于生成静态博客的 Python 工具，支持 Markdown 和 reStructuredText。它具有简单的配置和使用。</li>
+</ul>
+</li>
+<li><strong>Grav:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://getgrav.org/">Grav</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/getgrav/grav">Grav GitHub</a></li>
+<li><strong>功能介绍：</strong> Grav 是一个现代的开源平台，用于创建博客、网站和应用。它使用文件夹和 Markdown 文件来管理内容。</li>
+</ul>
+</li>
+<li><strong>WikiDocs:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/WikiDocs/WikiDocs">WikiDocs GitHub</a></li>
+<li><strong>功能介绍：</strong> WikiDocs 是一个使用 Markdown 语法的现代文档系统。它具有易用的编辑器和强大的文档管理功能。</li>
+</ul>
+</li>
+<li><strong>GitBook (v2):</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/GitbookIO/gitbook">GitBook (v2) GitHub</a></li>
+<li><strong>功能介绍：</strong> GitBook v2 是 GitBook 的一个早期版本，它仍然是开源的。该版本的 GitBook 支持使用 Markdown 编写书籍和文档，并具有一套强大的主题和插件系统。</li>
+</ul>
+</li>
+<li><strong>Docusaurus 2:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/facebook/docusaurus">Docusaurus 2 GitHub</a></li>
+<li><strong>功能介绍：</strong> Docusaurus 2 是 Docusaurus 的新版本，是一个用于构建开源项目文档的现代静态网站生成器。它使用 React 构建用户友好的文档网站。</li>
+</ul>
+</li>
+<li><strong>AdocToHTML:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/adochtml/adocToHtml">AdocToHTML GitHub</a></li>
+<li><strong>功能介绍：</strong> AdocToHTML 是一个用于将 AsciiDoc 文档转换为 HTML 的简单工具。AsciiDoc 是一种轻量级标记语言，适用于技术文档。</li>
+</ul>
+</li>
+<li><strong>BookStack:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/BookStackApp/BookStack">BookStack GitHub</a></li>
+<li><strong>功能介绍：</strong> BookStack 是一个开源的文档管理和协作平台，适用于创建、组织和分享文档。它提供了一个直观的界面和多用户支持。</li>
+</ul>
+</li>
+<li><strong>Platypus Wiki:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/rubyisbeautiful/platypus-wiki">Platypus Wiki GitHub</a></li>
+<li><strong>功能介绍：</strong> Platypus Wiki 是一个简单、轻量级的 Wiki 引擎，使用 Ruby on Rails 构建。它支持 Markdown 和纯 HTML 编写的页面。</li>
+</ul>
+</li>
+<li><strong>MkTechDocs:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/mktechdocs/mktechdocs">MkTechDocs GitHub</a></li>
+<li><strong>功能介绍：</strong> MkTechDocs 是一个基于 Markdown 的文档生成器，特别设计用于技术文档。它支持易于配置的主题和快速的文档生成。</li>
+</ul>
+</li>
+<li><strong>Gollum:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/gollum/gollum">Gollum GitHub</a></li>
+<li><strong>功能介绍：</strong> Gollum 是一个基于 Git 的 Wiki 引擎，使用 Ruby 编写。它支持 Markdown 和其他标记语言，并提供了一套简单的界面。</li>
+</ul>
+</li>
+<li><strong>Gatsby:</strong>
+<ul>
+<li><strong>官方网站：</strong> <a href="https://www.gatsbyjs.com/">Gatsby</a></li>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/gatsbyjs/gatsby">Gatsby GitHub</a></li>
+<li><strong>功能介绍：</strong> Gatsby 是一个现代化的网站生成器，可用于构建博客、文档和应用。它支持 React，使用 GraphQL 查询数据。</li>
+</ul>
+</li>
+<li><strong>Rapidoc:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/mrin9/RapiDoc">Rapidoc GitHub</a></li>
+<li><strong>功能介绍：</strong> RapiDoc 是一个用于通过 OpenAPI 规范生成交互式 API 文档的工具。它支持 Markdown 和多种自定义选项。</li>
+</ul>
+</li>
+<li><strong>TechDocs:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/spotify/backstage">TechDocs GitHub</a></li>
+<li><strong>功能介绍：</strong> TechDocs 是 Spotify 公司的开源项目 Backstage 中的一部分，用于构建技术文档网站。它支持多种文档格式。</li>
+</ul>
+</li>
+<li><strong>Greenlight:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/bigbluebutton/greenlight">Greenlight GitHub</a></li>
+<li><strong>功能介绍：</strong> Greenlight 是 BigBlueButton 的管理前端，用于创建和管理在线会议。它包含用户友好的文档和设置。</li>
+</ul>
+</li>
+<li><strong>RSToolKit:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/rstoolkit/rstoolkit">RSToolKit GitHub</a></li>
+<li><strong>功能介绍：</strong> RSToolKit 是一个用于生成 RESTful API 文档的工具，支持从代码注释和 OpenAPI 规范中生成文档。</li>
+</ul>
+</li>
+<li><strong>Evince:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/GNOME/evince">Evince GitHub</a></li>
+<li><strong>功能介绍：</strong> Evince 是一个轻量级的文档查看器，适用于多种文档格式，包括 PDF、PostScript、DjVu 等。</li>
+</ul>
+</li>
+<li><strong>Grapevine:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/nut-tree/nut.js/tree/master/packages/grapevine">Grapevine GitHub</a></li>
+<li><strong>功能介绍：</strong> Grapevine 是 nut.js 项目的一部分，用于生成和管理文档。它支持 Markdown 和其他格式。</li>
+</ul>
+</li>
+<li><strong>Docusaurus Classic:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/facebookarchive/Docusaurus">Docusaurus Classic GitHub</a></li>
+<li><strong>功能介绍：</strong> Docusaurus Classic 是 Docusaurus 的旧版本，仍然提供可用于构建文档网站的功能。它支持 Markdown 和 React。</li>
+</ul>
+</li>
+<li><strong>Hugo Book:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/alex-shpak/hugo-book">Hugo Book GitHub</a></li>
+<li><strong>功能介绍：</strong> Hugo Book 是基于 Hugo 的文档主题，适用于构建静态文档网站。它支持多层次的目录结构和简单的配置。</li>
+</ul>
+</li>
+<li><strong>Flourish:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/flourishlib/flourish">Flourish GitHub</a></li>
+<li><strong>功能介绍：</strong> Flourish 是一个用于构建在线文档和帮助中心的 Python 库。它支持 Markdown 和自定义主题。</li>
+</ul>
+</li>
+<li><strong>Gazelle:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/dotnet/gazelle">Gazelle GitHub</a></li>
+<li><strong>功能介绍：</strong> Gazelle 是一个用于 .NET 项目的文档生成工具，它从代码注释中生成文档，并支持 Markdown。</li>
+</ul>
+</li>
+<li><strong>Scribble:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/haskell/scribble">Scribble GitHub</a></li>
+<li><strong>功能介绍：</strong> Scribble 是一个基于 Haskell 的文档生成器，特别适用于构建程序文档。它支持 Markdown 和 LaTeX。</li>
+</ul>
+</li>
+<li><strong>TiddlyWiki:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/Jermolene/TiddlyWiki5">TiddlyWiki GitHub</a></li>
+<li><strong>功能介绍：</strong> TiddlyWiki 是一个自包含的单文件 Wiki，可以通过浏览器轻松编辑和保存。它支持 Markdown 和可视化编辑。</li>
+</ul>
+</li>
+<li><strong>VuePress 1.x:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/vuejs/vuepress/tree/v1">VuePress 1.x GitHub</a></li>
+<li><strong>功能介绍：</strong> VuePress 1.x 是 VuePress 的旧版本，仍然提供用于构建文档网站的功能。它支持 Markdown 和 Vue。</li>
+</ul>
+</li>
+<li><strong>Wiki.js 1.x:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/Requarks/wiki/tree/legacy">Wiki.js 1.x GitHub</a></li>
+<li><strong>功能介绍：</strong> Wiki.js 1.x 是 Wiki.js 的旧版本，是一个现代的、基于 Node.js 的文档管理平台。它支持 Markdown 和自定义主题。</li>
+</ul>
+</li>
+<li><strong>Docute:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/egoist/docute">Docute GitHub</a></li>
+<li><strong>功能介绍：</strong> Docute 是一个简单的文档网站生成器，使用 Vue 和构建单页应用。它支持 Markdown 和 Vue 组件。</li>
+</ul>
+</li>
+<li><strong>Hokusai:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/hokusai-dev/hokusai">Hokusai GitHub</a></li>
+<li><strong>功能介绍：</strong> Hokusai 是一个基于 Markdown 的文档生成器，特别设计用于团队协作。它支持自定义主题和易于配置。</li>
+</ul>
+</li>
+<li><strong>Ivy:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/jordanwalke/ivy">Ivy GitHub</a></li>
+<li><strong>功能介绍：</strong> Ivy 是一个简单的文档生成器，适用于创建小型文档网站。它使用 React 构建，并支持 Markdown。</li>
+</ul>
+</li>
+<li><strong>Marp:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/marp-team/marp">Marp GitHub</a></li>
+<li><strong>功能介绍：</strong> Marp 是一个简单的 Markdown 幻灯片编辑器，可以用于创建漂亮的幻灯片。它支持实时预览和导出为不同格式。</li>
+</ul>
+</li>
+<li><strong>Graphite Docs:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/Graphite-Docs/Graphite-Docs">Graphite Docs GitHub</a></li>
+<li><strong>功能介绍：</strong> Graphite Docs 是一个用于构建文档和知识库的开源平台。它支持 Markdown 和实时编辑。</li>
+</ul>
+</li>
+<li><strong>Giterplish:</strong>
+<ul>
+<li><strong>GitHub 仓库：</strong> <a href="https://github.com/Mingling94/Giterplish">Giterplish GitHub</a></li>
+<li><strong>功能介绍：</strong> Giterplish 是一个使用 GitHub Gists 创建、编辑和分享文档的工具。它支持 Markdown 和实时渲染。</li>
+</ul>
+</li>
+</ol>
+<h2 id="目标"><a class="header" href="#目标">目标</a></h2>
+<p>在github创建一个awesome-blog的开源项目。</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../devtools/git.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../linux/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../devtools/git.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../linux/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

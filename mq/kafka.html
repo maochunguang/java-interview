@@ -1,0 +1,407 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>kafka - java offer终结者</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="java找工作，offer终结者！">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> 介绍</a></li><li class="chapter-item "><a href="../howtoInteview.html"><strong aria-hidden="true">2.</strong> 如何面试</a></li><li class="chapter-item "><a href="../basic/basic.html"><strong aria-hidden="true">3.</strong> java基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/java-binary.html"><strong aria-hidden="true">3.1.</strong> java二进制操作符</a></li><li class="chapter-item "><a href="../basic/javaweb.html"><strong aria-hidden="true">3.2.</strong> java-web基础</a></li><li class="chapter-item "><a href="../basic/java-versions.html"><strong aria-hidden="true">3.3.</strong> java版本特性</a></li><li class="chapter-item "><a href="../basic/io/index.html"><strong aria-hidden="true">3.4.</strong> io流</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/io/bio.html"><strong aria-hidden="true">3.4.1.</strong> bio</a></li><li class="chapter-item "><a href="../basic/io/nio.html"><strong aria-hidden="true">3.4.2.</strong> nio</a></li><li class="chapter-item "><a href="../basic/io/aio.html"><strong aria-hidden="true">3.4.3.</strong> aio</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/index.html"><strong aria-hidden="true">3.5.</strong> java数据类型和集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/basic.html"><strong aria-hidden="true">3.5.1.</strong> basic</a></li><li class="chapter-item "><a href="../basic/collection/list.html"><strong aria-hidden="true">3.5.2.</strong> list</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/arrayList扩容机制.html"><strong aria-hidden="true">3.5.2.1.</strong> arrayList扩容</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/map.html"><strong aria-hidden="true">3.5.3.</strong> map</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/hashmap死循环问题.html"><strong aria-hidden="true">3.5.3.1.</strong> hashmap死循环解析</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/set.html"><strong aria-hidden="true">3.5.4.</strong> set</a></li><li class="chapter-item "><a href="../basic/collection/queue.html"><strong aria-hidden="true">3.5.5.</strong> queue</a></li><li class="chapter-item "><a href="../basic/collection/safeCollection.html"><strong aria-hidden="true">3.5.6.</strong> 并发容器</a></li></ol></li></ol></li><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.</strong> java高级</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.1.</strong> javaSE高级</a></li><li class="chapter-item "><a href="../java_advanced/advance-features.html"><strong aria-hidden="true">4.2.</strong> java高级特性</a></li><li class="chapter-item "><a href="../java_advanced/threads/thread.html"><strong aria-hidden="true">4.3.</strong> 多线程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/threads/threadPool.html"><strong aria-hidden="true">4.3.1.</strong> 线程池</a></li><li class="chapter-item "><a href="../java_advanced/threads/threadTools.html"><strong aria-hidden="true">4.3.2.</strong> 并发工具类</a></li><li class="chapter-item "><a href="../java_advanced/threads/asyncThread.html"><strong aria-hidden="true">4.3.3.</strong> java异步</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/locks/index.html"><strong aria-hidden="true">4.4.</strong> 锁</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/locks/synchronize.html"><strong aria-hidden="true">4.4.1.</strong> 悲观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/lock.html"><strong aria-hidden="true">4.4.2.</strong> 乐观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/atomic.html"><strong aria-hidden="true">4.4.3.</strong> 原子操作</a></li><li class="chapter-item "><a href="../java_advanced/locks/optimizingLock.html"><strong aria-hidden="true">4.4.4.</strong> 锁优化</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/jvm/jvm.html"><strong aria-hidden="true">4.5.</strong> jvm虚拟机</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/jvm/G1.html"><strong aria-hidden="true">4.5.1.</strong> g1虚拟机</a></li><li class="chapter-item "><a href="../java_advanced/jvm/zgc.html"><strong aria-hidden="true">4.5.2.</strong> zgc虚拟机</a></li></ol></li></ol></li><li class="chapter-item "><a href="../kuangjia/index.html"><strong aria-hidden="true">5.</strong> java框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring.html"><strong aria-hidden="true">5.1.</strong> spring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring-pattern.html"><strong aria-hidden="true">5.1.1.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../kuangjia/springboot.html"><strong aria-hidden="true">5.1.2.</strong> springboot</a></li></ol></li><li class="chapter-item "><a href="../kuangjia/mybatis.html"><strong aria-hidden="true">5.2.</strong> mybatis</a></li><li class="chapter-item "><a href="../kuangjia/hibernate.html"><strong aria-hidden="true">5.3.</strong> hibernate</a></li><li class="chapter-item "><a href="../kuangjia/netty.html"><strong aria-hidden="true">5.4.</strong> netty</a></li><li class="chapter-item "><a href="../kuangjia/dubbo.html"><strong aria-hidden="true">5.5.</strong> dubbo</a></li></ol></li><li class="chapter-item "><a href="../database/index.html"><strong aria-hidden="true">6.</strong> 数据库</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql.html"><strong aria-hidden="true">6.1.</strong> mysql</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql-process.html"><strong aria-hidden="true">6.1.1.</strong> sql执行流程解析</a></li><li class="chapter-item "><a href="../database/mysql-lock.html"><strong aria-hidden="true">6.1.2.</strong> sql锁与事务</a></li></ol></li><li class="chapter-item "><a href="../database/mongodb.html"><strong aria-hidden="true">6.2.</strong> mongodb</a></li><li class="chapter-item "><a href="../database/redis.html"><strong aria-hidden="true">6.3.</strong> redis</a></li><li class="chapter-item "><a href="../database/tair.html"><strong aria-hidden="true">6.4.</strong> tair</a></li><li class="chapter-item "><a href="../database/ElasticSearch.html"><strong aria-hidden="true">6.5.</strong> ElasticSearch</a></li><li class="chapter-item "><a href="../database/memcached.html"><strong aria-hidden="true">6.6.</strong> memcached</a></li><li class="chapter-item "><a href="../database/cache.html"><strong aria-hidden="true">6.7.</strong> 缓存架构</a></li><li class="chapter-item "><a href="../database/db-middleware.html"><strong aria-hidden="true">6.8.</strong> 数据库中间件</a></li></ol></li><li class="chapter-item expanded "><a href="../mq/index.html"><strong aria-hidden="true">7.</strong> 消息队列</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../mq/kafka.html" class="active"><strong aria-hidden="true">7.1.</strong> kafka</a></li><li class="chapter-item "><a href="../mq/rabbitmq.html"><strong aria-hidden="true">7.2.</strong> rabbitmq</a></li><li class="chapter-item "><a href="../mq/rocketmq.html"><strong aria-hidden="true">7.3.</strong> rocketmq</a></li><li class="chapter-item "><a href="../mq/jms.html"><strong aria-hidden="true">7.4.</strong> jms</a></li><li class="chapter-item "><a href="../mq/mq-middleware.html"><strong aria-hidden="true">7.5.</strong> 消息中间件</a></li></ol></li><li class="chapter-item "><a href="../ds/index.html"><strong aria-hidden="true">8.</strong> 分布式架构</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../ds/architecture.html"><strong aria-hidden="true">8.1.</strong> 架构基础</a></li><li class="chapter-item "><a href="../ds/dsProtocol.html"><strong aria-hidden="true">8.2.</strong> 分布式协议</a></li><li class="chapter-item "><a href="../ds/raft-protocol.html"><strong aria-hidden="true">8.3.</strong> raft协议</a></li><li class="chapter-item "><a href="../ds/paxos-protocol.html"><strong aria-hidden="true">8.4.</strong> paxos协议</a></li><li class="chapter-item "><a href="../ds/microService.html"><strong aria-hidden="true">8.5.</strong> 微服务</a></li><li class="chapter-item "><a href="../ds/splitdb.html"><strong aria-hidden="true">8.6.</strong> 分库分表</a></li><li class="chapter-item "><a href="../ds/rpc.html"><strong aria-hidden="true">8.7.</strong> rpc框架</a></li><li class="chapter-item "><a href="../ds/dsTransaction.html"><strong aria-hidden="true">8.8.</strong> 分布式事务</a></li><li class="chapter-item "><a href="../ds/dsLock.html"><strong aria-hidden="true">8.9.</strong> 分布式锁</a></li><li class="chapter-item "><a href="../ds/register-center.html"><strong aria-hidden="true">8.10.</strong> 注册中心对比</a></li><li class="chapter-item "><a href="../ds/datarooms.html"><strong aria-hidden="true">8.11.</strong> 多机房部署</a></li></ol></li><li class="chapter-item "><a href="../devtools/index.html"><strong aria-hidden="true">9.</strong> 开发工具</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devtools/maven.html"><strong aria-hidden="true">9.1.</strong> maven</a></li><li class="chapter-item "><a href="../devtools/gradle.html"><strong aria-hidden="true">9.2.</strong> gradle</a></li><li class="chapter-item "><a href="../devtools/git.html"><strong aria-hidden="true">9.3.</strong> git</a></li><li class="chapter-item "><a href="../devtools/blog-tool.html"><strong aria-hidden="true">9.4.</strong> blog工具</a></li></ol></li><li class="chapter-item "><a href="../linux/index.html"><strong aria-hidden="true">10.</strong> linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../linux/theory.html"><strong aria-hidden="true">10.1.</strong> linux原理</a></li><li class="chapter-item "><a href="../linux/caozuo.html"><strong aria-hidden="true">10.2.</strong> linux操作</a></li></ol></li><li class="chapter-item "><a href="../server/index.html"><strong aria-hidden="true">11.</strong> web服务器常用框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../server/nginx.html"><strong aria-hidden="true">11.1.</strong> nginx</a></li><li class="chapter-item "><a href="../server/apache.html"><strong aria-hidden="true">11.2.</strong> apache</a></li><li class="chapter-item "><a href="../server/tomcat.html"><strong aria-hidden="true">11.3.</strong> tomcat</a></li><li class="chapter-item "><a href="../server/docker.html"><strong aria-hidden="true">11.4.</strong> docker</a></li><li class="chapter-item "><a href="../server/zookeeper.html"><strong aria-hidden="true">11.5.</strong> zookeeper</a></li></ol></li><li class="chapter-item "><a href="../pattern/index.html"><strong aria-hidden="true">12.</strong> 设计模式</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../pattern/singleton.html"><strong aria-hidden="true">12.1.</strong> 单例模式</a></li><li class="chapter-item "><a href="../pattern/factory.html"><strong aria-hidden="true">12.2.</strong> 工厂模式</a></li><li class="chapter-item "><a href="../pattern/proxy.html"><strong aria-hidden="true">12.3.</strong> 代理模式</a></li><li class="chapter-item "><a href="../pattern/observer.html"><strong aria-hidden="true">12.4.</strong> 观察者模式</a></li><li class="chapter-item "><a href="../pattern/strategy.html"><strong aria-hidden="true">12.5.</strong> 策略模式</a></li><li class="chapter-item "><a href="../pattern/template.html"><strong aria-hidden="true">12.6.</strong> 模板方法模式</a></li><li class="chapter-item "><a href="../pattern/state.html"><strong aria-hidden="true">12.7.</strong> 状态模式</a></li><li class="chapter-item "><a href="../pattern/chain.html"><strong aria-hidden="true">12.8.</strong> 责任链模式</a></li><li class="chapter-item "><a href="../pattern/jdk-pattern.html"><strong aria-hidden="true">12.9.</strong> jdk中设计模式</a></li><li class="chapter-item "><a href="../pattern/spring-pattern.html"><strong aria-hidden="true">12.10.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../pattern/thinkInDeep.html"><strong aria-hidden="true">12.11.</strong> 编程思想相关</a></li></ol></li><li class="chapter-item "><a href="../architecture_design/index.html"><strong aria-hidden="true">13.</strong> 系统架构设计</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../architecture_design/secondsKill.html"><strong aria-hidden="true">13.1.</strong> 秒杀系统设计</a></li><li class="chapter-item "><a href="../architecture_design/ds_id.html"><strong aria-hidden="true">13.2.</strong> 分布式Id生成系统</a></li><li class="chapter-item "><a href="../architecture_design/friend_feed.html"><strong aria-hidden="true">13.3.</strong> 朋友圈系统设计</a></li><li class="chapter-item "><a href="../architecture_design/RPC.html"><strong aria-hidden="true">13.4.</strong> rpc框架设计</a></li></ol></li><li class="chapter-item "><a href="../bigdata/bigdata.html"><strong aria-hidden="true">14.</strong> 大数据处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../bigdata/hadoop.html"><strong aria-hidden="true">14.1.</strong> hadoop</a></li><li class="chapter-item "><a href="../bigdata/spark.html"><strong aria-hidden="true">14.2.</strong> spark</a></li><li class="chapter-item "><a href="../bigdata/ds-nosql.html"><strong aria-hidden="true">14.3.</strong> hdfs，hive和hbase</a></li></ol></li><li class="chapter-item "><a href="../algorithm/index.html"><strong aria-hidden="true">15.</strong> 算法基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../algorithm/struct.html"><strong aria-hidden="true">15.1.</strong> 数据结构</a></li><li class="chapter-item "><a href="../algorithm/sort.html"><strong aria-hidden="true">15.2.</strong> 排序算法</a></li><li class="chapter-item "><a href="../algorithm/search.html"><strong aria-hidden="true">15.3.</strong> 查找算法</a></li><li class="chapter-item "><a href="../algorithm/classic.html"><strong aria-hidden="true">15.4.</strong> 经典算法</a></li><li class="chapter-item "><a href="../algorithm/tree.html"><strong aria-hidden="true">15.5.</strong> 树相关算法</a></li></ol></li><li class="chapter-item "><a href="../network/index.html"><strong aria-hidden="true">16.</strong> 网络</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../network/http.html"><strong aria-hidden="true">16.1.</strong> http协议</a></li><li class="chapter-item "><a href="../network/tcp-ip.html"><strong aria-hidden="true">16.2.</strong> tcp协议</a></li></ol></li><li class="chapter-item "><a href="../recommend_books/index.html"><strong aria-hidden="true">17.</strong> 推荐书籍</a></li><li class="chapter-item "><a href="../codingInAction/coding.html"><strong aria-hidden="true">18.</strong> 实战演练</a></li><li class="chapter-item "><a href="../interview_topn/index.html"><strong aria-hidden="true">19.</strong> topN公司面试题汇总</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../interview_topn/alibaba.html"><strong aria-hidden="true">19.1.</strong> 阿里巴巴面试题</a></li><li class="chapter-item "><a href="../interview_topn/toutiao.html"><strong aria-hidden="true">19.2.</strong> 字节跳动面试题</a></li><li class="chapter-item "><a href="../interview_topn/meituan.html"><strong aria-hidden="true">19.3.</strong> 美团点评面试题</a></li><li class="chapter-item "><a href="../interview_topn/tengxun.html"><strong aria-hidden="true">19.4.</strong> 腾讯面试题</a></li><li class="chapter-item "><a href="../interview_topn/kuaishou.html"><strong aria-hidden="true">19.5.</strong> 快手面试题</a></li></ol></li><li class="chapter-item "><a href="../devenv/index.html"><strong aria-hidden="true">20.</strong> 附录-环境搭建</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devenv/gitlab.html"><strong aria-hidden="true">20.1.</strong> gitlab搭建</a></li><li class="chapter-item "><a href="../devenv/jenkins.html"><strong aria-hidden="true">20.2.</strong> jenkins搭建</a></li><li class="chapter-item "><a href="../devenv/maven.html"><strong aria-hidden="true">20.3.</strong> maven私服搭建</a></li><li class="chapter-item "><a href="../devenv/mysql.html"><strong aria-hidden="true">20.4.</strong> mysql集群搭建</a></li><li class="chapter-item "><a href="../devenv/mongodb.html"><strong aria-hidden="true">20.5.</strong> mongodb集群搭建</a></li><li class="chapter-item "><a href="../devenv/nginx.html"><strong aria-hidden="true">20.6.</strong> nginx配置</a></li><li class="chapter-item "><a href="../devenv/tomcat.html"><strong aria-hidden="true">20.7.</strong> tomcat集群搭建</a></li><li class="chapter-item "><a href="../devenv/redis.html"><strong aria-hidden="true">20.8.</strong> redis集群搭建</a></li><li class="chapter-item "><a href="../devenv/docker.html"><strong aria-hidden="true">20.9.</strong> docker环境搭建</a></li><li class="chapter-item "><a href="../devenv/zookeeper.html"><strong aria-hidden="true">20.10.</strong> zookeeper集群搭建</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">java offer终结者</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="kafka"><a class="header" href="#kafka">kafka</a></h1>
+<h2 id="kafka是什么"><a class="header" href="#kafka是什么">kafka是什么？</a></h2>
+<p>kafka是分布式的，分区的，多副本的，多订阅者，高吞吐量，支持水平扩展，基于zookeeper的分布式消息系统。常用于日志处理，高性能消息服务。</p>
+<h2 id="kafka设计理念"><a class="header" href="#kafka设计理念">kafka设计理念</a></h2>
+<p>● 低延迟：以时间复杂为O(1)的方式提供消息持久化的能力，对TB级别的数据也能提供
+常数级别的复杂度的访问能力，最低延迟只有几毫秒。
+● 高吞吐：每秒可处理几十万条消息，即使在非常廉价的商用机器上也能做到单机支持
+每秒十万条以上消息的传输。
+● 高伸缩：消息按照 topic 进行分类，每个topic下有多个 partition， topic中的 partition
+可以分布在不同的主机上，防止消息丢失。
+● 容错性： Kafka 集群中的一个节点宕机失败以后，集群仍然可以正常工作。
+● 高并发：同时支持数千个客户端读写</p>
+<h2 id="kafka为什么这么快"><a class="header" href="#kafka为什么这么快">kafka为什么这么快</a></h2>
+<p><img src="https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/kafka-sofast.webp" alt="kafka-sofast" /></p>
+<h2 id="zookeeper在kafka中的作用"><a class="header" href="#zookeeper在kafka中的作用">zookeeper在kafka中的作用</a></h2>
+<ol>
+<li>broker注册：<code>/brokers/ids/{broker.id}  </code></li>
+<li>topic注册：<code>/brokers/topics/{topic_name}  </code></li>
+<li>生产者负载均衡：</li>
+<li>消费组注册：<code>/ls/consumers/{group_id}  </code>
+<ol>
+<li>ids：消费者与分组对应关系</li>
+<li>owners：记录消费组消费的topic信息</li>
+<li>offsets：记录每个topic下每个partition的offset</li>
+</ol>
+</li>
+</ol>
+<h2 id="kafka重要组成部分"><a class="header" href="#kafka重要组成部分">kafka重要组成部分</a></h2>
+<p><img src="../images/mq/kafka-parts.png" alt="kafka重要概念" /></p>
+<ol>
+<li>Broker：kafka中每一个服务节点称为broker</li>
+<li>Topic：逻辑概念，一系列消息的集合。就是给消息做分类，提高性能</li>
+<li>Partition：分区存储，一个topic分布到多个partition进行存储，</li>
+<li>Replicas：每个partition的消息副本，保证消息不丢失</li>
+<li>Producer：消息的生产者，给消费者发送消息</li>
+<li>Consumer：消息的消费者</li>
+<li>Consumer Group：逻辑概念，对消费者进行分组</li>
+<li>Offset：partition中每个消息都有一个连续的序列号叫做offset，消息的唯一标识</li>
+<li>Message：消息是kafka最基本的数据单元</li>
+</ol>
+<h2 id="topic和partition"><a class="header" href="#topic和partition">topic和partition</a></h2>
+<p>Topic是用于存储消息的逻辑概念，可以看作一个消息集合。每个topic可以有多个生产者向其推送消息，也可以有任意多个消费者消费其中的消息。
+每个topic可以划分多个分区（每个Topic至少有一个分区），同一topic下的不同分区包含的消息是不同的。每个消息在被添加到分区时，都会被分配一个offset（称之为偏移量），它是消息在此分区中的唯一编号，kafka通过offset保证消息在分区内的顺序，offset的顺序不跨分区，即kafka只保证在同一个分区内的消息是有序的。</p>
+<h2 id="kafka高吞吐量的原因高性能"><a class="header" href="#kafka高吞吐量的原因高性能">kafka高吞吐量的原因（高性能）</a></h2>
+<p>1、采用顺序写的方式存储数据。
+<img src="../images/mq/kafka%E6%B6%88%E6%81%AF%E5%AD%98%E5%82%A8.png" alt="kafka文件存储" /></p>
+<img src="../images/mq/ikafka-segment.png" alt="kafka segment数据格式" style="zoom:50%;" />
+<ol>
+<li>批量发送（异步发送模式中）</li>
+<li>零拷贝</li>
+</ol>
+<h2 id="kafka高可用如何保证"><a class="header" href="#kafka高可用如何保证">kafka高可用如何保证？</a></h2>
+<p>kafka可靠性依靠的是副本机制。（副本同步队列）副本维护的有资格的follower节点。</p>
+<ol>
+<li>副本的所有节点和zookeeper保持连接状态</li>
+<li>副本的最后一条消息的offset和leader的最后一条消息的offset不能超过阀值。</li>
+</ol>
+<h2 id="日志保留策略"><a class="header" href="#日志保留策略">日志保留策略</a></h2>
+<p>无论消费者是否消费了消息，kafka都会保存消息，只是不会长期保存。</p>
+<ol>
+<li>根据消息保留的时间，超过保存时间，就可以删除日志。</li>
+<li>根据topic存储的数据大小，当topic日志文件大小达到阀值，删除老的日志。</li>
+</ol>
+<h2 id="日志压缩策略"><a class="header" href="#日志压缩策略">日志压缩策略</a></h2>
+<p>kafka可以定期针对相同key的消息进行合并，只保留最新的value值。</p>
+<h2 id="消息可靠性机制"><a class="header" href="#消息可靠性机制">消息可靠性机制</a></h2>
+<p>没有一个中间件能够做到百分之百的完全可靠，可靠性更多的还是基于几个9的衡量指标，比如4个9、5 个9. 软件系统的可靠性只能够无限去接近100%，但不可能达到100%。所以kafka如何是实现最大可能 的可靠性呢？</p>
+<ul>
+<li>分区副本， 你可以创建更多的分区来提升可靠性，但是分区数过多也会带来性能上的开销，一般 来说，3个副本就能满足对大部分场景的可靠性要求</li>
+<li>acks，生产者发送消息的可靠性，也就是我要保证我这个消息一定是到了broker并且完成了多副 本的持久化，但这种要求也同样会带来性能上的开销。它有几个可选项
+<ul>
+<li>1 ，生产者把消息发送到leader副本，leader副本在成功写入到本地日志之后就告诉生产者 消息提交成功，但是如果isr集合中的follower副本还没来得及同步leader副本的消息， leader挂了，就会造成消息丢失</li>
+<li>-1 ，消息不仅仅写入到leader副本，并且被ISR集合中所有副本同步完成之后才告诉生产者已 经提交成功，这个时候即使leader副本挂了也不会造成数据丢失。</li>
+<li>0：表示producer不需要等待broker的消息确认。这个选项时延最小但同时风险最大（因为 当server宕机时，数据将会丢失）。</li>
+</ul>
+</li>
+<li>保障消息到了broker之后，消费者也需要有一定的保证，因为消费者也可能出现某些问题导致消 息没有消费到</li>
+<li>enable.auto.commit默认为true，也就是自动提交oﬀset，自动提交是批量执行的，有一个时间窗 口，这种方式会带来重复提交或者消息丢失的问题，所以对于高可靠性要求的程序，要使用手动提 交。 对于高可靠要求的应用来说，宁愿重复消费也不应该因为消费异常而导致消息丢失</li>
+</ul>
+<h3 id="如何处理所有的replica不工作的情况"><a class="header" href="#如何处理所有的replica不工作的情况">如何处理所有的Replica不工作的情况</a></h3>
+<p>在ISR中至少有一个follower时，Kafka可以确保已经commit的数据不丢失，但如果某个Partition的所有Replica都宕机了，就无法保证数据不丢失了</p>
+<ol>
+<li>等待ISR中的任一个Replica&quot;活&quot;过来，并且选它作为Leader</li>
+<li>选择第一个&quot;活&quot;过来的Replica（不一定是ISR中的）作为Leader</li>
+</ol>
+<p>如果一定要等待ISR中的Replica&quot;活&quot;过来，那不可用的时间就可能会相对较长。而且如果ISR中的所有Replica都无法&quot;活&quot;过来了，或者数据都丢失了，这个Partition将永远不可用。
+选择第一个&quot;活&quot;过来的Replica作为Leader，而这个Replica不是ISR中的Replica，那即使它并不保证已经包含了所有已commit的消息，它也会成为Leader而作为consumer的数据源（前文有说明，所有读写都由Leader完成）。
+Kafka0.8.*使用了第二种方式。Kafka支持用户通过配置选择这两种方式中的一种，从而根据不同的使用场景选择高可用性还是强一致性。</p>
+<h2 id="文件存储方式"><a class="header" href="#文件存储方式">文件存储方式</a></h2>
+<p>在kafka文件存储中，同一个topic下有多个不同的partition，每个partition为一个目录，partition的名称规则为：topic名称+有序序号，第一个序号从0开始，最大的序号为partition数量减1，partition是实际物理上的概念，而topic是逻辑上的概念，partition还可以细分为segment，这个segment是什么呢？ 假设kafka以partition为最小存储单位，那么我们可以想象当kafka producer不断发送消息，必然会引起partition文件的无线扩张，这样对于消息文件的维护以及被消费的消息的清理带来非常大的挑战，所以kafka以segment为单位又把partition进行细分。</p>
+<p>每个partition相当于一个巨型文件被平均分配到多个大小相等的segment数据文件中（每个setment文件中的消息不一定相等），这种特性方便已经被消费的消息的清理，提高磁盘的利用率。
+segment file组成：由2大部分组成，分别为index file和data file，此2个文件一一对应，成对出现，后缀&quot;.index&quot;和&quot;.log&quot;分别表示为segment索引文件、数据文件。</p>
+<p>segment文件命名规则：partion全局的第一个segment从0开始，后续每个segment文件名为上一个segment文件最后一条消息的offset值。数值最大为64位long大小，19位数字字符长度，没有数字用0填充</p>
+<h2 id="消息确认的方式"><a class="header" href="#消息确认的方式">消息确认的方式</a></h2>
+<ol>
+<li>自动提交</li>
+<li>手动提交</li>
+<li>手动异步提交</li>
+<li>手动同步提交</li>
+</ol>
+<h2 id="消息的消费原理"><a class="header" href="#消息的消费原理">消息的消费原理</a></h2>
+<h2 id="kafka的分区分配策略"><a class="header" href="#kafka的分区分配策略">kafka的分区分配策略</a></h2>
+<p>在kafka中每个topic一般都会有很多个partitions。为了提高消息的消费速度，我们可能会启动多个consumer去消费； 同时，kafka存在consumer group的概念，也就是group.id一样的consumer，这些consumer属于一个consumer group，组内的所有消费者协调在一起来消费消费订阅主题的所有分区。当然每一个分区只能由同一个消费组内的consumer来消费，那么同一个consumer group里面的consumer是怎么去分配该消费哪个分区里的数据，这个就设计到了kafka内部分区分配策略（Partition Assignment Strategy）
+在 Kafka 内部存在两种默认的分区分配策略：Range（默认） 和 RoundRobin。通过：partition.assignment.strategy指定consumer rebalance
+当以下事件发生时，Kafka 将会进行一次分区分配：</p>
+<ol>
+<li>同一个consumer group内新增了消费者</li>
+<li>消费者离开当前所属的consumer group，包括shuts down 或crashes</li>
+<li>订阅的主题新增分区（分区数量发生变化）</li>
+<li>消费者主动取消对某个topic的订阅</li>
+<li>也就是说，把分区的所有权从一个消费者移到另外一个消费者上，这个是kafka consumer 的rebalance机制。如何rebalance就涉及到前面说的分区分配策略。</li>
+</ol>
+<h3 id="三种分区策略"><a class="header" href="#三种分区策略">三种分区策略</a></h3>
+<p>1、Range 策略（默认）</p>
+<pre><code>0 ，1 ，2 ，3 ，4，5，6，7，8，9
+c0 [0,3] c1 [4,6] c2 [7,9]
+10(partition num/3(consumer num) =3
+</code></pre>
+<p>2、roundrobin 策略，使用轮询分区策略必须满足两个条件</p>
+<ol>
+<li>每个主题的消费者实例具有相同数量的流</li>
+<li>每个消费者订阅的主题必须是相同的</li>
+</ol>
+<pre><code>0 ，1 ，2 ，3 ，4，5，6，7，8，9
+c0,c1,c2
+c0 [0,3,6,9]
+c1 [1,4,7]
+c2 [2,5,8]
+</code></pre>
+<p>3、StrickyAssignor粘滞策略，
+有两个主要目标：</p>
+<ul>
+<li>分区的分配尽可能的均匀</li>
+<li>分区的分配尽可能和上次分配保持相同</li>
+</ul>
+<h2 id="谁来执行rebalance以及管理consumer的group呢"><a class="header" href="#谁来执行rebalance以及管理consumer的group呢">谁来执行Rebalance以及管理consumer的group呢？</a></h2>
+<p>Kafka提供了一个角色：coordinator来执行对于consumer group的管理，Kafka提供了一个角色： coordinator来执行对于consumer group的管理，当consumer group的第一个consumer启动的时 候，它会去和kafka server确定谁是它们组的coordinator。之后该group内的所有成员都会和该 coordinator进行协调通信</p>
+<h2 id="如何确定coordinator"><a class="header" href="#如何确定coordinator">如何确定coordinator？</a></h2>
+<p>consumer group如何确定自己的coordinator是谁呢, 消费者向kafka集群中的任意一个broker发送一个 GroupCoordinatorRequest请求，服务端会返回一个负载最小的broker节点的id，并将该broker设置 为coordinator</p>
+<h2 id="kafka如何保证消息顺序性"><a class="header" href="#kafka如何保证消息顺序性">kafka如何保证消息顺序性</a></h2>
+<ul>
+<li>一个 topic，一个 partition，一个 consumer，内部单线程消费，单线程吞吐量太低，一般不会用这个。</li>
+<li>写 N 个内存 queue，具有相同 key 的数据都到同一个内存 queue；然后对于 N 个线程，每个线程分别消费一个内存 queue 即可，这样就能保证顺序性。</li>
+</ul>
+<h2 id="kafka日志管理"><a class="header" href="#kafka日志管理">kafka日志管理</a></h2>
+<h3 id="1日志写入策略"><a class="header" href="#1日志写入策略">1、日志写入策略</a></h3>
+<p>一个topic的多个partition在物理磁盘上的保存路径，路径保存在 /tmp/kafka-logs/topic_partition，包 含日志文件、索引文件和时间索引文件。</p>
+<h4 id="在partition中如何通过oﬀset查找message"><a class="header" href="#在partition中如何通过oﬀset查找message">在partition中如何通过oﬀset查找message</a></h4>
+<p>查找的算法：</p>
+<ol>
+<li>根据oﬀset的值，查找segment段中的index索引文件。由于索引文件命名是以上一个文件的最后 一个oﬀset进行命名的，所以，使用二分查找算法能够根据oﬀset快速定位到指定的索引文件。</li>
+<li>找到索引文件后，根据oﬀset进行定位，找到索引文件中的符合范围的索引。（kafka采用稀疏索 引的方式来提高查找性能）</li>
+<li>得到position以后，再到对应的log文件中，从position出开始查找oﬀset对应的消息，将每条消息 的oﬀset与目标oﬀset进行比较，直到找到消息</li>
+</ol>
+<h3 id="2日志清理策略"><a class="header" href="#2日志清理策略">2、日志清理策略</a></h3>
+<p>日志的分段存储，一方面能够减少单个文件内容的大小，另一方面，方便kafka进行日志 清理。日志的清理策略有两个。</p>
+<ol>
+<li>根据消息的保留时间，当消息在kafka中保存的时间超过了指定的时间，就会触发清理过程</li>
+<li>根据topic存储的数据大小，当topic所占的日志文件大小大于一定的阀值，则可以开始删除最旧的 消息。kafka会启动一个后台线程，定期检查是否存在可以删除的消息。</li>
+</ol>
+<p>通过<code>log.retention.bytes</code>和<code>log.retention.hours</code>这两个参数来设置，当其中任意一个达到要求，都会执行删除。默认的保留时间是：7天</p>
+<h3 id="3日志压缩策略"><a class="header" href="#3日志压缩策略">3、日志压缩策略</a></h3>
+<h2 id="数据库同步服务如何保证消息的顺序性"><a class="header" href="#数据库同步服务如何保证消息的顺序性">数据库同步服务如何保证消息的顺序性</a></h2>
+<h2 id="mq挤压消息如何解决"><a class="header" href="#mq挤压消息如何解决">mq挤压消息如何解决</a></h2>
+<p>一个消费者一秒是 1000 条，一秒 3 个消费者是 3000 条，一分钟就是 18 万条。所以如果你积压了几百万到上千万的数据，即使消费者恢复了，也需要大概 1 小时的时间才能恢复过来。</p>
+<p>一般这个时候，只能临时紧急扩容了，具体操作步骤和思路如下：</p>
+<ol>
+<li>先修复 consumer 的问题，确保其恢复消费速度，然后将现有 consumer 都停掉。</li>
+<li>新建一个 topic，partition 是原来的 10 倍，临时建立好原先 10 倍的 queue 数量。</li>
+<li>然后写一个临时的分发数据的 consumer 程序，这个程序部署上去消费积压的数据，消费之后不做耗时的处理，直接均匀轮询写入临时建立好的 10 倍数量的 queue。</li>
+<li>接着临时征用 10 倍的机器来部署 consumer，每一批 consumer 消费一个临时 queue 的数据。这种做法相当于是临时将 queue 资源和 consumer 资源扩大 10 倍，以正常的 10 倍速度来消费数据。</li>
+<li>等快速消费完积压数据之后，得恢复原先部署的架构，重新用原先的 consumer 机器来消费消息。</li>
+</ol>
+<h2 id="mq-中的消息过期失效了"><a class="header" href="#mq-中的消息过期失效了">mq 中的消息过期失效了</a></h2>
+<p>通过历史数据手动写程序进行修复。</p>
+<blockquote>
+<p>参考《kafka技术内幕》，kafka官方文档。</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../mq/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../mq/rabbitmq.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../mq/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../mq/rabbitmq.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

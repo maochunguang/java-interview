@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>rabbitmq - java offer终结者</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="java找工作，offer终结者！">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> 介绍</a></li><li class="chapter-item "><a href="../howtoInteview.html"><strong aria-hidden="true">2.</strong> 如何面试</a></li><li class="chapter-item "><a href="../basic/basic.html"><strong aria-hidden="true">3.</strong> java基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/java-binary.html"><strong aria-hidden="true">3.1.</strong> java二进制操作符</a></li><li class="chapter-item "><a href="../basic/javaweb.html"><strong aria-hidden="true">3.2.</strong> java-web基础</a></li><li class="chapter-item "><a href="../basic/java-versions.html"><strong aria-hidden="true">3.3.</strong> java版本特性</a></li><li class="chapter-item "><a href="../basic/io/index.html"><strong aria-hidden="true">3.4.</strong> io流</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/io/bio.html"><strong aria-hidden="true">3.4.1.</strong> bio</a></li><li class="chapter-item "><a href="../basic/io/nio.html"><strong aria-hidden="true">3.4.2.</strong> nio</a></li><li class="chapter-item "><a href="../basic/io/aio.html"><strong aria-hidden="true">3.4.3.</strong> aio</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/index.html"><strong aria-hidden="true">3.5.</strong> java数据类型和集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/basic.html"><strong aria-hidden="true">3.5.1.</strong> basic</a></li><li class="chapter-item "><a href="../basic/collection/list.html"><strong aria-hidden="true">3.5.2.</strong> list</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/arrayList扩容机制.html"><strong aria-hidden="true">3.5.2.1.</strong> arrayList扩容</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/map.html"><strong aria-hidden="true">3.5.3.</strong> map</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/hashmap死循环问题.html"><strong aria-hidden="true">3.5.3.1.</strong> hashmap死循环解析</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/set.html"><strong aria-hidden="true">3.5.4.</strong> set</a></li><li class="chapter-item "><a href="../basic/collection/queue.html"><strong aria-hidden="true">3.5.5.</strong> queue</a></li><li class="chapter-item "><a href="../basic/collection/safeCollection.html"><strong aria-hidden="true">3.5.6.</strong> 并发容器</a></li></ol></li></ol></li><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.</strong> java高级</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.1.</strong> javaSE高级</a></li><li class="chapter-item "><a href="../java_advanced/advance-features.html"><strong aria-hidden="true">4.2.</strong> java高级特性</a></li><li class="chapter-item "><a href="../java_advanced/threads/thread.html"><strong aria-hidden="true">4.3.</strong> 多线程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/threads/threadPool.html"><strong aria-hidden="true">4.3.1.</strong> 线程池</a></li><li class="chapter-item "><a href="../java_advanced/threads/threadTools.html"><strong aria-hidden="true">4.3.2.</strong> 并发工具类</a></li><li class="chapter-item "><a href="../java_advanced/threads/asyncThread.html"><strong aria-hidden="true">4.3.3.</strong> java异步</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/locks/index.html"><strong aria-hidden="true">4.4.</strong> 锁</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/locks/synchronize.html"><strong aria-hidden="true">4.4.1.</strong> 悲观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/lock.html"><strong aria-hidden="true">4.4.2.</strong> 乐观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/atomic.html"><strong aria-hidden="true">4.4.3.</strong> 原子操作</a></li><li class="chapter-item "><a href="../java_advanced/locks/optimizingLock.html"><strong aria-hidden="true">4.4.4.</strong> 锁优化</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/jvm/jvm.html"><strong aria-hidden="true">4.5.</strong> jvm虚拟机</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/jvm/G1.html"><strong aria-hidden="true">4.5.1.</strong> g1虚拟机</a></li><li class="chapter-item "><a href="../java_advanced/jvm/zgc.html"><strong aria-hidden="true">4.5.2.</strong> zgc虚拟机</a></li></ol></li></ol></li><li class="chapter-item "><a href="../kuangjia/index.html"><strong aria-hidden="true">5.</strong> java框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring.html"><strong aria-hidden="true">5.1.</strong> spring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring-pattern.html"><strong aria-hidden="true">5.1.1.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../kuangjia/springboot.html"><strong aria-hidden="true">5.1.2.</strong> springboot</a></li></ol></li><li class="chapter-item "><a href="../kuangjia/mybatis.html"><strong aria-hidden="true">5.2.</strong> mybatis</a></li><li class="chapter-item "><a href="../kuangjia/hibernate.html"><strong aria-hidden="true">5.3.</strong> hibernate</a></li><li class="chapter-item "><a href="../kuangjia/netty.html"><strong aria-hidden="true">5.4.</strong> netty</a></li><li class="chapter-item "><a href="../kuangjia/dubbo.html"><strong aria-hidden="true">5.5.</strong> dubbo</a></li></ol></li><li class="chapter-item "><a href="../database/index.html"><strong aria-hidden="true">6.</strong> 数据库</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql.html"><strong aria-hidden="true">6.1.</strong> mysql</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql-process.html"><strong aria-hidden="true">6.1.1.</strong> sql执行流程解析</a></li><li class="chapter-item "><a href="../database/mysql-lock.html"><strong aria-hidden="true">6.1.2.</strong> sql锁与事务</a></li></ol></li><li class="chapter-item "><a href="../database/mongodb.html"><strong aria-hidden="true">6.2.</strong> mongodb</a></li><li class="chapter-item "><a href="../database/redis.html"><strong aria-hidden="true">6.3.</strong> redis</a></li><li class="chapter-item "><a href="../database/tair.html"><strong aria-hidden="true">6.4.</strong> tair</a></li><li class="chapter-item "><a href="../database/ElasticSearch.html"><strong aria-hidden="true">6.5.</strong> ElasticSearch</a></li><li class="chapter-item "><a href="../database/memcached.html"><strong aria-hidden="true">6.6.</strong> memcached</a></li><li class="chapter-item "><a href="../database/cache.html"><strong aria-hidden="true">6.7.</strong> 缓存架构</a></li><li class="chapter-item "><a href="../database/db-middleware.html"><strong aria-hidden="true">6.8.</strong> 数据库中间件</a></li></ol></li><li class="chapter-item expanded "><a href="../mq/index.html"><strong aria-hidden="true">7.</strong> 消息队列</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../mq/kafka.html"><strong aria-hidden="true">7.1.</strong> kafka</a></li><li class="chapter-item expanded "><a href="../mq/rabbitmq.html" class="active"><strong aria-hidden="true">7.2.</strong> rabbitmq</a></li><li class="chapter-item "><a href="../mq/rocketmq.html"><strong aria-hidden="true">7.3.</strong> rocketmq</a></li><li class="chapter-item "><a href="../mq/jms.html"><strong aria-hidden="true">7.4.</strong> jms</a></li><li class="chapter-item "><a href="../mq/mq-middleware.html"><strong aria-hidden="true">7.5.</strong> 消息中间件</a></li></ol></li><li class="chapter-item "><a href="../ds/index.html"><strong aria-hidden="true">8.</strong> 分布式架构</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../ds/architecture.html"><strong aria-hidden="true">8.1.</strong> 架构基础</a></li><li class="chapter-item "><a href="../ds/dsProtocol.html"><strong aria-hidden="true">8.2.</strong> 分布式协议</a></li><li class="chapter-item "><a href="../ds/raft-protocol.html"><strong aria-hidden="true">8.3.</strong> raft协议</a></li><li class="chapter-item "><a href="../ds/paxos-protocol.html"><strong aria-hidden="true">8.4.</strong> paxos协议</a></li><li class="chapter-item "><a href="../ds/microService.html"><strong aria-hidden="true">8.5.</strong> 微服务</a></li><li class="chapter-item "><a href="../ds/splitdb.html"><strong aria-hidden="true">8.6.</strong> 分库分表</a></li><li class="chapter-item "><a href="../ds/rpc.html"><strong aria-hidden="true">8.7.</strong> rpc框架</a></li><li class="chapter-item "><a href="../ds/dsTransaction.html"><strong aria-hidden="true">8.8.</strong> 分布式事务</a></li><li class="chapter-item "><a href="../ds/dsLock.html"><strong aria-hidden="true">8.9.</strong> 分布式锁</a></li><li class="chapter-item "><a href="../ds/register-center.html"><strong aria-hidden="true">8.10.</strong> 注册中心对比</a></li><li class="chapter-item "><a href="../ds/datarooms.html"><strong aria-hidden="true">8.11.</strong> 多机房部署</a></li></ol></li><li class="chapter-item "><a href="../devtools/index.html"><strong aria-hidden="true">9.</strong> 开发工具</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devtools/maven.html"><strong aria-hidden="true">9.1.</strong> maven</a></li><li class="chapter-item "><a href="../devtools/gradle.html"><strong aria-hidden="true">9.2.</strong> gradle</a></li><li class="chapter-item "><a href="../devtools/git.html"><strong aria-hidden="true">9.3.</strong> git</a></li><li class="chapter-item "><a href="../devtools/blog-tool.html"><strong aria-hidden="true">9.4.</strong> blog工具</a></li></ol></li><li class="chapter-item "><a href="../linux/index.html"><strong aria-hidden="true">10.</strong> linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../linux/theory.html"><strong aria-hidden="true">10.1.</strong> linux原理</a></li><li class="chapter-item "><a href="../linux/caozuo.html"><strong aria-hidden="true">10.2.</strong> linux操作</a></li></ol></li><li class="chapter-item "><a href="../server/index.html"><strong aria-hidden="true">11.</strong> web服务器常用框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../server/nginx.html"><strong aria-hidden="true">11.1.</strong> nginx</a></li><li class="chapter-item "><a href="../server/apache.html"><strong aria-hidden="true">11.2.</strong> apache</a></li><li class="chapter-item "><a href="../server/tomcat.html"><strong aria-hidden="true">11.3.</strong> tomcat</a></li><li class="chapter-item "><a href="../server/docker.html"><strong aria-hidden="true">11.4.</strong> docker</a></li><li class="chapter-item "><a href="../server/zookeeper.html"><strong aria-hidden="true">11.5.</strong> zookeeper</a></li></ol></li><li class="chapter-item "><a href="../pattern/index.html"><strong aria-hidden="true">12.</strong> 设计模式</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../pattern/singleton.html"><strong aria-hidden="true">12.1.</strong> 单例模式</a></li><li class="chapter-item "><a href="../pattern/factory.html"><strong aria-hidden="true">12.2.</strong> 工厂模式</a></li><li class="chapter-item "><a href="../pattern/proxy.html"><strong aria-hidden="true">12.3.</strong> 代理模式</a></li><li class="chapter-item "><a href="../pattern/observer.html"><strong aria-hidden="true">12.4.</strong> 观察者模式</a></li><li class="chapter-item "><a href="../pattern/strategy.html"><strong aria-hidden="true">12.5.</strong> 策略模式</a></li><li class="chapter-item "><a href="../pattern/template.html"><strong aria-hidden="true">12.6.</strong> 模板方法模式</a></li><li class="chapter-item "><a href="../pattern/state.html"><strong aria-hidden="true">12.7.</strong> 状态模式</a></li><li class="chapter-item "><a href="../pattern/chain.html"><strong aria-hidden="true">12.8.</strong> 责任链模式</a></li><li class="chapter-item "><a href="../pattern/jdk-pattern.html"><strong aria-hidden="true">12.9.</strong> jdk中设计模式</a></li><li class="chapter-item "><a href="../pattern/spring-pattern.html"><strong aria-hidden="true">12.10.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../pattern/thinkInDeep.html"><strong aria-hidden="true">12.11.</strong> 编程思想相关</a></li></ol></li><li class="chapter-item "><a href="../architecture_design/index.html"><strong aria-hidden="true">13.</strong> 系统架构设计</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../architecture_design/secondsKill.html"><strong aria-hidden="true">13.1.</strong> 秒杀系统设计</a></li><li class="chapter-item "><a href="../architecture_design/ds_id.html"><strong aria-hidden="true">13.2.</strong> 分布式Id生成系统</a></li><li class="chapter-item "><a href="../architecture_design/friend_feed.html"><strong aria-hidden="true">13.3.</strong> 朋友圈系统设计</a></li><li class="chapter-item "><a href="../architecture_design/RPC.html"><strong aria-hidden="true">13.4.</strong> rpc框架设计</a></li></ol></li><li class="chapter-item "><a href="../bigdata/bigdata.html"><strong aria-hidden="true">14.</strong> 大数据处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../bigdata/hadoop.html"><strong aria-hidden="true">14.1.</strong> hadoop</a></li><li class="chapter-item "><a href="../bigdata/spark.html"><strong aria-hidden="true">14.2.</strong> spark</a></li><li class="chapter-item "><a href="../bigdata/ds-nosql.html"><strong aria-hidden="true">14.3.</strong> hdfs，hive和hbase</a></li></ol></li><li class="chapter-item "><a href="../algorithm/index.html"><strong aria-hidden="true">15.</strong> 算法基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../algorithm/struct.html"><strong aria-hidden="true">15.1.</strong> 数据结构</a></li><li class="chapter-item "><a href="../algorithm/sort.html"><strong aria-hidden="true">15.2.</strong> 排序算法</a></li><li class="chapter-item "><a href="../algorithm/search.html"><strong aria-hidden="true">15.3.</strong> 查找算法</a></li><li class="chapter-item "><a href="../algorithm/classic.html"><strong aria-hidden="true">15.4.</strong> 经典算法</a></li><li class="chapter-item "><a href="../algorithm/tree.html"><strong aria-hidden="true">15.5.</strong> 树相关算法</a></li></ol></li><li class="chapter-item "><a href="../network/index.html"><strong aria-hidden="true">16.</strong> 网络</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../network/http.html"><strong aria-hidden="true">16.1.</strong> http协议</a></li><li class="chapter-item "><a href="../network/tcp-ip.html"><strong aria-hidden="true">16.2.</strong> tcp协议</a></li></ol></li><li class="chapter-item "><a href="../recommend_books/index.html"><strong aria-hidden="true">17.</strong> 推荐书籍</a></li><li class="chapter-item "><a href="../codingInAction/coding.html"><strong aria-hidden="true">18.</strong> 实战演练</a></li><li class="chapter-item "><a href="../interview_topn/index.html"><strong aria-hidden="true">19.</strong> topN公司面试题汇总</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../interview_topn/alibaba.html"><strong aria-hidden="true">19.1.</strong> 阿里巴巴面试题</a></li><li class="chapter-item "><a href="../interview_topn/toutiao.html"><strong aria-hidden="true">19.2.</strong> 字节跳动面试题</a></li><li class="chapter-item "><a href="../interview_topn/meituan.html"><strong aria-hidden="true">19.3.</strong> 美团点评面试题</a></li><li class="chapter-item "><a href="../interview_topn/tengxun.html"><strong aria-hidden="true">19.4.</strong> 腾讯面试题</a></li><li class="chapter-item "><a href="../interview_topn/kuaishou.html"><strong aria-hidden="true">19.5.</strong> 快手面试题</a></li></ol></li><li class="chapter-item "><a href="../devenv/index.html"><strong aria-hidden="true">20.</strong> 附录-环境搭建</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devenv/gitlab.html"><strong aria-hidden="true">20.1.</strong> gitlab搭建</a></li><li class="chapter-item "><a href="../devenv/jenkins.html"><strong aria-hidden="true">20.2.</strong> jenkins搭建</a></li><li class="chapter-item "><a href="../devenv/maven.html"><strong aria-hidden="true">20.3.</strong> maven私服搭建</a></li><li class="chapter-item "><a href="../devenv/mysql.html"><strong aria-hidden="true">20.4.</strong> mysql集群搭建</a></li><li class="chapter-item "><a href="../devenv/mongodb.html"><strong aria-hidden="true">20.5.</strong> mongodb集群搭建</a></li><li class="chapter-item "><a href="../devenv/nginx.html"><strong aria-hidden="true">20.6.</strong> nginx配置</a></li><li class="chapter-item "><a href="../devenv/tomcat.html"><strong aria-hidden="true">20.7.</strong> tomcat集群搭建</a></li><li class="chapter-item "><a href="../devenv/redis.html"><strong aria-hidden="true">20.8.</strong> redis集群搭建</a></li><li class="chapter-item "><a href="../devenv/docker.html"><strong aria-hidden="true">20.9.</strong> docker环境搭建</a></li><li class="chapter-item "><a href="../devenv/zookeeper.html"><strong aria-hidden="true">20.10.</strong> zookeeper集群搭建</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">java offer终结者</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="rabbitmq的工作原理"><a class="header" href="#rabbitmq的工作原理">rabbitmq的工作原理</a></h1>
+<p>rabbitmq是AMQP（高级消息队列协议Advanced Message Queuing Protocol）协议的实现框架，
+<img src="../images/mq/rabbitmq-%E6%9E%B6%E6%9E%84.png" alt="rabbitmq原理" /></p>
+<h2 id="rabblitmq核心概念"><a class="header" href="#rabblitmq核心概念">rabblitmq核心概念</a></h2>
+<p>首先来看看RabbitMQ里的几个重要概念：</p>
+<ul>
+<li>生产者（Producer）：发送消息的应用。</li>
+<li>消费者（Consumer）：接收消息的应用。</li>
+<li>队列（Queue）：存储消息的缓存。</li>
+<li>消息（Message）：由生产者通过RabbitMQ发送给消费者的信息。</li>
+<li>连接（Connection）：连接RabbitMQ和应用服务器的TCP连接。</li>
+<li>通道（Channel）：连接里的一个虚拟通道。当你通过消息队列发送或者接收消息时，这个操作都是通过通道进行的。</li>
+<li>交换机（Exchange）：交换机负责从生产者那里接收消息，并根据交换类型分发到对应的消息列队里。要实现消息的接收，一个队列必须到绑定一个交换机。</li>
+<li>绑定（Binding）：绑定是队列和交换机的一个关联连接。</li>
+<li>路由键（Routing Key）：路由键是供交换机查看并根据键来决定如何分发消息到列队的一个键。路由键可以说是消息的目的地址。</li>
+</ul>
+<h2 id="rabbitmq消息投递流程"><a class="header" href="#rabbitmq消息投递流程">rabbitmq消息投递流程</a></h2>
+<p>AMQP模型中，消息在producer中产生，发送到MQ的exchange上，exchange根据配置的路由方式发到相应的Queue上，Queue又将消息发送给consumer，消息从queue到consumer有push和pull两种方式。 消息队列的使用过程大概如下：</p>
+<ol>
+<li>客户端连接到消息队列服务器，打开一个channel。</li>
+<li>客户端声明一个exchange，并设置相关属性。</li>
+<li>客户端声明一个queue，并设置相关属性。</li>
+<li>客户端使用routing key，在exchange和queue之间建立好绑定关系。</li>
+<li>客户端投递消息到exchange。</li>
+<li>exchange接收到消息后，就根据消息的key和已经设置的binding，进行消息路由，将消息投递到一个或多个队列里。 exchange也有几个类型，完全根据key进行投递的叫做Direct交换机，例如，绑定时设置了routing key为”abc”，那么客户端提交的消息，只有设置了key为”abc”的才会投递到队列。</li>
+</ol>
+<h2 id="rabbitmq-exchange类型"><a class="header" href="#rabbitmq-exchange类型">rabbitmq exchange类型</a></h2>
+<p>exchange类型分为四种</p>
+<ul>
+<li>direct （直连）</li>
+<li>topic （主题）</li>
+<li>headers （标题）</li>
+<li>fanout （分发）</li>
+<li>Default Exchange</li>
+</ul>
+<h3 id="direct直连"><a class="header" href="#direct直连">direct（直连）</a></h3>
+<p>Direct Exchange – 处理路由键。需要将一个队列绑定到交换机上，要求该消息与一个特定的路由键完全匹配。这是一个完整的匹配。如果一个队列绑定到该交换机上要求路由键 “dog”，则只有被标记为“dog”的消息才被转发，不会转发dog.puppy，也不会转发dog.guard，只会转发dog。 </p>
+<h3 id="topic主题"><a class="header" href="#topic主题">topic（主题）</a></h3>
+<p>Topic Exchange – 将路由键和某模式进行匹配。此时队列需要绑定要一个模式上。符号“#”匹配一个或多个词，
+<code>符号“*” 匹配不多不少一个词。因此“audit.#”能够匹配到“audit.irs.corporate”，但是“audit.*” 只会匹配到“audit.irs”</code>。</p>
+<h3 id="fanout分发"><a class="header" href="#fanout分发">fanout（分发）</a></h3>
+<p>Fanout Exchange – 不处理路由键。你只需要简单的将队列绑定到交换机上。一个发送到交换机的消息都会被转发到与该交换机绑定的所有队列上。很像子网广播，每台子网内的主机都获得了一份复制的消息。Fanout交换机转发消息是最快的。</p>
+<h3 id="headers标题"><a class="header" href="#headers标题">headers（标题）</a></h3>
+<p>Headers类型的exchange使用的比较少，它也是忽略routingKey的一种路由方式。是使用Headers来匹配的。</p>
+<p>Headers是一个键值对，可以定义成Hashtable。发送者在发送的时候定义一些键值对，接收者也可以再绑定时候传入一些键值对，两者匹配的话，则对应的队列就可以收到消息。匹配有两种方式all和any。这两种方式是在接收端必须要用键值&quot;x-mactch&quot;来定义。</p>
+<p>all代表定义的多个键值对都要满足，而any则代码只要满足一个就可以了。</p>
+<p>fanout，direct，topic exchange的routingKey都需要要字符串形式的，而headers exchange则没有这个要求，因为键值对的值可以是任何类型。</p>
+<h3 id="default-exchange"><a class="header" href="#default-exchange">Default Exchange</a></h3>
+<p>其实除了上面四种以外还有一种Default Exchange，它是一种特别的Direct Exchange。
+当你手动创建一个队列时，后台会自动将这个队列绑定到一个名称为空的Direct类型交换机上，绑定路由名称与队列名称相同。有了这个默认的交换机和绑定，我们就可以像其他轻量级的队列，如Redis那样，直接操作队列来处理消息。不过只是看起来是，实际上在RabbitMQ里直接操作是不可能的。消息始终都是先发送到交换机，由交换级经过路由传送给队列，消费者再从队列中获取消息的。不过由于这个默认交换机和路由的关系，使我们只关心队列这一层即可，这个比较适合做一些简单的应用，毕竟没有发挥RabbitMQ的最大功能，如果都用这种方式去使用的话就真是杀鸡用宰牛刀了。</p>
+<h2 id="消息可靠性"><a class="header" href="#消息可靠性">消息可靠性</a></h2>
+<h3 id="消息可靠性分析"><a class="header" href="#消息可靠性分析">消息可靠性分析</a></h3>
+<p><img src="../images/mq/rabbitmq%E6%B6%88%E6%81%AF%E5%8F%AF%E9%9D%A0%E6%80%A7.png" alt="rabbitmq原理" /></p>
+<h3 id="可靠性参数设置"><a class="header" href="#可靠性参数设置">可靠性参数设置</a></h3>
+<p>Rabbit队列和交换器默认情况下重启服务器会导致消息丢失，那么怎么保证Rabbit在重启的时候不丢失呢？答案就是消息持久化。</p>
+<p>当你把消息发送到Rabbit服务器的时候，你需要选择你是否要进行持久化，但这并不能保证Rabbit能从崩溃中恢复，想要Rabbit消息能恢复必须满足3个条件：</p>
+<ol>
+<li>投递消息的时候durable设置为true，消息持久化，代码：channel.queueDeclare(x, true, false, false, null)，参数2设置为true持久化；</li>
+<li>设置投递模式deliveryMode设置为2（持久），代码：channel.basicPublish(x, x, MessageProperties.PERSISTENT_TEXT_PLAIN,x)，参数3设置为存储纯文本到磁盘；</li>
+<li>消息已经到达持久化交换器上；消息已经到达持久化的队列；</li>
+</ol>
+<h2 id="消息存储"><a class="header" href="#消息存储">消息存储</a></h2>
+<p>Rabbit会将你的持久化消息写入磁盘上的持久化日志文件，等消息被消费之后，Rabbit会把这条消息标识为等待垃圾回收。</p>
+<blockquote>
+<p>参考《rabbitmq实战》，rabbitmq官方文档。</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../mq/kafka.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../mq/rocketmq.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../mq/kafka.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../mq/rocketmq.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

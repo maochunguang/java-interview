@@ -1,0 +1,536 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>mysql - java offer终结者</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="java找工作，offer终结者！">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> 介绍</a></li><li class="chapter-item "><a href="../howtoInteview.html"><strong aria-hidden="true">2.</strong> 如何面试</a></li><li class="chapter-item "><a href="../basic/basic.html"><strong aria-hidden="true">3.</strong> java基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/java-binary.html"><strong aria-hidden="true">3.1.</strong> java二进制操作符</a></li><li class="chapter-item "><a href="../basic/javaweb.html"><strong aria-hidden="true">3.2.</strong> java-web基础</a></li><li class="chapter-item "><a href="../basic/java-versions.html"><strong aria-hidden="true">3.3.</strong> java版本特性</a></li><li class="chapter-item "><a href="../basic/io/index.html"><strong aria-hidden="true">3.4.</strong> io流</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/io/bio.html"><strong aria-hidden="true">3.4.1.</strong> bio</a></li><li class="chapter-item "><a href="../basic/io/nio.html"><strong aria-hidden="true">3.4.2.</strong> nio</a></li><li class="chapter-item "><a href="../basic/io/aio.html"><strong aria-hidden="true">3.4.3.</strong> aio</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/index.html"><strong aria-hidden="true">3.5.</strong> java数据类型和集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/basic.html"><strong aria-hidden="true">3.5.1.</strong> basic</a></li><li class="chapter-item "><a href="../basic/collection/list.html"><strong aria-hidden="true">3.5.2.</strong> list</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/arrayList扩容机制.html"><strong aria-hidden="true">3.5.2.1.</strong> arrayList扩容</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/map.html"><strong aria-hidden="true">3.5.3.</strong> map</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/hashmap死循环问题.html"><strong aria-hidden="true">3.5.3.1.</strong> hashmap死循环解析</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/set.html"><strong aria-hidden="true">3.5.4.</strong> set</a></li><li class="chapter-item "><a href="../basic/collection/queue.html"><strong aria-hidden="true">3.5.5.</strong> queue</a></li><li class="chapter-item "><a href="../basic/collection/safeCollection.html"><strong aria-hidden="true">3.5.6.</strong> 并发容器</a></li></ol></li></ol></li><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.</strong> java高级</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.1.</strong> javaSE高级</a></li><li class="chapter-item "><a href="../java_advanced/advance-features.html"><strong aria-hidden="true">4.2.</strong> java高级特性</a></li><li class="chapter-item "><a href="../java_advanced/threads/thread.html"><strong aria-hidden="true">4.3.</strong> 多线程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/threads/threadPool.html"><strong aria-hidden="true">4.3.1.</strong> 线程池</a></li><li class="chapter-item "><a href="../java_advanced/threads/threadTools.html"><strong aria-hidden="true">4.3.2.</strong> 并发工具类</a></li><li class="chapter-item "><a href="../java_advanced/threads/asyncThread.html"><strong aria-hidden="true">4.3.3.</strong> java异步</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/locks/index.html"><strong aria-hidden="true">4.4.</strong> 锁</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/locks/synchronize.html"><strong aria-hidden="true">4.4.1.</strong> 悲观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/lock.html"><strong aria-hidden="true">4.4.2.</strong> 乐观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/atomic.html"><strong aria-hidden="true">4.4.3.</strong> 原子操作</a></li><li class="chapter-item "><a href="../java_advanced/locks/optimizingLock.html"><strong aria-hidden="true">4.4.4.</strong> 锁优化</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/jvm/jvm.html"><strong aria-hidden="true">4.5.</strong> jvm虚拟机</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/jvm/G1.html"><strong aria-hidden="true">4.5.1.</strong> g1虚拟机</a></li><li class="chapter-item "><a href="../java_advanced/jvm/zgc.html"><strong aria-hidden="true">4.5.2.</strong> zgc虚拟机</a></li></ol></li></ol></li><li class="chapter-item "><a href="../kuangjia/index.html"><strong aria-hidden="true">5.</strong> java框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring.html"><strong aria-hidden="true">5.1.</strong> spring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring-pattern.html"><strong aria-hidden="true">5.1.1.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../kuangjia/springboot.html"><strong aria-hidden="true">5.1.2.</strong> springboot</a></li></ol></li><li class="chapter-item "><a href="../kuangjia/mybatis.html"><strong aria-hidden="true">5.2.</strong> mybatis</a></li><li class="chapter-item "><a href="../kuangjia/hibernate.html"><strong aria-hidden="true">5.3.</strong> hibernate</a></li><li class="chapter-item "><a href="../kuangjia/netty.html"><strong aria-hidden="true">5.4.</strong> netty</a></li><li class="chapter-item "><a href="../kuangjia/dubbo.html"><strong aria-hidden="true">5.5.</strong> dubbo</a></li></ol></li><li class="chapter-item expanded "><a href="../database/index.html"><strong aria-hidden="true">6.</strong> 数据库</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../database/mysql.html" class="active"><strong aria-hidden="true">6.1.</strong> mysql</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql-process.html"><strong aria-hidden="true">6.1.1.</strong> sql执行流程解析</a></li><li class="chapter-item "><a href="../database/mysql-lock.html"><strong aria-hidden="true">6.1.2.</strong> sql锁与事务</a></li></ol></li><li class="chapter-item "><a href="../database/mongodb.html"><strong aria-hidden="true">6.2.</strong> mongodb</a></li><li class="chapter-item "><a href="../database/redis.html"><strong aria-hidden="true">6.3.</strong> redis</a></li><li class="chapter-item "><a href="../database/tair.html"><strong aria-hidden="true">6.4.</strong> tair</a></li><li class="chapter-item "><a href="../database/ElasticSearch.html"><strong aria-hidden="true">6.5.</strong> ElasticSearch</a></li><li class="chapter-item "><a href="../database/memcached.html"><strong aria-hidden="true">6.6.</strong> memcached</a></li><li class="chapter-item "><a href="../database/cache.html"><strong aria-hidden="true">6.7.</strong> 缓存架构</a></li><li class="chapter-item "><a href="../database/db-middleware.html"><strong aria-hidden="true">6.8.</strong> 数据库中间件</a></li></ol></li><li class="chapter-item "><a href="../mq/index.html"><strong aria-hidden="true">7.</strong> 消息队列</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../mq/kafka.html"><strong aria-hidden="true">7.1.</strong> kafka</a></li><li class="chapter-item "><a href="../mq/rabbitmq.html"><strong aria-hidden="true">7.2.</strong> rabbitmq</a></li><li class="chapter-item "><a href="../mq/rocketmq.html"><strong aria-hidden="true">7.3.</strong> rocketmq</a></li><li class="chapter-item "><a href="../mq/jms.html"><strong aria-hidden="true">7.4.</strong> jms</a></li><li class="chapter-item "><a href="../mq/mq-middleware.html"><strong aria-hidden="true">7.5.</strong> 消息中间件</a></li></ol></li><li class="chapter-item "><a href="../ds/index.html"><strong aria-hidden="true">8.</strong> 分布式架构</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../ds/architecture.html"><strong aria-hidden="true">8.1.</strong> 架构基础</a></li><li class="chapter-item "><a href="../ds/dsProtocol.html"><strong aria-hidden="true">8.2.</strong> 分布式协议</a></li><li class="chapter-item "><a href="../ds/raft-protocol.html"><strong aria-hidden="true">8.3.</strong> raft协议</a></li><li class="chapter-item "><a href="../ds/paxos-protocol.html"><strong aria-hidden="true">8.4.</strong> paxos协议</a></li><li class="chapter-item "><a href="../ds/microService.html"><strong aria-hidden="true">8.5.</strong> 微服务</a></li><li class="chapter-item "><a href="../ds/splitdb.html"><strong aria-hidden="true">8.6.</strong> 分库分表</a></li><li class="chapter-item "><a href="../ds/rpc.html"><strong aria-hidden="true">8.7.</strong> rpc框架</a></li><li class="chapter-item "><a href="../ds/dsTransaction.html"><strong aria-hidden="true">8.8.</strong> 分布式事务</a></li><li class="chapter-item "><a href="../ds/dsLock.html"><strong aria-hidden="true">8.9.</strong> 分布式锁</a></li><li class="chapter-item "><a href="../ds/register-center.html"><strong aria-hidden="true">8.10.</strong> 注册中心对比</a></li><li class="chapter-item "><a href="../ds/datarooms.html"><strong aria-hidden="true">8.11.</strong> 多机房部署</a></li></ol></li><li class="chapter-item "><a href="../devtools/index.html"><strong aria-hidden="true">9.</strong> 开发工具</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devtools/maven.html"><strong aria-hidden="true">9.1.</strong> maven</a></li><li class="chapter-item "><a href="../devtools/gradle.html"><strong aria-hidden="true">9.2.</strong> gradle</a></li><li class="chapter-item "><a href="../devtools/git.html"><strong aria-hidden="true">9.3.</strong> git</a></li><li class="chapter-item "><a href="../devtools/blog-tool.html"><strong aria-hidden="true">9.4.</strong> blog工具</a></li></ol></li><li class="chapter-item "><a href="../linux/index.html"><strong aria-hidden="true">10.</strong> linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../linux/theory.html"><strong aria-hidden="true">10.1.</strong> linux原理</a></li><li class="chapter-item "><a href="../linux/caozuo.html"><strong aria-hidden="true">10.2.</strong> linux操作</a></li></ol></li><li class="chapter-item "><a href="../server/index.html"><strong aria-hidden="true">11.</strong> web服务器常用框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../server/nginx.html"><strong aria-hidden="true">11.1.</strong> nginx</a></li><li class="chapter-item "><a href="../server/apache.html"><strong aria-hidden="true">11.2.</strong> apache</a></li><li class="chapter-item "><a href="../server/tomcat.html"><strong aria-hidden="true">11.3.</strong> tomcat</a></li><li class="chapter-item "><a href="../server/docker.html"><strong aria-hidden="true">11.4.</strong> docker</a></li><li class="chapter-item "><a href="../server/zookeeper.html"><strong aria-hidden="true">11.5.</strong> zookeeper</a></li></ol></li><li class="chapter-item "><a href="../pattern/index.html"><strong aria-hidden="true">12.</strong> 设计模式</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../pattern/singleton.html"><strong aria-hidden="true">12.1.</strong> 单例模式</a></li><li class="chapter-item "><a href="../pattern/factory.html"><strong aria-hidden="true">12.2.</strong> 工厂模式</a></li><li class="chapter-item "><a href="../pattern/proxy.html"><strong aria-hidden="true">12.3.</strong> 代理模式</a></li><li class="chapter-item "><a href="../pattern/observer.html"><strong aria-hidden="true">12.4.</strong> 观察者模式</a></li><li class="chapter-item "><a href="../pattern/strategy.html"><strong aria-hidden="true">12.5.</strong> 策略模式</a></li><li class="chapter-item "><a href="../pattern/template.html"><strong aria-hidden="true">12.6.</strong> 模板方法模式</a></li><li class="chapter-item "><a href="../pattern/state.html"><strong aria-hidden="true">12.7.</strong> 状态模式</a></li><li class="chapter-item "><a href="../pattern/chain.html"><strong aria-hidden="true">12.8.</strong> 责任链模式</a></li><li class="chapter-item "><a href="../pattern/jdk-pattern.html"><strong aria-hidden="true">12.9.</strong> jdk中设计模式</a></li><li class="chapter-item "><a href="../pattern/spring-pattern.html"><strong aria-hidden="true">12.10.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../pattern/thinkInDeep.html"><strong aria-hidden="true">12.11.</strong> 编程思想相关</a></li></ol></li><li class="chapter-item "><a href="../architecture_design/index.html"><strong aria-hidden="true">13.</strong> 系统架构设计</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../architecture_design/secondsKill.html"><strong aria-hidden="true">13.1.</strong> 秒杀系统设计</a></li><li class="chapter-item "><a href="../architecture_design/ds_id.html"><strong aria-hidden="true">13.2.</strong> 分布式Id生成系统</a></li><li class="chapter-item "><a href="../architecture_design/friend_feed.html"><strong aria-hidden="true">13.3.</strong> 朋友圈系统设计</a></li><li class="chapter-item "><a href="../architecture_design/RPC.html"><strong aria-hidden="true">13.4.</strong> rpc框架设计</a></li></ol></li><li class="chapter-item "><a href="../bigdata/bigdata.html"><strong aria-hidden="true">14.</strong> 大数据处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../bigdata/hadoop.html"><strong aria-hidden="true">14.1.</strong> hadoop</a></li><li class="chapter-item "><a href="../bigdata/spark.html"><strong aria-hidden="true">14.2.</strong> spark</a></li><li class="chapter-item "><a href="../bigdata/ds-nosql.html"><strong aria-hidden="true">14.3.</strong> hdfs，hive和hbase</a></li></ol></li><li class="chapter-item "><a href="../algorithm/index.html"><strong aria-hidden="true">15.</strong> 算法基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../algorithm/struct.html"><strong aria-hidden="true">15.1.</strong> 数据结构</a></li><li class="chapter-item "><a href="../algorithm/sort.html"><strong aria-hidden="true">15.2.</strong> 排序算法</a></li><li class="chapter-item "><a href="../algorithm/search.html"><strong aria-hidden="true">15.3.</strong> 查找算法</a></li><li class="chapter-item "><a href="../algorithm/classic.html"><strong aria-hidden="true">15.4.</strong> 经典算法</a></li><li class="chapter-item "><a href="../algorithm/tree.html"><strong aria-hidden="true">15.5.</strong> 树相关算法</a></li></ol></li><li class="chapter-item "><a href="../network/index.html"><strong aria-hidden="true">16.</strong> 网络</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../network/http.html"><strong aria-hidden="true">16.1.</strong> http协议</a></li><li class="chapter-item "><a href="../network/tcp-ip.html"><strong aria-hidden="true">16.2.</strong> tcp协议</a></li></ol></li><li class="chapter-item "><a href="../recommend_books/index.html"><strong aria-hidden="true">17.</strong> 推荐书籍</a></li><li class="chapter-item "><a href="../codingInAction/coding.html"><strong aria-hidden="true">18.</strong> 实战演练</a></li><li class="chapter-item "><a href="../interview_topn/index.html"><strong aria-hidden="true">19.</strong> topN公司面试题汇总</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../interview_topn/alibaba.html"><strong aria-hidden="true">19.1.</strong> 阿里巴巴面试题</a></li><li class="chapter-item "><a href="../interview_topn/toutiao.html"><strong aria-hidden="true">19.2.</strong> 字节跳动面试题</a></li><li class="chapter-item "><a href="../interview_topn/meituan.html"><strong aria-hidden="true">19.3.</strong> 美团点评面试题</a></li><li class="chapter-item "><a href="../interview_topn/tengxun.html"><strong aria-hidden="true">19.4.</strong> 腾讯面试题</a></li><li class="chapter-item "><a href="../interview_topn/kuaishou.html"><strong aria-hidden="true">19.5.</strong> 快手面试题</a></li></ol></li><li class="chapter-item "><a href="../devenv/index.html"><strong aria-hidden="true">20.</strong> 附录-环境搭建</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devenv/gitlab.html"><strong aria-hidden="true">20.1.</strong> gitlab搭建</a></li><li class="chapter-item "><a href="../devenv/jenkins.html"><strong aria-hidden="true">20.2.</strong> jenkins搭建</a></li><li class="chapter-item "><a href="../devenv/maven.html"><strong aria-hidden="true">20.3.</strong> maven私服搭建</a></li><li class="chapter-item "><a href="../devenv/mysql.html"><strong aria-hidden="true">20.4.</strong> mysql集群搭建</a></li><li class="chapter-item "><a href="../devenv/mongodb.html"><strong aria-hidden="true">20.5.</strong> mongodb集群搭建</a></li><li class="chapter-item "><a href="../devenv/nginx.html"><strong aria-hidden="true">20.6.</strong> nginx配置</a></li><li class="chapter-item "><a href="../devenv/tomcat.html"><strong aria-hidden="true">20.7.</strong> tomcat集群搭建</a></li><li class="chapter-item "><a href="../devenv/redis.html"><strong aria-hidden="true">20.8.</strong> redis集群搭建</a></li><li class="chapter-item "><a href="../devenv/docker.html"><strong aria-hidden="true">20.9.</strong> docker环境搭建</a></li><li class="chapter-item "><a href="../devenv/zookeeper.html"><strong aria-hidden="true">20.10.</strong> zookeeper集群搭建</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">java offer终结者</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="mysql核心知识点"><a class="header" href="#mysql核心知识点">mysql核心知识点</a></h1>
+<h2 id="数据库四种事务隔离级别"><a class="header" href="#数据库四种事务隔离级别">数据库四种事务隔离级别</a></h2>
+<ul>
+<li>① Serializable (串行化)：可避免脏读、不可重复读、幻读的发生。</li>
+<li>② Repeatable read (可重复读)：可避免脏读、不可重复读的发生。（默认级别）</li>
+<li>③ Read committed (读已提交)：可避免脏读的发生。</li>
+<li>④ Read uncommitted (读未提交)：最低级别，任何情况都无法保证。</li>
+</ul>
+<h2 id="事务的特性"><a class="header" href="#事务的特性">事务的特性</a></h2>
+<ul>
+<li>A（Atomicity） 原子性
+<ul>
+<li>事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
+</ul>
+</li>
+<li>C（Consistency） 一致性
+<ul>
+<li>一致性是指事务使得系统从一个一致的状态转换到另一个一致状态。<em>事务的一致性决定了一个系统设计和实现的复杂度，也导致了事务的不同隔离级别。</em>
+<ul>
+<li><strong>强一致性</strong>：读操作可以立即读到提交的更新操作。</li>
+<li><strong>弱一致性</strong>：提交的更新操作，不一定立即会被读操作读到，此种情况会存在一个不一致窗口，指的是读操作可以读到最新值的一段时间。</li>
+<li><strong>最终一致性</strong>：是弱一致性的特例。事务更新一份数据，最终一致性保证在没有其他事务更新同样的值的话，最终所有的事务都会读到之前事务更新的最新值。如果没有错误发生，不一致窗口的大小依赖于：通信延迟，系统负载等。</li>
+<li><strong>单调一致性</strong>：如果一个进程已经读到一个值，那么后续不会读到更早的值。</li>
+<li><strong>会话一致性</strong>：保证客户端和服务器交互的会话过程中，读操作可以读到更新操作后的最新值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>I（Isolation） 隔离性
+<ul>
+<li>并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</li>
+</ul>
+</li>
+<li>D（Durability） 持久性
+<ul>
+<li>一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
+</ul>
+</li>
+</ul>
+<h2 id="左连接右连接内连接"><a class="header" href="#左连接右连接内连接">左连接，右连接，内连接</a></h2>
+<ol>
+<li>内连接查询  inner join
+<ol>
+<li>关键字：inner  join   on</li>
+<li>语句：<code>select * from a_table a inner join b_table b on a.a_id = b.b_id;</code></li>
+<li>说明：组合两个表中的记录，返回关联字段相符的记录，也就是返回两个表的交集（阴影）部分</li>
+</ol>
+</li>
+<li>左连接查询 left join
+<ol>
+<li>关键字：left join on / left outer join on</li>
+<li>语句：<code>SELECT  * FROM a_table a left join b_table b ON a.a_id = b.b_id;</code></li>
+<li>说明： left join 是left outer join的简写，它的全称是左外连接，是外连接中的一种。 左(外)连接，左表(a_table)的记录将会全部表示出来，而右表(b_table)只会显示符合搜索条件的记录</li>
+</ol>
+</li>
+<li>右连接 right join
+<ol>
+<li>关键字：right join on / right outer join on</li>
+<li>语句：<code>SELECT  * FROM a_table a right outer join b_table b on a.a_id = b.b_id;</code></li>
+<li>说明：right join是right outer join的简写，它的全称是右外连接，是外连接中的一种。与左(外)连接相反，右(外)连接，左表(a_table)只会显示符合搜索条件的记录，而右表(b_table)的记录将会全部表示出来。</li>
+</ol>
+</li>
+</ol>
+<h2 id="mysql索引"><a class="header" href="#mysql索引">mysql索引</a></h2>
+<p><strong>Mysql目前提供了四种索引：</strong></p>
+<ol>
+<li>B-Tree索引： 最常见的索引类型， ⼤部分引擎都⽀持B树索引。</li>
+<li>HASH索引： 只有Memory引擎⽀持， 使⽤场景简单。</li>
+<li>R-Tree索引（空间索引） ： 空间索引是MyISAM的⼀个特殊索引类型， 主要⽤于地理空间数据类型， 通常使⽤较少， 不做特别介绍。</li>
+<li>Full-text（全⽂索引） ： 全⽂索引也是 MyISAM 的⼀个特殊索引类型， 主要⽤于全⽂索引， InnoDB从MySQL5.6版本开始提供对全⽂索引的⽀持</li>
+</ol>
+<p><strong>MyISAM、 InnoDB、 Memory三个常⽤引擎⽀持的索引类型⽐较</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>索引类型</th><th>MyISAM</th><th>InnoDB</th><th>Memory</th></tr></thead><tbody>
+<tr><td>B-Tree</td><td>支持</td><td>支持</td><td>支持</td></tr>
+<tr><td>HASH</td><td>不支持</td><td>不支持</td><td>支持</td></tr>
+<tr><td>R-Tree</td><td>支持</td><td>不支持</td><td>不支持</td></tr>
+<tr><td>Full-text</td><td>支持</td><td>不支持</td><td>不支持</td></tr>
+</tbody></table>
+</div>
+<h3 id="聚簇索引和非聚簇索引的区别数据结构作用"><a class="header" href="#聚簇索引和非聚簇索引的区别数据结构作用">聚簇索引和非聚簇索引的区别（数据结构，作用）</a></h3>
+<ul>
+<li>聚簇索引锁B+树结构,所有的数据都在叶子节点，<code>叶子节点组成了双向链表</code>。</li>
+<li><img src="../images/database/B+%E6%A0%91.png" alt="B+树结构" /></li>
+<li>非聚簇也是B+树结构，所有节点都包含数据，存储的是主键的值，而不是地址指针，而不是表中数据</li>
+<li><img src="../images/database/B%E6%A0%91.png" alt="B树结构" /></li>
+</ul>
+<h2 id="mysql主键选取"><a class="header" href="#mysql主键选取">mysql主键选取</a></h2>
+<ol>
+<li>主键自增，查询效率高，索引占用空间小。分布式环境，分表，分库，主键会重复。</li>
+<li>uuid，占用空间大，查询相对慢，支持分布式存储，主键不重复。</li>
+<li>自定义主键（特定算法，比如）</li>
+</ol>
+<h2 id="innodb一张表有没有可能没有主键索引"><a class="header" href="#innodb一张表有没有可能没有主键索引">innodb一张表有没有可能没有主键索引？</a></h2>
+<p>结论：不可能</p>
+<ul>
+<li>1）如果我们定义了主键(PRIMARY KEY)，那么 InnoDB 会选择主键作为聚集索引。</li>
+<li>2）如果没有显式定义主键，则 InnoDB 会选择第一个不包含有 NULL 值的唯一索引作为主键索引。</li>
+<li>3）如果也没有这样的唯一索引，则 InnoDB 会选择内置 6 字节长的 ROWID 作为隐藏的聚集索引，它会随着行记录的写入而主键递增。</li>
+</ul>
+<h2 id="mysql如何通过索引找到具体行"><a class="header" href="#mysql如何通过索引找到具体行">mysql如何通过索引找到具体行？</a></h2>
+<p>B+树索引本省不能找到具体的一条记录吗，只能找到记录所在的页（Page），数据库把页载入到内存，然后通过<code>Page Directory</code>在进行二叉查找。</p>
+<ol>
+<li><code>Page Directory</code>中存放了行记录的相对位置，</li>
+</ol>
+<h2 id="mysql优化的步骤"><a class="header" href="#mysql优化的步骤">mysql优化的步骤</a></h2>
+<p>1、<code>show status</code>，查看执行状态</p>
+<ol>
+<li>Com_select：执⾏SELECT操作的次数，⼀次查询只累加1。</li>
+<li>Com_insert：执⾏INSERT操作的次数，对于批量插⼊的INSERT操作，只累加⼀次。</li>
+<li>Com_update：执⾏UPDATE操作的次数。</li>
+<li>Com_delete：执⾏DELETE操作的次数。</li>
+</ol>
+<p>2、 慢查询日志找出慢sql</p>
+<ol>
+<li>通过慢查询⽇志定位那些执⾏效率较低的SQL语句，⽤<code>--log-slow-queries[= file_name]</code>选项启动时，mysqld写⼀个包含所有执⾏时间超过long_query_time秒的SQL语句的⽇志⽂件。</li>
+</ol>
+<p>3、 Explain查看执行计划（type，key，Extra）</p>
+<pre><code class="language-sql">   mysql&gt; explain select sum(amount) from customer a, payment b where 1=1 and
+    a.customer_id= b.customer_id and email = 'JANE.BENNETT@sakilacustomer.org'\G
+    *************************** 1. row ***************************
+    id: 1
+    select_type: SIMPLE
+    table: a
+    type: ALL
+    possible_keys: PRIMARY
+    key: NULL
+    key_len: NULL
+    ref: NULL
+    rows: 583
+    Extra: Using where
+    *************************** 2. row ***************************
+    id: 1
+    select_type: SIMPLE
+    table: b
+    type: ref
+    possible_keys: idx_fk_customer_id
+    key: idx_fk_customer_id
+    key_len: 2
+    ref: sakila.a.customer_id
+    rows: 12
+    Extra:
+    2 rows in set (0.00 sec)
+</code></pre>
+<ul>
+<li>select_type：表⽰SELECT的类型，常见的取值有
+<ul>
+<li>SIMPLE（简单表，即不使⽤表连接或者⼦查询）、</li>
+<li>PRIMARY（主查询，即外层的查询）、</li>
+<li>UNION（UNION中的第⼆个或者后⾯的查询语句）、</li>
+<li>SUBQUERY（⼦查询中的第⼀个SELECT）等。</li>
+</ul>
+</li>
+<li>table：输出结果集的表。</li>
+<li><strong>type</strong>：表⽰MySQL在表中找到所需⾏的⽅式，或者叫访问类型，
+<ul>
+<li>type=ALL，全表扫描</li>
+<li>type=index，索引全扫描</li>
+<li>type=range，索引范围扫描</li>
+<li>type=ref，使用非唯一索引扫描或者唯一索引的前缀扫描</li>
+<li>type=eq_req，使用的索引是唯一索引</li>
+<li>type=const/system，单表中最多只有一个匹配行，非常迅速</li>
+<li>type=NULL，mysql不需要访问表或者索引，直接获得结果</li>
+<li>类型type还有其他值，如ref_or_null（与ref类似，区别在于条件中包含对NULL的查询）、index_merge（索引合并优化）、unique_subquery（in 的后⾯是⼀个查询主键字段的⼦查询）、index_subquery（与unique_subquery 类似，区别在于in 的后⾯是查询⾮唯⼀索引字段的⼦查询）等。</li>
+</ul>
+</li>
+<li>possible_keys：表⽰查询时可能使⽤的索引。</li>
+<li>key：表⽰实际使⽤的索引。</li>
+<li>key_len：使⽤到索引字段的长度。</li>
+<li>rows：扫描⾏的数量。</li>
+<li>Extra：执⾏情况的说明和描述，包含不适合在其他列中显⽰但是对执⾏计划⾮常重要的额外信息。
+<ul>
+<li><em>Using Index：索引覆盖，只通过索引就查到了具体数据</em>。</li>
+</ul>
+</li>
+</ul>
+<p>4、<code>show profile</code>查看mysql线程消耗掉具体时间（高级）
+通过have_profiling参数，能够看到当前MySQL是否⽀持profile
+show profile能够在做SQL优化时帮助我们了解时间都耗费到哪⾥去了。⽽MySQL
+5.6则通过trace⽂件进⼀步向我们展⽰了优化器是如何选择执⾏计划的。</p>
+<p>5、show trace查看mysql如何选择执行计划
+⾸先打开trace，设置格式为JSON，设置trace最⼤能够使⽤的内存⼤⼩，避免解析过程中因为默认内存过⼩⽽不能够完整显⽰。</p>
+<pre><code class="language-sql">mysql&gt; SET OPTIMIZER_TRACE=&quot;enabled=on&quot;,END_MARKERS_IN_JSON=on;
+Query OK, 0 rows affected (0.03 sec)
+mysql&gt; SET OPTIMIZER_TRACE_MAX_MEM_SIZE=1000000;
+Query OK, 0 rows affected (0.00 sec)
+</code></pre>
+<p>6、确定问题采取相应的优化措施</p>
+<h2 id="sql分类"><a class="header" href="#sql分类">sql分类</a></h2>
+<p>SQL语言共分为四大类：查询语言DQL，控制语言DCL，操纵语言DML，定义语言DDL。</p>
+<ul>
+<li>DQL：可以简单理解为SELECT语句；</li>
+<li>DCL：GRANT、ROLLBACK和COMMIT一类语句；</li>
+<li>DML：可以理解为CREATE一类的语句；</li>
+<li>DDL：INSERT、UPDATE和DELETE语句都是；</li>
+</ul>
+<h2 id="sql优化"><a class="header" href="#sql优化">sql优化</a></h2>
+<h3 id="插入大批量数据优化方式"><a class="header" href="#插入大批量数据优化方式">插入大批量数据优化方式</a></h3>
+<p>当⽤load命令导⼊数据的时候， 适当的设置可以提⾼导⼊的速度。</p>
+<ol>
+<li>MyISAM存储引擎
+<pre><code class="language-sql">--- 打开或者关闭MyISAM表⾮唯⼀索引的更新
+ALTER TABLE tbl_name DISABLE KEYS;
+loading the data;
+ALTER TABLE tbl_name ENABLE KEYS;
+</code></pre>
+</li>
+<li>Innodb存储引擎
+<ol>
+<li>因为InnoDB类型的表是按照主键的顺序保存的， 所以将导⼊的数据按照主键的顺序排列， 可以有效地提⾼导⼊数据的效率</li>
+<li>在导⼊数据前执⾏<code>SET UNIQUE_CHECKS=0</code>， 关闭唯⼀性校验， 在导⼊结束后执⾏<code>SET UNIQUE_CHECKS=1</code>， 恢复唯⼀性校验， 可以提⾼导⼊的效率</li>
+<li>如果应⽤使⽤⾃动提交的⽅式， 建议在导⼊前执⾏<code>SET AUTOCOMMIT=0</code>，关闭⾃动提交， 导⼊结束后再执⾏<code>SET AUTOCOMMIT=1</code>， 打开⾃动提交， 也可以提⾼导⼊的效率</li>
+</ol>
+</li>
+</ol>
+<h3 id="insert语句优化"><a class="header" href="#insert语句优化">insert语句优化</a></h3>
+<ol>
+<li>如果同时从同⼀客户端插⼊很多⾏， 应尽量使⽤多个值表的INSERT语句， 这种⽅式将⼤⼤缩减客户端与数据库之间的连接、 关闭等消耗。</li>
+<li>如果从不同客户端插⼊很多⾏， 可以通过使⽤ INSERT DELAYED语句得到更⾼的速度。 DELAYED的含义是让INSERT语句马上执⾏， 其实数据都被放在内存的队列中， 并没有真正写⼊磁盘。</li>
+<li>如果进⾏批量插⼊， 可以通过增加bulk_insert_buffer_size变量值的⽅法来提⾼速度， 但是， 这只能对MyISAM表使⽤。</li>
+<li>当从⼀个⽂本⽂件装载⼀个表时， 使⽤ LOAD DATA INFILE。 这通常⽐使⽤很多INSERT语句快20倍。</li>
+</ol>
+<h3 id="orderby语句优化"><a class="header" href="#orderby语句优化">orderby语句优化</a></h3>
+<h3 id="mysql中的排序式"><a class="header" href="#mysql中的排序式">MySQL中的排序⽅式</a></h3>
+<p><strong>sql查询的排序方式</strong></p>
+<p>第⼀种通过有序索引顺序扫描直接返回有序数据，这种⽅式在使⽤ explain 分析查询的时候显⽰为<strong>Using Index</strong>，不需要额外的排序，操作效率较⾼。</p>
+<p>第⼆种是通过对返回数据进⾏排序，也就是通常说的 Filesort 排序，所有不是通过索引直接返回排序结果的排序都叫Filesort排序。Filesort并不代表通过磁盘⽂件进⾏排序，⽽只是说明进⾏了⼀个排序操作，⾄于排序操作是否使⽤了磁盘⽂件或临时表等，则取决于MySQL服务器对排序参数的设置和需要排序数据的⼤⼩。</p>
+<p><strong>fileSort排序算法</strong></p>
+<p>两次扫描算法（Two Passes）：⾸先根据条件取出排序字段和⾏指针信息，之后在排序区 sort buffer中排序。 如果排序区 sort buffer不够，则在临时表Temporary Table中存储排序结果。完成排序后根据⾏指针回表读取记录。 该算法是MySQL 4.1之前采⽤的算法，需要两次访问数据，第⼀次获取排序字段和⾏指针信息，第⼆次根据⾏指针 获取记录，尤其是第⼆次读取操作可能导致⼤量随机I/O操作；优点是排序的时候内存开销较少。</p>
+<p>⼀次扫描算法（Single Pass）：⼀次性取出满⾜条件的⾏的所有字段，然后在排序区sort buffer中排序后直接输 出结果集。排序的时候内存开销⽐较⼤，但是排序效率⽐两次扫描算法要⾼。</p>
+<h3 id="优化方法"><a class="header" href="#优化方法">优化方法</a></h3>
+<p>尽量减少额外的排序，通过索引直接返回有序数据。WHERE条件和ORDER BY使⽤相同的索引，并且ORDER BY的 顺序和索引顺序相同，并且ORDER BY的字段都是升序或者都是降序。否则肯定需要额外的排序操作，这样就会出现Filesort。</p>
+<ol>
+<li>适当加⼤系统变量 <code>max_length_for_sort_data</code> 的值</li>
+<li>适当加⼤ <code>sort_buffer_size</code> 排序区，设置过大会导致swap严重</li>
+<li>查询只使用必要得字段，禁止用select *选择所有字段</li>
+</ol>
+<h3 id="groupby语句优化"><a class="header" href="#groupby语句优化">groupby语句优化</a></h3>
+<p>默认情况下，MySQL对所有GROUP BY col1,col2,…的字段进⾏排序。这与在查询 中指定ORDER BY col1,col2,…类似。因此，如果显式包括⼀个包含相同列的ORDER BY⼦句，则对MySQL的实际执⾏性能没有什么影响。
+如果查询包括GROUP BY但⽤户想要避免排序结果的消耗，则可以指定ORDER BY NULL禁⽌排序，</p>
+<h3 id="or语句优化"><a class="header" href="#or语句优化">OR语句优化</a></h3>
+<p>对于含有OR的查询⼦句，如果要利⽤索引，则OR之间的每个条件列都必须⽤到索引； 如果没有索引， 则应该考虑增加索引
+但是当在建有复合索引的列company_id和moneys上⾯做OR操作时，却不能⽤到索引。</p>
+<h3 id="分页查询优化"><a class="header" href="#分页查询优化">分页查询优化</a></h3>
+<ol>
+<li>第⼀种优化思路，在索引上完成排序分页的操作，最后根据主键关联回原表查询所需要的其他列内容。</li>
+<li>把LIMIIT查询转换成某个位置的查询，只适合在排序字段不会出现重复值的特定环境</li>
+</ol>
+<h3 id="嵌套查询优化"><a class="header" href="#嵌套查询优化">嵌套查询优化</a></h3>
+<p>使⽤⼦查询可以⼀ 次性地完成很多逻辑上需要多个步骤才能完成的 SQL 操作，同时也可以避免事务或者 表锁死，并且写起来也很容易。MySQL在处理 含有OR字句的查询时，实际是对OR的各个字段分别查询后的结果进⾏了UNION操作。
+但是当在建有复合索引的列上⾯做OR操作时，却不能⽤到索引。</p>
+<h2 id="mysql组合索引最左原则详解"><a class="header" href="#mysql组合索引最左原则详解">mysql组合索引最左原则详解</a></h2>
+<p>假设表test有id,A,B,C,D五个字段，id是主键，组合索引是C-D,请问以下sql语句哪些会走索引？</p>
+<pre><code class="language-sql">select * from test where C=1;--走索引
+select * from test where D=1 and C=1 ;--走索引，mysql会优化
+select * from test where C=1 and D=1 ;--走索引
+select * from test where D=1;--不走
+select C from test where D=1;--走索引，以及部分表扫描,所选字段在组合索引内。
+select A, B from test where D=1;--不走索引，全表扫描，所选字段不再组合索引内。
+</code></pre>
+<h2 id="mysql常用参数配置"><a class="header" href="#mysql常用参数配置">mysql常用参数配置</a></h2>
+<ol>
+<li>慢查询配置</li>
+<li>默认事物级别</li>
+<li>最大连接数</li>
+</ol>
+<h2 id="联合查询和子查询的效率比较"><a class="header" href="#联合查询和子查询的效率比较">联合查询和子查询的效率比较</a></h2>
+<p>mysql5.5之前联合查询明显优于子查询，因为不需要创建中间表，mysql5.5之后子查询有所提升，
+建议<strong>优先使用联合查询</strong>。</p>
+<h2 id="数据库表设计的原则"><a class="header" href="#数据库表设计的原则">数据库表设计的原则</a></h2>
+<p>第一范式：要求有主键，并且要求每一个字段原子性不可再分
+第二范式：要求所有非主键字段完全依赖主键，不能产生部分依赖
+第三范式：所有非主键字段和主键字段之间不能产生传递依赖</p>
+<h2 id="mysql集群模式"><a class="header" href="#mysql集群模式">mysql集群模式</a></h2>
+<ol>
+<li>主从</li>
+<li>双主+keepalived</li>
+</ol>
+<h2 id="mysql主从同步的原理"><a class="header" href="#mysql主从同步的原理">mysql主从同步的原理</a></h2>
+<p><img src="../images/database/mysql-copy.png" alt="mysq复制原理图" /></p>
+<h2 id="binlog的三种方式"><a class="header" href="#binlog的三种方式">binlog的三种方式</a></h2>
+<h3 id="1statement基于sql的模式"><a class="header" href="#1statement基于sql的模式">1、statement，基于sql的模式</a></h3>
+<p>⽇志中记录的都是语句 （statement），每⼀条对数据造成修改的SQL语句都会记录在⽇志中，通过 mysqlbinlog⼯具，可以清晰地看到每条语句的⽂本。主从复制的时候，从库（slave） 会将⽇志解析为原⽂本，并在从库重新执⾏⼀次。</p>
+<ul>
+<li>优点是⽇志记录清晰易读、⽇志量少，对I/O影响较⼩。</li>
+<li>缺点是在某些情况下slave的⽇志复制会出错</li>
+</ul>
+<h3 id="2row基于行"><a class="header" href="#2row基于行">2、row，基于行</a></h3>
+<p>它将每⼀⾏的变更记录到⽇志中，⽽不是记录SQL语句。⽐如⼀个简单的更新SQL：update emp set name='abc'，如果是STATEMENT格式，⽇志中会记录⼀⾏SQL⽂本；如果是ROW，由于是对全表进⾏更新，也就是每⼀⾏记录都会发⽣变更，如果是⼀个100万⾏的⼤表，则⽇志中会记录 100万条记录的变化情况。</p>
+<ul>
+<li>优点是会记录每⼀⾏数据的变化细节，不会出现某些情况下⽆法复制的情况。</li>
+<li>缺点是⽇志量⼤，对I/O影响较⼤</li>
+</ul>
+<h3 id="3mixed混合模式"><a class="header" href="#3mixed混合模式">3、mixed，混合模式</a></h3>
+<p>⽬前MySQL默认的⽇志格式，即混合了STATEMENT和ROW两种⽇志。默 认情况下采⽤STATEMENT，但在⼀些特殊情况下采⽤ROW来进⾏记录，⽐如采⽤ NDB存储引擎，此时对表的DML语句全部采⽤ROW；客户端使⽤了临时表；客户端 采⽤了不确定函数，⽐如current_user()等，因为这种不确定函数在主从中得到的值可 能不同，导致主从数据产⽣不⼀致。MIXED格式能尽量利⽤两种模式的优点，⽽避开它们的缺点。</p>
+<h2 id="主从同步延迟是怎么产生的"><a class="header" href="#主从同步延迟是怎么产生的">主从同步延迟是怎么产生的？</a></h2>
+<p>当主库的TPS并发较高时，产生的DDL数量超过slave一个sql线程所能承受的范围，那么延时就产生了，当然还有就是可能与slave的大型query语句产生了锁等待。首要原因：数据库在业务上读写压力太大，CPU计算负荷大，网卡负荷大，硬盘随机IO太高次要原因：读写binlog带来的性能影响，网络传输延迟。</p>
+<h2 id="解决主从同步延迟"><a class="header" href="#解决主从同步延迟">解决主从同步延迟</a></h2>
+<p>1、判断是否是主从同步延迟：执行<code>show slave status</code>命令，查看里面的<code>Seconds_Behind_Master</code>的值，</p>
+<ul>
+<li>NULL，表示io_thread或是sql_thread有任何一个发生故障；</li>
+<li>0，该值为零，表示主从复制良好；</li>
+<li>正值，表示主从已经出现延时，数字越大表示从库延迟越严重</li>
+</ul>
+<h2 id="典型的sql语句编写"><a class="header" href="#典型的sql语句编写">典型的sql语句编写</a></h2>
+<blockquote>
+<p>参考《深入浅出mysql第二版》，《高性能mysql第三版》，两本书。</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../database/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../database/mysql-process.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../database/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../database/mysql-process.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

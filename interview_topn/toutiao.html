@@ -1,0 +1,530 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>字节跳动面试题 - java offer终结者</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="java找工作，offer终结者！">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../index.html"><strong aria-hidden="true">1.</strong> 介绍</a></li><li class="chapter-item "><a href="../howtoInteview.html"><strong aria-hidden="true">2.</strong> 如何面试</a></li><li class="chapter-item "><a href="../basic/basic.html"><strong aria-hidden="true">3.</strong> java基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/java-binary.html"><strong aria-hidden="true">3.1.</strong> java二进制操作符</a></li><li class="chapter-item "><a href="../basic/javaweb.html"><strong aria-hidden="true">3.2.</strong> java-web基础</a></li><li class="chapter-item "><a href="../basic/java-versions.html"><strong aria-hidden="true">3.3.</strong> java版本特性</a></li><li class="chapter-item "><a href="../basic/io/index.html"><strong aria-hidden="true">3.4.</strong> io流</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/io/bio.html"><strong aria-hidden="true">3.4.1.</strong> bio</a></li><li class="chapter-item "><a href="../basic/io/nio.html"><strong aria-hidden="true">3.4.2.</strong> nio</a></li><li class="chapter-item "><a href="../basic/io/aio.html"><strong aria-hidden="true">3.4.3.</strong> aio</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/index.html"><strong aria-hidden="true">3.5.</strong> java数据类型和集合</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/basic.html"><strong aria-hidden="true">3.5.1.</strong> basic</a></li><li class="chapter-item "><a href="../basic/collection/list.html"><strong aria-hidden="true">3.5.2.</strong> list</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/arrayList扩容机制.html"><strong aria-hidden="true">3.5.2.1.</strong> arrayList扩容</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/map.html"><strong aria-hidden="true">3.5.3.</strong> map</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../basic/collection/hashmap死循环问题.html"><strong aria-hidden="true">3.5.3.1.</strong> hashmap死循环解析</a></li></ol></li><li class="chapter-item "><a href="../basic/collection/set.html"><strong aria-hidden="true">3.5.4.</strong> set</a></li><li class="chapter-item "><a href="../basic/collection/queue.html"><strong aria-hidden="true">3.5.5.</strong> queue</a></li><li class="chapter-item "><a href="../basic/collection/safeCollection.html"><strong aria-hidden="true">3.5.6.</strong> 并发容器</a></li></ol></li></ol></li><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.</strong> java高级</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/senior.html"><strong aria-hidden="true">4.1.</strong> javaSE高级</a></li><li class="chapter-item "><a href="../java_advanced/advance-features.html"><strong aria-hidden="true">4.2.</strong> java高级特性</a></li><li class="chapter-item "><a href="../java_advanced/threads/thread.html"><strong aria-hidden="true">4.3.</strong> 多线程</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/threads/threadPool.html"><strong aria-hidden="true">4.3.1.</strong> 线程池</a></li><li class="chapter-item "><a href="../java_advanced/threads/threadTools.html"><strong aria-hidden="true">4.3.2.</strong> 并发工具类</a></li><li class="chapter-item "><a href="../java_advanced/threads/asyncThread.html"><strong aria-hidden="true">4.3.3.</strong> java异步</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/locks/index.html"><strong aria-hidden="true">4.4.</strong> 锁</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/locks/synchronize.html"><strong aria-hidden="true">4.4.1.</strong> 悲观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/lock.html"><strong aria-hidden="true">4.4.2.</strong> 乐观锁</a></li><li class="chapter-item "><a href="../java_advanced/locks/atomic.html"><strong aria-hidden="true">4.4.3.</strong> 原子操作</a></li><li class="chapter-item "><a href="../java_advanced/locks/optimizingLock.html"><strong aria-hidden="true">4.4.4.</strong> 锁优化</a></li></ol></li><li class="chapter-item "><a href="../java_advanced/jvm/jvm.html"><strong aria-hidden="true">4.5.</strong> jvm虚拟机</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../java_advanced/jvm/G1.html"><strong aria-hidden="true">4.5.1.</strong> g1虚拟机</a></li><li class="chapter-item "><a href="../java_advanced/jvm/zgc.html"><strong aria-hidden="true">4.5.2.</strong> zgc虚拟机</a></li></ol></li></ol></li><li class="chapter-item "><a href="../kuangjia/index.html"><strong aria-hidden="true">5.</strong> java框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring.html"><strong aria-hidden="true">5.1.</strong> spring</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../kuangjia/spring-pattern.html"><strong aria-hidden="true">5.1.1.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../kuangjia/springboot.html"><strong aria-hidden="true">5.1.2.</strong> springboot</a></li></ol></li><li class="chapter-item "><a href="../kuangjia/mybatis.html"><strong aria-hidden="true">5.2.</strong> mybatis</a></li><li class="chapter-item "><a href="../kuangjia/hibernate.html"><strong aria-hidden="true">5.3.</strong> hibernate</a></li><li class="chapter-item "><a href="../kuangjia/netty.html"><strong aria-hidden="true">5.4.</strong> netty</a></li><li class="chapter-item "><a href="../kuangjia/dubbo.html"><strong aria-hidden="true">5.5.</strong> dubbo</a></li></ol></li><li class="chapter-item "><a href="../database/index.html"><strong aria-hidden="true">6.</strong> 数据库</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql.html"><strong aria-hidden="true">6.1.</strong> mysql</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../database/mysql-process.html"><strong aria-hidden="true">6.1.1.</strong> sql执行流程解析</a></li><li class="chapter-item "><a href="../database/mysql-lock.html"><strong aria-hidden="true">6.1.2.</strong> sql锁与事务</a></li></ol></li><li class="chapter-item "><a href="../database/mongodb.html"><strong aria-hidden="true">6.2.</strong> mongodb</a></li><li class="chapter-item "><a href="../database/redis.html"><strong aria-hidden="true">6.3.</strong> redis</a></li><li class="chapter-item "><a href="../database/tair.html"><strong aria-hidden="true">6.4.</strong> tair</a></li><li class="chapter-item "><a href="../database/ElasticSearch.html"><strong aria-hidden="true">6.5.</strong> ElasticSearch</a></li><li class="chapter-item "><a href="../database/memcached.html"><strong aria-hidden="true">6.6.</strong> memcached</a></li><li class="chapter-item "><a href="../database/cache.html"><strong aria-hidden="true">6.7.</strong> 缓存架构</a></li><li class="chapter-item "><a href="../database/db-middleware.html"><strong aria-hidden="true">6.8.</strong> 数据库中间件</a></li></ol></li><li class="chapter-item "><a href="../mq/index.html"><strong aria-hidden="true">7.</strong> 消息队列</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../mq/kafka.html"><strong aria-hidden="true">7.1.</strong> kafka</a></li><li class="chapter-item "><a href="../mq/rabbitmq.html"><strong aria-hidden="true">7.2.</strong> rabbitmq</a></li><li class="chapter-item "><a href="../mq/rocketmq.html"><strong aria-hidden="true">7.3.</strong> rocketmq</a></li><li class="chapter-item "><a href="../mq/jms.html"><strong aria-hidden="true">7.4.</strong> jms</a></li><li class="chapter-item "><a href="../mq/mq-middleware.html"><strong aria-hidden="true">7.5.</strong> 消息中间件</a></li></ol></li><li class="chapter-item "><a href="../ds/index.html"><strong aria-hidden="true">8.</strong> 分布式架构</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../ds/architecture.html"><strong aria-hidden="true">8.1.</strong> 架构基础</a></li><li class="chapter-item "><a href="../ds/dsProtocol.html"><strong aria-hidden="true">8.2.</strong> 分布式协议</a></li><li class="chapter-item "><a href="../ds/raft-protocol.html"><strong aria-hidden="true">8.3.</strong> raft协议</a></li><li class="chapter-item "><a href="../ds/paxos-protocol.html"><strong aria-hidden="true">8.4.</strong> paxos协议</a></li><li class="chapter-item "><a href="../ds/microService.html"><strong aria-hidden="true">8.5.</strong> 微服务</a></li><li class="chapter-item "><a href="../ds/splitdb.html"><strong aria-hidden="true">8.6.</strong> 分库分表</a></li><li class="chapter-item "><a href="../ds/rpc.html"><strong aria-hidden="true">8.7.</strong> rpc框架</a></li><li class="chapter-item "><a href="../ds/dsTransaction.html"><strong aria-hidden="true">8.8.</strong> 分布式事务</a></li><li class="chapter-item "><a href="../ds/dsLock.html"><strong aria-hidden="true">8.9.</strong> 分布式锁</a></li><li class="chapter-item "><a href="../ds/register-center.html"><strong aria-hidden="true">8.10.</strong> 注册中心对比</a></li><li class="chapter-item "><a href="../ds/datarooms.html"><strong aria-hidden="true">8.11.</strong> 多机房部署</a></li></ol></li><li class="chapter-item "><a href="../devtools/index.html"><strong aria-hidden="true">9.</strong> 开发工具</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devtools/maven.html"><strong aria-hidden="true">9.1.</strong> maven</a></li><li class="chapter-item "><a href="../devtools/gradle.html"><strong aria-hidden="true">9.2.</strong> gradle</a></li><li class="chapter-item "><a href="../devtools/git.html"><strong aria-hidden="true">9.3.</strong> git</a></li><li class="chapter-item "><a href="../devtools/blog-tool.html"><strong aria-hidden="true">9.4.</strong> blog工具</a></li></ol></li><li class="chapter-item "><a href="../linux/index.html"><strong aria-hidden="true">10.</strong> linux</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../linux/theory.html"><strong aria-hidden="true">10.1.</strong> linux原理</a></li><li class="chapter-item "><a href="../linux/caozuo.html"><strong aria-hidden="true">10.2.</strong> linux操作</a></li></ol></li><li class="chapter-item "><a href="../server/index.html"><strong aria-hidden="true">11.</strong> web服务器常用框架</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../server/nginx.html"><strong aria-hidden="true">11.1.</strong> nginx</a></li><li class="chapter-item "><a href="../server/apache.html"><strong aria-hidden="true">11.2.</strong> apache</a></li><li class="chapter-item "><a href="../server/tomcat.html"><strong aria-hidden="true">11.3.</strong> tomcat</a></li><li class="chapter-item "><a href="../server/docker.html"><strong aria-hidden="true">11.4.</strong> docker</a></li><li class="chapter-item "><a href="../server/zookeeper.html"><strong aria-hidden="true">11.5.</strong> zookeeper</a></li></ol></li><li class="chapter-item "><a href="../pattern/index.html"><strong aria-hidden="true">12.</strong> 设计模式</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../pattern/singleton.html"><strong aria-hidden="true">12.1.</strong> 单例模式</a></li><li class="chapter-item "><a href="../pattern/factory.html"><strong aria-hidden="true">12.2.</strong> 工厂模式</a></li><li class="chapter-item "><a href="../pattern/proxy.html"><strong aria-hidden="true">12.3.</strong> 代理模式</a></li><li class="chapter-item "><a href="../pattern/observer.html"><strong aria-hidden="true">12.4.</strong> 观察者模式</a></li><li class="chapter-item "><a href="../pattern/strategy.html"><strong aria-hidden="true">12.5.</strong> 策略模式</a></li><li class="chapter-item "><a href="../pattern/template.html"><strong aria-hidden="true">12.6.</strong> 模板方法模式</a></li><li class="chapter-item "><a href="../pattern/state.html"><strong aria-hidden="true">12.7.</strong> 状态模式</a></li><li class="chapter-item "><a href="../pattern/chain.html"><strong aria-hidden="true">12.8.</strong> 责任链模式</a></li><li class="chapter-item "><a href="../pattern/jdk-pattern.html"><strong aria-hidden="true">12.9.</strong> jdk中设计模式</a></li><li class="chapter-item "><a href="../pattern/spring-pattern.html"><strong aria-hidden="true">12.10.</strong> spring中设计模式</a></li><li class="chapter-item "><a href="../pattern/thinkInDeep.html"><strong aria-hidden="true">12.11.</strong> 编程思想相关</a></li></ol></li><li class="chapter-item "><a href="../architecture_design/index.html"><strong aria-hidden="true">13.</strong> 系统架构设计</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../architecture_design/secondsKill.html"><strong aria-hidden="true">13.1.</strong> 秒杀系统设计</a></li><li class="chapter-item "><a href="../architecture_design/ds_id.html"><strong aria-hidden="true">13.2.</strong> 分布式Id生成系统</a></li><li class="chapter-item "><a href="../architecture_design/friend_feed.html"><strong aria-hidden="true">13.3.</strong> 朋友圈系统设计</a></li><li class="chapter-item "><a href="../architecture_design/RPC.html"><strong aria-hidden="true">13.4.</strong> rpc框架设计</a></li></ol></li><li class="chapter-item "><a href="../bigdata/bigdata.html"><strong aria-hidden="true">14.</strong> 大数据处理</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../bigdata/hadoop.html"><strong aria-hidden="true">14.1.</strong> hadoop</a></li><li class="chapter-item "><a href="../bigdata/spark.html"><strong aria-hidden="true">14.2.</strong> spark</a></li><li class="chapter-item "><a href="../bigdata/ds-nosql.html"><strong aria-hidden="true">14.3.</strong> hdfs，hive和hbase</a></li></ol></li><li class="chapter-item "><a href="../algorithm/index.html"><strong aria-hidden="true">15.</strong> 算法基础</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../algorithm/struct.html"><strong aria-hidden="true">15.1.</strong> 数据结构</a></li><li class="chapter-item "><a href="../algorithm/sort.html"><strong aria-hidden="true">15.2.</strong> 排序算法</a></li><li class="chapter-item "><a href="../algorithm/search.html"><strong aria-hidden="true">15.3.</strong> 查找算法</a></li><li class="chapter-item "><a href="../algorithm/classic.html"><strong aria-hidden="true">15.4.</strong> 经典算法</a></li><li class="chapter-item "><a href="../algorithm/tree.html"><strong aria-hidden="true">15.5.</strong> 树相关算法</a></li></ol></li><li class="chapter-item "><a href="../network/index.html"><strong aria-hidden="true">16.</strong> 网络</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../network/http.html"><strong aria-hidden="true">16.1.</strong> http协议</a></li><li class="chapter-item "><a href="../network/tcp-ip.html"><strong aria-hidden="true">16.2.</strong> tcp协议</a></li></ol></li><li class="chapter-item "><a href="../recommend_books/index.html"><strong aria-hidden="true">17.</strong> 推荐书籍</a></li><li class="chapter-item "><a href="../codingInAction/coding.html"><strong aria-hidden="true">18.</strong> 实战演练</a></li><li class="chapter-item expanded "><a href="../interview_topn/index.html"><strong aria-hidden="true">19.</strong> topN公司面试题汇总</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../interview_topn/alibaba.html"><strong aria-hidden="true">19.1.</strong> 阿里巴巴面试题</a></li><li class="chapter-item expanded "><a href="../interview_topn/toutiao.html" class="active"><strong aria-hidden="true">19.2.</strong> 字节跳动面试题</a></li><li class="chapter-item "><a href="../interview_topn/meituan.html"><strong aria-hidden="true">19.3.</strong> 美团点评面试题</a></li><li class="chapter-item "><a href="../interview_topn/tengxun.html"><strong aria-hidden="true">19.4.</strong> 腾讯面试题</a></li><li class="chapter-item "><a href="../interview_topn/kuaishou.html"><strong aria-hidden="true">19.5.</strong> 快手面试题</a></li></ol></li><li class="chapter-item "><a href="../devenv/index.html"><strong aria-hidden="true">20.</strong> 附录-环境搭建</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../devenv/gitlab.html"><strong aria-hidden="true">20.1.</strong> gitlab搭建</a></li><li class="chapter-item "><a href="../devenv/jenkins.html"><strong aria-hidden="true">20.2.</strong> jenkins搭建</a></li><li class="chapter-item "><a href="../devenv/maven.html"><strong aria-hidden="true">20.3.</strong> maven私服搭建</a></li><li class="chapter-item "><a href="../devenv/mysql.html"><strong aria-hidden="true">20.4.</strong> mysql集群搭建</a></li><li class="chapter-item "><a href="../devenv/mongodb.html"><strong aria-hidden="true">20.5.</strong> mongodb集群搭建</a></li><li class="chapter-item "><a href="../devenv/nginx.html"><strong aria-hidden="true">20.6.</strong> nginx配置</a></li><li class="chapter-item "><a href="../devenv/tomcat.html"><strong aria-hidden="true">20.7.</strong> tomcat集群搭建</a></li><li class="chapter-item "><a href="../devenv/redis.html"><strong aria-hidden="true">20.8.</strong> redis集群搭建</a></li><li class="chapter-item "><a href="../devenv/docker.html"><strong aria-hidden="true">20.9.</strong> docker环境搭建</a></li><li class="chapter-item "><a href="../devenv/zookeeper.html"><strong aria-hidden="true">20.10.</strong> zookeeper集群搭建</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">java offer终结者</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="字节跳动面试题汇总"><a class="header" href="#字节跳动面试题汇总">字节跳动面试题汇总</a></h1>
+<h2 id="手写算法题汇总"><a class="header" href="#手写算法题汇总">手写算法题汇总</a></h2>
+<p>5个人去一个海岛寻宝，最后一共找到了100枚金币。他们约定了一个分配方案。</p>
+<p>给你一个有序整数数组，数组中的数可以是正数、负数、零，请实现一个函数，这个函数返回一个整数：返回这个数组所有数的平方值中有多少种不同的取值。</p>
+<p>一个环有10个节点，编号0-9。从0点出发，走N步又能回到0点，共有多少种走法？
+一个乱序数组，求第K大的数。排序方式使用字典序。</p>
+<p>1，给定数组，每个元素代表一个木头的长度，木头可以任意截断， 从这堆木头中截出至少k个相同长度为m的木块，已知k，求max(m) 
+2, 数组找右边第一个比它大的数 没有输出-1<br />
+3, rand5 [0,1,2,3,4] 实现 rand7[0,1,2,3,4,5,6]</p>
+<p>算法：大数（字符串）相加 
+算法：统计n 转换成二进制数，其中1 的个数
+算法：统计【0，n】所有的数转换成二进制数的1个总个数</p>
+<p>算法1：输出一个矩阵离原点从近到远的坐标。（距离：|x|+|y|）</p>
+<p>算法3：一个无序数组除了一个数，剩下都出现偶数次，且都相邻出现，比如11233444400 ，找到单独出现的数字</p>
+<p>算法题：最长上升子序列长度。</p>
+<p>写题：已知二叉树的先序遍历序列，输出它的中序遍历序列。比如先序：ABC##D#E###，输出中序CBDEA。#表示空节点，中序输出不需要#。</p>
+<p>写个题，给定一个数组 [1,2,3] 和一个值 x，数字可以重复选取，输出所有和等于 x 的结果。
+算法: 最长无重复子串 不用dp 空间常数时间</p>
+<p>算法题： String偏移，左移k个单位
+算法题：实现一个减法器 12345.789 - 3333675.32455
+算法题：给一个二维数组 找出其中最长上升序列 [[1 5 8], [2 6 7], [4 1 3] ] 最长 1 2 6 7 8</p>
+<p>算法题：二叉树的最低公共祖先
+算法题：二叉树的Z字形遍历。
+算法题：迭代二叉树的深度
+算法题：二叉搜索树的后序遍历序列
+算法题：根据中序与先序数组，求后序遍历的数组 
+算法题：二叉树多个节点的最低公共祖先
+一棵二叉树，求最大通路长度。（即最大左右子树高度之和）</p>
+<p>算法题：链表倒数第k个结点
+算法题：K 个一组翻转链表
+算法题：删除链表倒数第k个元素
+算法题：0~9的环，从0出发，N步后能否走回0。</p>
+<p>算法题：给你一串正整数，要求将其中两个进行一次swap，得到一个最大的正整数。
+例如：326587变成826537。（单线栈或额外储存最后出现的坐标）
+算法题：随机生成100个100~200位的大数，然后进行求和。</p>
+<p>算法题：0～n-1中缺失的数字（两种方法）
+算法题：1，股票，你们懂得
+算法题：2，股票，重复购买
+算法题：3，股票，有交易费用
+算法题：走迷宫，找出一共路径即可
+算法题：给定一共链表 1-&gt;10 -&gt; 3-&gt;8 -&gt;5 -&gt;6 -&gt;7，重新排序位一个升序链表。</p>
+<p>算法题：31.下一个排列
+算法题：全排列和全排列II
+算法：一个无序数组，num[0]&lt;num[1]，num[n-2]&gt;num[n-1]，找到一个数，使得比左右相邻的两个数都大（用二分判断波峰）</p>
+<p>磁盘上有10G大小的文件，存储int型的数字，数据是无序的。给你1M的内存空间，把磁盘上的数据排成有序的</p>
+<p>说了使用二叉排序树...</p>
+<p>面试官提示：使用传统的排序算法。快排，归并这些思路</p>
+<p>写SQL：1。反正写分组查询结合条件</p>
+<p>写SQL：2。在上题基础上加个子查询</p>
+<p>写SQL：表student_score 字段:name, course, score 求 每个人考的最好的一门 </p>
+<p>一、给定一个数组代表股票每天的价格，请问只能买卖一次的情况下，最大化利润是多少？
+二、那在日期不重叠的情况下，可以买卖多次，最大化利润是多少呢？股票买卖问题，leetcode原题
+三、有两个数组，任意长度。 有两个线程分别读取数组a和数组b，线程1循环打印数组a中的数字，线程2循环打印数组b中的数，要求交叉，要求第一个数组先输出。</p>
+<pre><code>
+int a[n] = {1,2,3,4} 
+
+int b[m] = {'a', 'b', 'c'}
+
+以上述a、b数组为例，最终打印的结果类似于下面：1a2b3c4a1b2c3a4b1c...
+
+</code></pre>
+<h2 id="口述算法汇总"><a class="header" href="#口述算法汇总">口述算法汇总</a></h2>
+<p>口述LRU算法， LRU不适合的场景 </p>
+<p>口述最大栈 类似剑指offer里的最小栈 </p>
+<p>口述 最小生成树算法 </p>
+<p>口述 两数之和（可能不存在两数和为target）</p>
+<h2 id="智力题"><a class="header" href="#智力题">智力题</a></h2>
+<p>智力题：甲乙最后三次抛硬币，正反反甲赢，反反正乙赢，俩人胜出概率谁大？</p>
+<p>智力题：一个圆内随机三个点刚好在一个半圆的概率。算错了，我想的简单了，后来网上查了一下发现是一个挺复杂的问题。</p>
+<p>还有一个思维题 一个岛上 居民只带红帽子或者白帽子，他们不能交流， 红帽子数大于等于1，如果他们能知道自己的帽子什么颜色则可以离岛，问最后是什么情况，如果能全部离岛问需要多少天。</p>
+<h2 id="场景题"><a class="header" href="#场景题">场景题</a></h2>
+<p>场景题：</p>
+<ol>
+<li>给你300G的大文件，前部分是时间戳，后部分是日志内容，如果我想搜寻到某段时间的日志内容，你会怎么处理？(模拟B+树或OS中的多级页表，或者模拟redis中的跳跃表)</li>
+<li>秒杀系统设计，给你一个秒杀任务，如何保证他的可靠性和防止超卖?说说要用到的技术就行。
+<ol>
+<li>你redis如何保证缓存一致性？</li>
+<li>它是来一个请求就下单吗？</li>
+<li>如果两个用户在两个不同的机器上登录进行秒杀，那该用户能同时下单同一件商品两次吗？</li>
+</ol>
+</li>
+<li>微信朋友圈数据库和高可用设计</li>
+</ol>
+<h2 id="技术点汇总"><a class="header" href="#技术点汇总">技术点汇总</a></h2>
+<h3 id="1java基础"><a class="header" href="#1java基础">1、java基础</a></h3>
+<ol>
+<li>进程和线程的区别，使用线程真的能节省时间？</li>
+<li>谈一下线程池用的参数？线程池工作流程？四种预定义的线程池区别。 各自workqueue size是多大？</li>
+<li>JAVA如何保持线程同步？常用的锁有什么？java锁升级是怎么样的？</li>
+<li>hashmap同步问题，扩容机制，怎么扩容的过程？哈希冲突哪有哪些解决？</li>
+<li>concurrentHashmap的工作原理，数据结构？</li>
+<li>泛型，jvm怎么对泛型进行支持？</li>
+<li>Integer 和 int 的区别，平时编程中什么时候使用 Integer，什么时候使用 int？new Integer(1); 会不会从缓存当中取</li>
+<li>List 中为什么只能使用 Integer，不能使用 int？</li>
+<li>介绍下NIO，NIO中Channel的作用</li>
+<li>什么是悲观锁和乐观锁，区别是什么？原理是什么？</li>
+<li>创建线程有哪些方式？线程有哪些状态？</li>
+<li>finalize方法</li>
+<li>说说抽象类和接口的区别。</li>
+<li>synchonized和lock的区别？synchonized优化</li>
+<li>为什么线程多的时候要使用锁而不是CAS？</li>
+<li>谈一下异常，erorr和exception的区别，讲一下受检异常和非受检异常，说一下RuntimeException都有哪些，非受检异常有哪些？如何处理异常</li>
+<li>什么是阻塞和非阻塞，什么是同步，异步？</li>
+<li>什么是反射？反射的用途？为什么java需要反射，c++不需要。</li>
+<li>有哪些方式可以创建一个对象？</li>
+<li>多线程和协程的优缺点？</li>
+</ol>
+<h3 id="java框架springnetty"><a class="header" href="#java框架springnetty">java框架（spring，netty）</a></h3>
+<ol>
+<li>spring的核心模块有哪些？IOC和AOP的原理？</li>
+<li>spring的事务传播是怎么样的，哪些方式？</li>
+<li>spring是如何解决循环依赖的?</li>
+<li></li>
+<li>Netty 的零拷贝怎么实现的？</li>
+<li>讲一下Dubbo的服务降级源码</li>
+<li>hystrix的工作流程？</li>
+<li>hystrix和sentinel的区别？</li>
+</ol>
+<h3 id="jvm原理"><a class="header" href="#jvm原理">jvm原理</a></h3>
+<ol>
+<li>int i = 1; 这样的基本类型可能会存在于jvm的哪些区域？</li>
+<li>jvm 如何判断对象可以被回收？</li>
+<li>jvm 如何判断对象已经死亡，两种方法的判断流程是怎样的，哪个效率高？</li>
+<li>GCRoots 的对象有哪些？本地方法栈中的对象为什么可以作为GCRoots，怎么连接到 Java 对象的？</li>
+<li>java内存分为哪些区域，每个区域的具体作用？</li>
+<li>说说JVM的GC算法，常见的垃圾回收器用的是什么算法。</li>
+<li>说说CMS回收器。</li>
+<li>类加载机制了解吗？说说双亲委任加载机制。最顶层的加载器是什么？</li>
+<li>说说Full GC和Minor GC的回收内容和区别。</li>
+<li>说一下方法表都存什么？说一下每个类都有一张方法表吗？</li>
+<li>说一下栈都有什么？说一下局部变量表都有什么？</li>
+<li>说一下栈溢出，堆溢出？方法区会溢出不？类元数据哪些会溢出？</li>
+<li>Java内存分配的流程？创建一个大对象的流程。为什么大对象直接进入老年代？</li>
+<li>happens-befor原则</li>
+<li>谈谈多态，多态的底层原理</li>
+<li>CAS的底层原理，synchonized的底层原理</li>
+<li>volatile的原理？</li>
+</ol>
+<h3 id="2linux原理和服务器"><a class="header" href="#2linux原理和服务器">2、linux原理和服务器</a></h3>
+<ol>
+<li>水平触发边沿触发的区别？在边沿触发下，一个socket有500的数据，已读取200然后不再处理，是不是剩下的300就永远无法读取？</li>
+<li>free -h，buffers 和cached有什么不同</li>
+<li>后台进程有什么特点，如果要你设计一个进程是后台进程，你会考虑什么</li>
+<li>僵尸进程是什么，如果产生一个僵尸进程，如何查找僵尸进程</li>
+<li>孤儿进程是什么？</li>
+<li>一个进程有20个线程，在某个线程中调用fork，新的进程会有20个线程吗？</li>
+<li>用过哪些Linux命令？</li>
+<li>如何查看Linux系统状态 ，如何查看线程，如何查看服务器负载，top的参数</li>
+<li>知道/proc文件夹吗</li>
+<li>虚拟内存，为什么要用虚拟内存，解决了什么问题；</li>
+<li>进程间通信有哪些方式 ？重点问了消息队列和共享内存以及管道，提了一下信号量，内存共享的实现原理？</li>
+<li>Linux命令，指定两列，提取重复内容</li>
+<li>页面置换算法有哪些？进程调度都有哪些算法？</li>
+<li>linuxI/O过程，内核、用户态</li>
+<li>进程和线程的区别？</li>
+<li>nginx是正向还是反向代理？有什么区别？nginx多站点如何实现负载均衡？</li>
+</ol>
+<h3 id="3网络"><a class="header" href="#3网络">3、网络</a></h3>
+<ol>
+<li>
+<p>tcp三次握手，四次挥手的过程？以及为什么要这么做，TCP三次握手，哪个握手容易遭受到攻击</p>
+</li>
+<li>
+<p>http是基于tcp还是udp？与https有什么区别？ https加密方式是对称的吗？</p>
+</li>
+<li>
+<p>https的加密流程？</p>
+<ol>
+<li>HTTPS的连接过程，中间人是什么？CA认证过程？</li>
+</ol>
+</li>
+<li>
+<p>http的报文结构?</p>
+</li>
+<li>
+<p>TCP第几层，OSI多少层</p>
+</li>
+<li>
+<p>设计http协议，A端发送 AAAA，至少让B端知道AAAA已发送完成。</p>
+</li>
+<li>
+<p>socket中，在tcp协议层面，数据分为10个报文发放。1-7次很顺利，第8次丢失。这次通信一定失败吗？如果第8次数据会重发，那在接收端是不是：先读取到1-7次的数据，然后读取到8-10次的数据?还是9-10次的数据会先到达？</p>
+</li>
+<li>
+<p>tcp/ip 流量控制和拥塞控制，滑动窗口机制，Nagle算法</p>
+</li>
+<li>
+<p>tcp udp区别，基于流和基于报文的区别，会引发什么问题；为什么会有快重传和快恢复，怎么做的；基于udp的协议有什么，是否了解过OICQ协议（表示没了解）；udp怎么可以保证数据安全顺序到达。</p>
+</li>
+<li>
+<p>301/302有什么区别？应用上有什么异同。</p>
+</li>
+<li>
+<p>50X相关错误码的内涵是什么？</p>
+</li>
+<li>
+<p>close wait和time wait是什么？如何排查？有什么意义？</p>
+</li>
+<li>
+<p>TIME_WAIT状态什么时候出现？只在客户端出现？</p>
+</li>
+<li>
+<p>http req和resp的中数据有哪些</p>
+</li>
+<li>
+<p>什么是连接的半打开，半关闭状态</p>
+</li>
+<li>
+<p>域名是如何被解析为ip地址的</p>
+</li>
+<li>
+<p>dns缓存是存放在浏览器还是系统</p>
+</li>
+<li>
+<p>浏览器对网页有缓存吗？缓存是如何存放的？</p>
+</li>
+<li>
+<p>Cookie和session的联系与区别，cookie、session、分布式session</p>
+</li>
+<li>
+<p>如何保证TCP可靠传输</p>
+</li>
+<li>
+<p>什么是SSO？什么是JWT ? SSO、JWT和Redis登陆的过程</p>
+</li>
+</ol>
+<h3 id="4mysql数据库"><a class="header" href="#4mysql数据库">4、mysql数据库</a></h3>
+<ol>
+<li>mysql为什么要用b+树，不用平衡二叉树做索引结构？B树和B+树有什么区别？</li>
+<li>创建数据库索引应该怎么考虑？</li>
+<li>使用int 做primary key和使用string 有什么优劣？</li>
+<li>数据库分表的方法？</li>
+<li>表结构，订单纪录如下，写一个语句，求卖的最好的 top 10 product_id。</li>
+<li>如何预估一个mysql语句的性能？</li>
+<li>mysql 的主键索引和非主键索引有什么区别？什么是索引覆盖？</li>
+<li>如果一条SQL语句执行的很慢，怎么优化？</li>
+<li>mysql为什么没有使用hash索引？</li>
+<li>索引的匹配原则知道吗？</li>
+<li>MySQL事务隔离级别？</li>
+<li>Mysql的查询执行流程？更新执行流程？</li>
+<li>mysql有哪些存储引擎？什么区别？</li>
+<li>数据库的表结构设计遵循哪些规则？</li>
+</ol>
+<h3 id="5redis缓存"><a class="header" href="#5redis缓存">5、redis缓存</a></h3>
+<ol>
+<li>redis单线程为什么性能高?</li>
+<li>Redis 为什么可以保证线程安全？</li>
+<li>Redis的七大数据类型和底层数据结构？</li>
+<li>假如一个业务依赖单点redis，此redis故障将导致业务不可用，如何改进</li>
+<li>redis sharding有哪些做法</li>
+<li>当大量数据要求用redis保存，单机单点难以满足需要，设计（换寻找）一个负载均衡的方案</li>
+<li>当redis 采用hash做sharding，现在有8个节点，负载方案是 pos = hash(key) % 8，然后保存在pos节点上。这样做有什么好处坏处？当8个节点要扩充到10个节点，应该怎么办？有什么更方便扩充的方案吗？（一致性hash, presharding）</li>
+<li>如何保证redis和数据库数据的一致性。比如用户名既保存在数据库，又保存在redis做缓存。有如下操作 update_db(username); update_redis(username)。但是执行update_db后故障，update_redis没有执行。有什么简单办法解决这个问题。</li>
+<li>Redis的Token有没有存在安全问题？如何解决？</li>
+</ol>
+<h3 id="消息队列"><a class="header" href="#消息队列">消息队列</a></h3>
+<ol>
+<li>RabbitMQ用途、结构</li>
+<li>RabbitMQ可靠性传输</li>
+<li>RocketMQ的事务最终一致性，RocketMQ事务模型</li>
+<li>消息队列的可靠性如何保证，如何保证消息不重不漏</li>
+</ol>
+<h3 id="分布式和微服务"><a class="header" href="#分布式和微服务">分布式和微服务</a></h3>
+<ol>
+<li>Dubbo的原理</li>
+<li>Dubbo的负载均衡</li>
+<li>Dubbo的SPI源码</li>
+<li>限流都有哪些算法，给我讲一下令牌桶</li>
+<li>cap解释下，p是什么？Base理论是什么？哪些框架cap用了哪些？</li>
+<li>zab协议选举过程？如果选举的时候zxid都相同呢</li>
+<li>什么是分布式事务？分布式事务的解决方案？</li>
+<li>分布式锁如何实现？RedLock算法</li>
+</ol>
+<h3 id="架构和设计模式"><a class="header" href="#架构和设计模式">架构和设计模式</a></h3>
+<ol>
+<li>rpc框架如何实现？
+<ol>
+<li>服务提供方有节点挂了怎么办？</li>
+<li>服务调用方怎么知道服务不可用了？</li>
+<li>怎么实现的类似本地调用？</li>
+<li>你的rpc可以支持多语言吗？</li>
+</ol>
+</li>
+<li>微服务，A服务请求B服务B1接口，B1接口又请求A服务A2接口。会不会有问题？</li>
+<li>什么是脑裂问题？脑裂问题如何解决？</li>
+<li>谈一谈单例设计模式，你还知道哪些设计模式？</li>
+<li>流量总入口为api_gateway，api_gateway挂了会导致全部挂挂，用什么机制增大可用性？</li>
+<li>分布式事务在业务中如何处理？</li>
+<li>延时队列如何设计？</li>
+</ol>
+<h2 id="非技术问题"><a class="header" href="#非技术问题">非技术问题</a></h2>
+<ol>
+<li>为什么离职？根本原因是什么？</li>
+<li>聊下你的职业规划？</li>
+<li>你有哪些爱好？</li>
+<li>最近在看什么书？</li>
+<li>最近看的电影是什么？</li>
+<li>你觉得你的优点和缺点是什么？</li>
+<li>有其他Offer吗？</li>
+<li>你平常怎么学习新技术？</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../interview_topn/alibaba.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../interview_topn/meituan.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../interview_topn/alibaba.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../interview_topn/meituan.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
