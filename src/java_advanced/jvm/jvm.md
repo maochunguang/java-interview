@@ -146,24 +146,49 @@ jvm第一次垃圾回收时不会处理软引用，第二次回收时内存不�
 
 
 ## jvm参数
--Xms 堆内存最小值
--Xmx 堆内存最大值
--Xss 线程内存
--XX:PermSize 永久代内存
--XX:MaxPermSize 永久代内存
--XX:MaxDirectMemorySize   直接内存
--XX:+HeapDumpOnOutOfMemoryError，可以让虚拟机在OOM异常出现之后自动生成dump文件
--XX:+HeapDumpOnCtrlBreak 可以使用[Ctrl]+[Break]键让虚拟机生成dump文件
--XX:+PrintGCTimeStamps 打印GC停顿时间
--XX:+PrintGCDetails 打印GC详细信息
--verbose:gc 打印GC信息，输出内容已被前一个参数包括
--Xloggc:gc.log
-
--XX:+UseConcMarkSweepGC
--XX:+UseParNewGC 要求虚拟机在新生代和老年代分别使用ParNew和CMS收集器进行垃圾回收
-
--XX:+UseSpinning开启自旋锁
--XX:PreBlockSpin自旋锁自旋的次数
+| 参数                                         | 含义                                                  |
+| :------------------------------------------- | :---------------------------------------------------- |
+| `-Xms`                                       | 设置堆的最小值                                        |
+| `-Xmx`                                       | 设置堆的最大值                                        |
+| `-Xmn`                                       | 设置年轻代的大小                                      |
+| `-XX:SurvivorRatio`                          | 设置 eden 和 survivor 空间的比例                      |
+| `-XX:MaxTenuringThreshold`                   | 设置对象晋升到老年代的阈值                            |
+| `-XX:+UseSerialGC`                           | 使用串行垃圾回收器                                    |
+| `-XX:+UseParallelGC`                         | 使用并行垃圾回收器                                    |
+| `-XX:+UseG1GC`                               | 使用 G1 垃圾回收器                                    |
+| `-XX:ParallelGCThreads`                      | 设置并行垃圾回收器的线程数                            |
+| `-XX:MaxGCPauseMillis`                       | 设置垃圾回收暂停时间的最大值                          |
+| `-XX:+PrintGCDetails`                        | 在控制台打印垃圾回收详细信息                          |
+| `-XX:+PrintGCTimeStamps`                     | 在控制台打印垃圾回收时间戳                            |
+| `-XX:+PrintGCApplicationStoppedTime`         | 在控制台打印垃圾回收导致应用程序停止的时间            |
+| `-XX:+PrintGCApplicationConcurrentTime`      | 在控制台打印垃圾回收时应用程序并发执行的时间          |
+| `-XX:+PrintGCTaskTimeStamps`                 | 在控制台打印垃圾回收任务的时间戳                      |
+| `-XX:+PrintGCTaskUserTime`                   | 在控制台打印垃圾回收任务的用户时间                    |
+| `-XX:+PrintGCTaskSysTime`                    | 在控制台打印垃圾回收任务的系统时间                    |
+| `-XX:+PrintFLS`                              | 在控制台打印垃圾回收器的标记阶段信息                  |
+| `-XX:+PrintTenuringDistribution`             | 在控制台打印对象晋升到老年代的比例                    |
+| `-XX:+PrintReferenceGC`                      | 在控制台打印引用计数器的变化信息                      |
+| `-XX:+PrintHeapAtGC`                         | 在垃圾回收后打印堆的状态                              |
+| `-XX:+PrintHeapAtExit`                       | 在应用程序退出时打印堆的状态                          |
+| `-XX:+UseBiasedLocking`                      | 使用偏向锁                                            |
+| `-XX:+UseAdaptiveSizePolicy`                 | 使用自适应堆大小策略                                  |
+| `-XX:+UseCompressedOops`                     | 使用压缩对象指针                                      |
+| `-XX:+UseCompressedClassPointers`            | 使用压缩类指针                                        |
+| `-XX:+UseCompressedStrings`                  | 使用压缩字符串                                        |
+| `-XX:+UsePerfData`                           | 生成性能数据                                          |
+| `-XX:+UseG1GCWithHeapDumpOnOutOfMemoryError` | 在发生 OOM 时生成堆转储                               |
+| `-XX:+UseGCLogFileRotation`                  | 使用 GC 日志文件旋转                                  |
+| `-XX:+UseGCLogFileRotationInterval`          | 设置 GC 日志文件旋转的间隔                            |
+| `-XX:+UseGCLogFileRotationSize`              | 设置 GC 日志文件的最大大小                            |
+| `-XX:+UseGCLogFileRotationTime`              | 设置 GC 日志文件旋转的时间                            |
+| `-XX:+UseGCLogFile`                          | 设置 GC 日志文件的名称                                |
+| `-Xloggc:<logfile>`                          | 指定 GC 日志文件的名称                                |
+| `-XX:+UseGCLogInterval`                      | 设置 GC 日志的间隔                                    |
+| `-XX:+PrintCommandLineFlags`                 | 在控制台打印启用的 JVM 参数                           |
+| `-XX:+UseLargePages`                         | 使用大页面                                            |
+| `-XX:+UseConcMarkSweepGC`                    | 使用 CMS 垃圾回收器                                   |
+| `-XX:CMSInitiatingOccupancyFraction`         | 设置 CMS 垃圾回收器启动的阈值                         |
+| `-XX:CMSMaxAbortablePrecleanTime`            | 设置 CMS 垃圾回收器 Abortable Preclean 阶段的最大时间 |
 
 ## jvm线上问题分析工具
 1. cpu出现100%如何定位？
@@ -186,14 +211,71 @@ jvm第一次垃圾回收时不会处理软引用，第二次回收时内存不�
   * 离线程序快照
 
 ## jvm类加载机制
-java类加载器：
+#### java8版本：类加载器流程
 
-![img](../../images/jvm/classload.png)
+```mermaid
+sequenceDiagram
+  participant App
+  participant BootstrapClassLoader
+  participant ExtensionClassLoader
+  participant SystemClassLoader
+  participant AppClassLoader
 
-1. bootstrap加载器
-2. Extension加载器
-3. Application加载器
-4. custom加载器
+  App->BootstrapClassLoader: 启动
+  BootstrapClassLoader->ExtensionClassLoader: 加载扩展类库
+  ExtensionClassLoader->SystemClassLoader: 加载系统类库
+  SystemClassLoader->AppClassLoader: 加载应用程序类库
+
+  App->AppClassLoader: 请求加载类
+  AppClassLoader->SystemClassLoader: 请求加载类
+  SystemClassLoader->ExtensionClassLoader: 请求加载类
+  ExtensionClassLoader->BootstrapClassLoader: 请求加载类
+  BootstrapClassLoader->AppClassLoader: 加载类
+
+```
+
+
+
+#### java17类加载器流程
+
+```mermaid
+sequenceDiagram
+  participant App
+  participant BootstrapClassLoader
+  participant PlatformClassLoader
+  participant SystemClassLoader
+  participant AppClassLoader
+
+  App->BootstrapClassLoader: 启动
+  BootstrapClassLoader->PlatformClassLoader: 加载平台类库
+  PlatformClassLoader->SystemClassLoader: 加载系统类库
+  SystemClassLoader->AppClassLoader: 加载应用程序类库
+
+  App->AppClassLoader: 请求加载类
+  AppClassLoader->SystemClassLoader: 请求加载类
+  SystemClassLoader->PlatformClassLoader: 请求加载类
+  PlatformClassLoader->BootstrapClassLoader: 请求加载类
+  BootstrapClassLoader->AppClassLoader: 加载类
+
+```
+
+#### java8和java17类加载区别
+
+| 类加载器             | Java 8                                 | Java 17                                    | 区别                     |
+| :------------------- | :------------------------------------- | :----------------------------------------- | :----------------------- |
+| BootstrapClassLoader | 顶级类加载器，负责加载 Java 的核心类库 | 顶级类加载器，负责加载 Java 的核心类库     | 无                       |
+| PlatformClassLoader  | 无                                     | 新引入的类加载器，负责加载 Java 平台的类库 | 负责加载 Java 平台的类库 |
+| SystemClassLoader    | 负责加载 Java 的系统类库               | 负责加载 Java 的系统类库                   | 无                       |
+| AppClassLoader       | 负责加载应用程序的类库                 | 负责加载应用程序的类库                     | 无                       |
+
+Java 17 与 Java 8 类加载器的区别主要在于引入了新的平台类加载器。平台类加载器负责加载 Java 平台的类库，包括 Java 的标准库、JavaFX、JavaFX 浏览器应用程序等。
+
+在 Java 8 中，系统类加载器负责加载 Java 平台的类库。但是，这可能会导致一些问题，例如：
+
+- 应用程序可能会覆盖平台类库中的方法或类。
+- 应用程序可能会加载不兼容的平台类库。
+
+引入平台类加载器可以解决这些问题。平台类加载器是独立于应用程序类加载器的，因此应用程序无法覆盖平台类库中的方法或类。此外，平台类加载器由 Java 平台提供，因此应用程序无法加载不兼容的平台类库。
 
 
 
