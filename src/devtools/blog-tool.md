@@ -7,21 +7,26 @@
     - **GitHub 仓库：** [GitBook GitHub](https://github.com/GitbookIO/gitbook)
     - **官方网站：** [GitBook](https://www.gitbook.com/)
     - **功能介绍：** GitBook 是一个基于 Node.js 的工具，用于创建漂亮的书籍和文档。它支持使用 Markdown 和 AsciiDoc 编写内容，并提供了易于使用的命令行界面。GitBook 具有强大的主题和插件系统，使得用户可以定制和扩展其功能。请注意，GitBook 的最新版本已经转移到了 GitBook 的商业服务中，但旧版本的代码仍然是开源的。你可以使用 GitBook 来创建静态网站，在线文档，电子书等。
+    - ![image-20240122222518168](https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/image-20240122222518168.png)
 2. **MkDocs:**
    - **官方网站：** [MkDocs](https://www.mkdocs.org/)
    - **GitHub 仓库：** [MkDocs GitHub](https://github.com/mkdocs/mkdocs)
    - **功能介绍：** MkDocs 是一个基于 Markdown 的文档生成器，它可以生成漂亮的静态站点。它支持自定义主题，并且易于配置和使用。
+   - ![image-20240122222624640](https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/image-20240122222624640.png)
 3. **Docusaurus:**
    - **官方网站：** [Docusaurus](https://docusaurus.io/)
    - **GitHub 仓库：** [Docusaurus GitHub](https://github.com/facebook/docusaurus)
    - **功能介绍：** 由 Facebook 开发的 Docusaurus 是一个用于构建开源项目文档的工具。它支持 Markdown 和 React，并提供了易于导航的文档结构。
+   - ![image-20240122222733862](https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/image-20240122222733862.png)
 4. **VuePress:**
    - **官方网站：** [VuePress](https://vuepress.vuejs.org/)
    - **GitHub 仓库：** [VuePress GitHub](https://github.com/vuejs/vuepress)
    - **功能介绍：** VuePress 是一个由 Vue 驱动的静态站点生成器，专注于文档。它支持 Markdown，并具有强大的主题和插件系统。
-5. **GitBook (Legacy):**
+   - ![image-20240122222833462](https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/image-20240122222833462.png)
+5. **mdBook:**
    - **GitHub 仓库：** [GitBook (Legacy) GitHub](https://github.com/GitbookIO/gitbook)
-   - **功能介绍：** GitBook 是一个基于 Node.js 的工具，用于创建漂亮的书籍和文档。请注意，GitBook 项目的最新版本已经转移到了 GitBook 的商业服务中，但旧版本的代码仍然是开源的。
+   - **功能介绍：** mdbok是一个基于 rust的静态博客工具，用于创建漂亮的书籍和文档。mdbook可以看作是gitbook的平替，功能相似，mdbook构建速度快，功能稳定。
+   - ![](https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/UacPX1xP8F.png)
 6. **Docsify:**
    - **GitHub 仓库：** [Docsify GitHub](https://github.com/docsifyjs/docsify)
    - **功能介绍：** Docsify 是一个动态生成文档网站的工具。它支持 Markdown，具有轻量、易用和强大的特点。
@@ -29,6 +34,7 @@
    - **官方网站：** [Hugo](https://gohugo.io/)
    - **GitHub 仓库：** [Hugo GitHub](https://github.com/gohugoio/hugo)
    - **功能介绍：** Hugo 是一个快速的静态站点生成器，适用于构建博客、文档和其他静态网站。它使用 Go 语言开发，支持 Markdown，并具有强大的主题系统。
+   - ![image-20240122223217777](https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/image-20240122223217777.png)
 8. **Sphinx:**
    - **官方网站：** [Sphinx](https://www.sphinx-doc.org/)
    - **GitHub 仓库：** [Sphinx GitHub](https://github.com/sphinx-doc/sphinx)
@@ -50,6 +56,7 @@
     - **官方网站：** [Hexo](https://hexo.io/)
     - **GitHub 仓库：** [Hexo GitHub](https://github.com/hexojs/hexo)
     - **功能介绍：** Hexo 是一个快速、简单、强大的博客框架，使用 Node.js 构建。虽然它主要用于博客，但也可用于构建文档。
+    - ![image-20240122223313096](https://blog-pics-1252092369.cos.ap-beijing.myqcloud.com/image-20240122223313096.png)
 14. **Slate:**
     - **GitHub 仓库：** [Slate GitHub](https://github.com/slatedocs/slate)
     - **功能介绍：** Slate 是一个帮助你创建漂亮 API 文档的工具。它使用 Markdown 编写文档，提供了一个干净的、交互式的界面。
